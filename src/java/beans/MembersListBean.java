@@ -6,11 +6,13 @@
 
 package beans;
 
+import java.io.Serializable;
+
 /**
  *
- * @author Twiz
+ * @author Cypher
  */
-public class TestBean
+public class MembersListBean implements Serializable
 {
     
 }
