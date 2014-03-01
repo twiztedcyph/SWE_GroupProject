@@ -14,5 +14,37 @@ import java.io.Serializable;
  */
 public class GoalTargetBean implements Serializable
 {
+    private String targetCategory, targetType, targetAim;
     
+    public GoalTargetBean(){}
+
+    public String getTargetCategory()
+    {
+        return targetCategory;
+    }
+
+    public void setTargetCategory(String targetCategory)
+    {
+        this.targetCategory = targetCategory;
+    }
+
+    public String getTargetType()
+    {
+        return targetType;
+    }
+
+    public void setTargetType(String targetType)
+    {
+        this.targetType = targetType;
+    }
+
+    public String getTargetAim()
+    {
+        return targetAim;
+    }
+
+    public void setTargetAim(String targetAim)
+    {
+        this.targetAim = targetAim;
+    }
 }

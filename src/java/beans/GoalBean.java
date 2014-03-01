@@ -7,6 +7,7 @@
 package beans;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 /**
  *
@@ -14,5 +15,38 @@ import java.io.Serializable;
  */
 public class GoalBean implements Serializable
 {
+    private Date goalStartDate, goalEndDate;
+    private double goalProgress;
     
+    public GoalBean(){}
+
+    public Date getGoalStartDate()
+    {
+        return goalStartDate;
+    }
+
+    public void setGoalStartDate(Date goalStartDate)
+    {
+        this.goalStartDate = goalStartDate;
+    }
+
+    public Date getGoalEndDate()
+    {
+        return goalEndDate;
+    }
+
+    public void setGoalEndDate(Date goalEndDate)
+    {
+        this.goalEndDate = goalEndDate;
+    }
+
+    public double getGoalProgress()
+    {
+        return goalProgress;
+    }
+
+    public void setGoalProgress(double goalProgress)
+    {
+        this.goalProgress = goalProgress;
+    }
 }

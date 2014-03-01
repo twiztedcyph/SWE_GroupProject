@@ -14,5 +14,8 @@ import java.io.Serializable;
  */
 public class MessageRecipientsBean implements Serializable
 {
-    
+    /*
+     * Not quite sure what should go here.... 
+     * Let us discus the message and group system at the next meet.
+     */
 }

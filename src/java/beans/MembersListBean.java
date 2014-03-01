@@ -14,5 +14,5 @@ import java.io.Serializable;
  */
 public class MembersListBean implements Serializable
 {
-    
+    //Not sure this bean is required....
 }

@@ -14,5 +14,17 @@ import java.io.Serializable;
  */
 public class GroupDetailsBean implements Serializable
 {
+    private String groupName;
     
+    public GroupDetailsBean(){}
+
+    public String getGroupName()
+    {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName)
+    {
+        this.groupName = groupName;
+    }
 }
