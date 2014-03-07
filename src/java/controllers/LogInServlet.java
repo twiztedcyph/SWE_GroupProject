@@ -52,7 +52,7 @@ public class LogInServlet extends HttpServlet {
                     plainPassword = request.getParameter("password");
                     misc.MakeSha makeSha = new misc.MakeSha();
                     misc.EncyptDecrypt encDec = new misc.EncyptDecrypt();
-                    Other.KeyMaker km = new Other.KeyMaker();
+                    misc.KeyMaker km = new misc.KeyMaker();
                     byte[] keyByte = km.makeKeyDriver("testingtestingonetwothree");
                     SecretKeySpec sks = new SecretKeySpec(keyByte, "AES");
                     String encPass = encDec.encrypt(plainPassword, sks);
@@ -66,8 +66,8 @@ public class LogInServlet extends HttpServlet {
                         {
                             
                         }
-                        beans.MemberBean memberBean = new beans.MemberBean();
-                        beans.MemberBean mb = memberBean.retrieveOne(userName);
+                        beans.BasicInformationBean memberBean = new beans.BasicInformationBean();
+                        beans.BasicInformationBean mb = memberBean.retrieveOne(userName);
 
                         if(mb != null)
                         {

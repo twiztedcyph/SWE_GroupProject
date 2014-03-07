@@ -7,7 +7,12 @@
 package beans;
 
 import java.io.Serializable;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
  *
@@ -17,8 +22,33 @@ public class BasicInformationBean implements Serializable
 {
     private String userName, password, firstName, lastName, emailAddress;
     private Date dateOfBirth;
+    private misc.EncyptDecrypt encDec = new misc.EncyptDecrypt();
+    private misc.KeyMaker km = new misc.KeyMaker();
+    private byte[] keyByte = km.makeKeyDriver("testingtestingonetwothree");
+    private SecretKeySpec sks = new SecretKeySpec(keyByte, "AES");
+    
     
     public BasicInformationBean(){}
+    
+    public BasicInformationBean(ResultSet rs)
+    {
+        try
+        {
+            this.firstName = encDec.decrypt(rs.getString("firstname"), sks);
+            this.lastName = encDec.decrypt(rs.getString("lastname"), sks);
+            this.userName = rs.getString("username");
+            this.password = rs.getString("password");
+            this.emailAddress = encDec.decrypt(rs.getString("email"), sks);
+        } catch (SQLException sqle)
+        {
+            
+        }
+    }
+    
+    public BasicInformationBean(String username, String password, String firstname, String lastname, String email) throws SQLException, Exception
+    {
+        
+    }
 
     public String getUserName()
     {
@@ -78,5 +108,22 @@ public class BasicInformationBean implements Serializable
     public void setDateOfBirth(Date dateOfBirth)
     {
         this.dateOfBirth = dateOfBirth;
+    }
+    public BasicInformationBean retrieveOne(String userName) throws SQLException
+    {
+        misc.DbConnect dbConnect = new misc.DbConnect();
+        Connection myCon = dbConnect.getCon();
+        PreparedStatement ps = myCon.prepareStatement("select * from users where username = ?");
+        ps.setString(1, userName);
+        
+        BasicInformationBean results = null;
+        
+        ResultSet rs = ps.executeQuery();
+        if(rs.next())
+        {
+            results = new BasicInformationBean(rs);
+        }
+        myCon.close();
+        return results;
     }
 }
