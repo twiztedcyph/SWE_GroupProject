@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link rel="stylesheet" type="text/css" href="myCSS.css" />
+        <link rel="stylesheet" type="text/css" href="ashCSS.css" />
         <title>2013 Festival Schedule</title>
         <script type="text/javascript">
             function redirect()
@@ -69,52 +69,7 @@
         </div>
         <div id ="maindiv">
             <br /><br />
-            <div id="p1">
-                <p style="text-align: justify;padding-left:10px;padding-right:10px;">
-                    Blaaa blaaa
-
-                </p>
-                <br /><br />
-
-
-
-                <span id="bannerAdvertsLeft">
-
-                    
-                </span>
-                <span id="bannerAdvertsRight">   
-                    
-
-
-
-
-                </span>
-
-                <br /><br /><br /><br /><br /><br /><br /><br /><br />
-                <p id ="p2"> Previously Featured Festivals:</p>
-
-                <ul id="gallery">
-
-                    <li> <a href="http://www.downloadfestival.co.uk/"><img src="Images/local/logo-download-2011.gif" alt="image" /></a>
-                    </li>
-                    <li> <a href="http://www.vfestival.com/"><img src="Images/local/vfest.jpg" alt="image" /></a>
-                    </li>
-                    <li> <a href="http://www.latitudefestival.com/"><img src="Images/local/Latitude.jpg" alt="image" /></a>
-                    </li>
-                    <li> <a href="http://www.bestival.net/"><img src="Images/local/bestival.jpg" alt="image" /></a>
-                    </li>
-                    <li> <a href="http://www.glastonburyfestivals.co.uk/"><img src="Images/local/glastonbury-logo.gif" alt="image" /></a>
-                    </li>
-                    <li> <a href="http://www.isleofwightfestival.com/"><img src="Images/local/isleOfWhite.jpg" alt="image" /></a>
-                    </li>
-
-                </ul>
-
-
-                <div style="clear:both;"></div>  
-                <br />
-
-            </div>
+           
             <br />
         </div>
         <div id = "footer">
@@ -122,13 +77,13 @@
             <br />   
             <table id = "footerTable">
                 <tr>
-                    <td><a href="index.jsp">HOME</a></td>
-                    <td><a href="benefits.jsp">BENEFITS</a></td>	
-                    <td><a href="defaultFestival.jsp">FESTIVALS</a></td>
-                    <td><a href="aboutUs.html">ABOUT US</a></td>
+                    <td></td>
+                    <td></td>	
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td><a href="useRegister.jsp">USER REGISTRATION</a></td>
+                    <td></td>
                     <td></td>	
                     <td></td>
                     <td></td>
