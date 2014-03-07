@@ -41,7 +41,7 @@
         <div id ="header">
             <a href="index.jsp" id="homelink"></a>
             <div id ="loginBox">
-                <form method="post" action="/SystemsCoursework/LogInServe" onsubmit="return checkForm();">
+                <form method="post" action="/SWE_GroupProject/LogInServlet" onsubmit="return checkForm();">
                     <div>
                         <p>Username:<input type="text" id="loginFormUser" name="username" /></p>
                         <p>Password:<input type="password" id="loginFormPass" name="password" /></p>

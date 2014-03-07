@@ -57,7 +57,7 @@ public class LogInServlet extends HttpServlet {
                     SecretKeySpec sks = new SecretKeySpec(keyByte, "AES");
                     String encPass = encDec.encrypt(plainPassword, sks);
                     String strongPass = makeSha.makeHash(encPass);
-
+                    System.out.println(strongPass);
                     response.sendRedirect("");
 
                     try
@@ -66,8 +66,8 @@ public class LogInServlet extends HttpServlet {
                         {
                             
                         }
-                        beans.BasicInformationBean memberBean = new beans.BasicInformationBean();
-                        beans.BasicInformationBean mb = memberBean.retrieveOne(userName);
+                        beans.BasicInformationBean basicInformationBean = new beans.BasicInformationBean();
+                        beans.BasicInformationBean mb = basicInformationBean.retrieveOne(userName);
 
                         if(mb != null)
                         {
