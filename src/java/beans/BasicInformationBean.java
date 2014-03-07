@@ -123,7 +123,7 @@ public class BasicInformationBean implements Serializable
     {
         misc.DbConnect dbConnect = new misc.DbConnect();
         Connection myCon = dbConnect.getCon();
-        PreparedStatement ps = myCon.prepareStatement("select * from users where username = ?");
+        PreparedStatement ps = myCon.prepareStatement("select * from basicinformation where username = ?");
         ps.setString(1, userName);
         
         BasicInformationBean results = null;
