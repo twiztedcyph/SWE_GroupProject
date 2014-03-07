@@ -20,7 +20,7 @@ import javax.crypto.spec.SecretKeySpec;
  */
 public class BasicInformationBean implements Serializable
 {
-    private String userName, password, firstName, lastName, emailAddress;
+    private String userName, password, firstName, lastName, emailAddress, accesstype;;
     private Date dateOfBirth;
     private misc.EncyptDecrypt encDec = new misc.EncyptDecrypt();
     private misc.KeyMaker km = new misc.KeyMaker();
@@ -39,6 +39,7 @@ public class BasicInformationBean implements Serializable
             this.userName = rs.getString("username");
             this.password = rs.getString("password");
             this.emailAddress = encDec.decrypt(rs.getString("email"), sks);
+            this.accesstype = rs.getString("accesstype");
         } catch (SQLException sqle)
         {
             
@@ -108,6 +109,15 @@ public class BasicInformationBean implements Serializable
     public void setDateOfBirth(Date dateOfBirth)
     {
         this.dateOfBirth = dateOfBirth;
+    }
+    public String getAccesstype()
+    {
+        return accesstype;
+    }
+
+    public void setAccesstype(String accesstype)
+    {
+        this.accesstype = accesstype;
     }
     public BasicInformationBean retrieveOne(String userName) throws SQLException
     {

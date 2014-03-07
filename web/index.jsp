@@ -6,7 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="ashCSS.css" />
-        <title>2013 Festival Schedule</title>
+        <title>The Health Tracker</title>
         <script type="text/javascript">
             function redirect()
             {
@@ -38,10 +38,26 @@
         </script>
     </head>
     <body>
+        <%
+    //Beans.MessageBean messageBean = new Beans.MessageBean();
+    //ArrayList<Beans.MessageBean> newMessages = new ArrayList();
+    beans.BasicInformationBean userBean = (beans.BasicInformationBean) session.getAttribute("userdetails");
+    if (userBean == null)
+    {
+        //not logged in..
+        String message = (String) session.getAttribute("msg");
+        if (message != null)
+        {
+%>
+            <script>showMsg('<%= message%>');</script>
+<%
+            session.removeAttribute("msg");
+        }
+%>
         <div id ="header">
             <a href="index.jsp" id="homelink"></a>
             <div id ="loginBox">
-                <form method="post" action="/SystemsCoursework/LogInServe" onsubmit="return checkForm();">
+                <form method="post" action="/SWE_GroupProject/LogInServlet" onsubmit="return checkForm();">
                     <div>
                         <p>Username:<input type="text" id="loginFormUser" name="username" /></p>
                         <p>Password:<input type="password" id="loginFormPass" name="password" /></p>
@@ -53,7 +69,7 @@
             <ul id = "navmenu">
                 <li><a href="index.jsp">HOME</a></li>
                 <li><a href="benefits.jsp">BENEFITS</a></li>		
-                <li><a href="defaultFestival.jsp">FESTIVALS</a></li>
+                <li><a href="defaultFestival.jsp">TESTIMONIALS</a></li>
                 <li><a href="aboutUs.html">ABOUT US</a></li>
             </ul>
             <div id="search">
@@ -100,6 +116,86 @@
             <p>Designed and created by Ian Weeks and Ashley Moore</p>
 
         </div>
-        
+         <%
+    } else if (userBean.getAccesstype().equals("admin"))
+    {
+        //Logged in as admin
+        //newMessages = messageBean.getAllNewMessages(userBean.getUsername());
+%>
+        <div id ="header">
+            <a href="index.jsp" id="homelink"></a>
+            <div id ="loginBox">
+                Welcome back administrator <%= userBean.getUserName()%>.
+                <form method="get" action="/SystemsCoursework/LogInServe">
+                    <p>
+                        <input type="hidden" name="logout" value="logout" />
+                        <input type="submit" name="" value="Logout" />
+                    </p>
+                </form>
+            </div>
+            <ul id = "navmenu">
+                <li><a href="index.jsp">MESSAGE CONTROL</a></li>
+                <li><a href="accountAdmin.jsp">USER CONTROL</a></li>		
+                <li><a href="festivalControl.jsp">GOAL CONTROL</a></li>
+                <li><a href="messages.jsp">MESSAGES  <span style="color: red; background: #000;"></span></a></li>
+            </ul>
+            <div id="search">
+                <form action="/SystemsCoursework/SearchServe" method="post">
+                    <p>
+                    Google
+                    <input type="radio" name="searchType" checked="checked" value="google" />
+                    This site
+                    <input type="radio" name="searchType"  value="thisSite" />
+                    <input type="text" name="theSearch" size="30" />
+                    <input type="submit" value="Submit" />
+                    </p>
+                </form>
+            </div>
+        </div>
+
+        <div id ="maindiv">
+            <br /><br />
+            <div id="p1">
+                <h1>Hello Administrator <%= userBean.getFirstName()%>.</h1>
+                <br />
+
+                <br /><br /><br />
+
+            </div>
+
+        </div>
+        <div id = "footer">
+            <br />
+            <br />   
+            <table id = "footerTable">
+                <tr>
+                    <td><a href="index.jsp">HOME</a></td>
+                    <td><a href="accountAdmin.jsp">USER CONTROL</a></td>	
+                    <td><a href="festivalControl.jsp">FESTIVAL CONTROL</a></td>
+                    <td><a href="messages.jsp">MESSAGES</a></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>	
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>		
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <br />
+            <p>Designed and created by Ian Weeks and Ashley Moore</p>
+
+        </div>
+                 <%
+    } 
+        //Logged in as admin
+        //newMessages = messageBean.getAllNewMessages(userBean.getUsername());
+%>
     </body>
 </html>
