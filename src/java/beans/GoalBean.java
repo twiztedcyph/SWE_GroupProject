@@ -7,7 +7,11 @@
 package beans;
 
 import java.io.Serializable;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import javax.servlet.ServletException;
+import misc.DbConnect;
 
 /**
  *
@@ -54,6 +58,37 @@ public class GoalBean implements Serializable
          
         return goalString;
             
+    }
+    
+    public void persist() throws ServletException
+    {
+        try
+        {
+            DbConnect databaseConnection = new DbConnect();
+            Connection con = databaseConnection.getCon();
+       
+            PreparedStatement ps = con.prepareStatement("INSERT INTO goal "
+                                   + "(startDate, endDate, progress, category, "
+                                    + "type, aim, isgroup, submitter)"
+                                    + "VALUES(?,?,?,?,?,?,?,?)"); 
+            
+            ps.setDate(1, goalStartDate);
+            ps.setDate(2, goalEndDate);
+            ps.setDouble(3, goalProgress);
+            ps.setString(4, category);
+            ps.setString(5, type);
+            ps.setDouble(6, aim);
+            ps.setBoolean(7, groupGoal);
+            ps.setInt(8, submitter);
+            
+            ps.executeUpdate();
+            
+            con.close();
+        }
+        catch(Exception e)
+        {
+            throw new ServletException("Goal persist issue: "+e);
+        }
     }
     
     public int getSubmitter()

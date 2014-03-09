@@ -64,17 +64,17 @@ public class CreateGoalServlet extends HttpServlet
             beans.GoalBean  goal = new beans.GoalBean(submitterID, isGroupGoal, startDate, endDate, aim, category, type); 
             System.out.println("**********************************************************************************");
             System.out.println(goal.toString());
-               
+            goal.persist();
             //Which is then persisted to the database
             //goal.persist(); 
                
             //Then send to the view
-            request.getRequestDispatcher("CreateGoal.jsp").forward(request, response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
         catch(Exception e)
         {
             System.out.println(e);
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getRequestDispatcher("CreateGoal.jsp").forward(request, response);
         }
     }
 
