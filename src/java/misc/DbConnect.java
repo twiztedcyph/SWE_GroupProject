@@ -30,7 +30,7 @@ public class DbConnect
     {
         this.database = "healthTracker";
         this.username = "postgres";
-        this.password = "deathrow";
+        this.password = "admin";
         myCon = null;
     }
     

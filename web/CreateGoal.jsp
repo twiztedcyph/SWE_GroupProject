@@ -11,7 +11,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link rel="stylesheet" type="text/css" href="myCSS.css" />
+        <link rel="stylesheet" type="text/css" href="ashCSS.css" />
         <title>Health Tracker</title>
         <script type="text/javascript">
             function redirect()
@@ -47,7 +47,7 @@
         <div id ="header">
             <a href="index.jsp" id="homelink"></a>
             <div id ="loginBox">
-                <form method="post" action="/SystemsCoursework/LogInServe" onsubmit="return checkForm();">
+                <form method="post" action="/SystemsCoursework/LogInServlet" onsubmit="return checkForm();">
                     <div>
                         <p>Username:<input type="text" id="loginFormUser" name="username" /></p>
                         <p>Password:<input type="password" id="loginFormPass" name="password" /></p>
@@ -78,42 +78,75 @@
             <div id="p1">
                 <%  
                     if(session.getAttribute("member") == null){  
-                 %>       
+                 %>     
                 <p style="text-align: justify;padding-left:10px;padding-right:10px;">
-                    <form name="CreateGoal" action="CreateGoal" method="post">
+                    <form name="CreateGoal" action="CreateGoalServlet" method="post">
                         <table>
                             <tr>
-                                <td><input type="hidden" name="member" value="$Member.memberID">
+                                <td><input type="hidden" name="member" value="5" />
                                 Will you be creating this goal for yourself or one of your groups?
                                 </td> 
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="radio" name="goalFor" value="myself">Myself
-                                    <input type="radio" name="goalFor" value="group">One of my groups
+                                    <input type="radio" name="goalFor" value="false" />Myself
+                                    <input type="radio" name="goalFor" value="true" />One of my groups
                                 </td>
                             </tr>
-                            <tr></tr>
+                            <tr><td><p></p></td></tr>
                             <tr>
                                 <td>Start Date:</td>
                             </tr>
                             <tr>
-                                <td><input type="date" name="startDate"></td>
+                                <td><input type="date" name="startDate" /></td>
                             </tr>
-                            <tr></tr>
+                            <tr><td><p></p></td></tr>
                             <tr>
                                 <td>End Date:</td>
                             </tr>
                              <tr>
-                                <td><input type="date" name="endDate"></td>
+                                <td><input type="date" name="endDate" /></td>
                             </tr>
-                            <tr></tr>
+                            <tr><td><p></p></td></tr>
                             <tr>
                                 <td>Progress:</td>
                             </tr>
+                            <tr><td><p></p></td></tr>
                             <tr>
-                                <td>Your target:</td>
+                                <td>About Your target:</td>
                             </tr>
+                            <tr><td>I want to</td></tr>
+                            <tr>
+                                <td>
+                                    <select name="category">
+                                        <option value ="lose">Lose</option>
+                                        <option value ="gain">Gain</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr><td><p></p></td></tr>
+                            <tr><td>Some</td></tr>
+                            <tr>
+                                <td>
+                                    <select name="type">
+                                        <option value ="weight">Weight</option>
+                                        <option value="bodyFatPercentage">Body Fat</option>
+                                        <option value="BMI">Body Mass Index</option>
+                                        <option value="muscleMass">Muscle Mass</option>
+                                    </select>
+                                </td>
+                            </tr>
+                             <tr><td><p></p></td></tr>
+                             <tr><td>And my aim is</td></tr>
+                             <tr>
+                                 <td>
+                                     <input type="text" name="aim" />
+                                 </td>
+                             </tr>
+                              <tr><td><p></p></td></tr>
+                              <tr><td>
+                                      <input type="submit" action="Submit" />
+                               </td></tr>
                         </table>
                     </form>
                 </p>
@@ -124,42 +157,7 @@
                     why not log in or create an account?
                 </p>    
                 <% } %>
-                <span id="bannerAdvertsLeft">
-
-                    
-                </span>
-                <span id="bannerAdvertsRight">   
-                    
-
-
-
-
-                </span>
-
-                <br /><br /><br /><br /><br /><br /><br /><br /><br />
-                <p id ="p2"> Previously Featured Festivals:</p>
-
-                <ul id="gallery">
-
-                    <li> <a href="http://www.downloadfestival.co.uk/"><img src="Images/local/logo-download-2011.gif" alt="image" /></a>
-                    </li>
-                    <li> <a href="http://www.vfestival.com/"><img src="Images/local/vfest.jpg" alt="image" /></a>
-                    </li>
-                    <li> <a href="http://www.latitudefestival.com/"><img src="Images/local/Latitude.jpg" alt="image" /></a>
-                    </li>
-                    <li> <a href="http://www.bestival.net/"><img src="Images/local/bestival.jpg" alt="image" /></a>
-                    </li>
-                    <li> <a href="http://www.glastonburyfestivals.co.uk/"><img src="Images/local/glastonbury-logo.gif" alt="image" /></a>
-                    </li>
-                    <li> <a href="http://www.isleofwightfestival.com/"><img src="Images/local/isleOfWhite.jpg" alt="image" /></a>
-                    </li>
-
-                </ul>
-
-
-                <div style="clear:both;"></div>  
-                <br />
-
+          
             </div>
             <br />
         </div>
