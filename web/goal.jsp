@@ -91,11 +91,9 @@
         </div>
     <div id ="maindiv">
         <br /><br />
-        <div id="p1">
             <p>Sorry but you can't use this feature without being logged in,
                     why not log in or create an account?
               </p> 
-        </div>
     </div>
 <% }  else if( memberBean.getAccessType().equals("user")) { %>
  <div id ="header">
@@ -131,9 +129,8 @@
 
         <div id ="maindiv">
             <br /><br />
-            <div id="p1">
-                    <form name="CreateGoal" action="CreateGoalServlet" method="post">
-                        <table>
+                    <form method="post" name="GoalServlet" action="CreateGoalServlet" >
+                        <table id="adminTableOne">
                             <tr>
                                 <td>
                                     <input type="hidden" name="member" value="<%= memberBean.getId() %>" />
@@ -198,8 +195,6 @@
                 <% } else { %>
                    
                 <% } %>
-          
-            </div>
             <br />
         </div>
         <div id = "footer">

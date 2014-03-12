@@ -12,6 +12,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,6 +23,7 @@ public class MemberBean implements Serializable
     private int id;
     private String userName, password, firstName, lastName, emailAddress, accessType;
     private Date dateOfBirth;
+    private ArrayList<GoalBean> goalList;
 
     public MemberBean(){}
     
@@ -156,5 +158,37 @@ public class MemberBean implements Serializable
     public void setDateOfBirth(Date dateOfBirth)
     {
         this.dateOfBirth = dateOfBirth;
+    }
+    
+    public ArrayList<GoalBean> getGoalList() throws SQLException
+    {
+        goalList = new ArrayList<>();
+        
+        try
+        {
+            misc.DbConnect databaseConnection = new misc.DbConnect();
+
+
+           ResultSet rs = databaseConnection.runQuery("SELECT * FROM goal WHERE submitter = "+id+";");
+
+           while(rs.next())
+           {
+               GoalBean goal = new GoalBean(rs);
+               goalList.add(goal);
+           }
+       
+        }
+        
+        catch(SQLException e)
+        {
+            throw new SQLException(e);
+        }
+        
+        for(GoalBean goal: goalList)
+        {
+            System.out.println(goal);
+        }
+        
+        return goalList;
     }
 }

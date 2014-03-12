@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -37,8 +38,13 @@ public class CreateGoalServlet extends HttpServlet
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        
+        
         try
         {
+            HttpSession session = request.getSession();
+            beans.MemberBean memberBean = (beans.MemberBean) session.getAttribute("userdetails");
+            memberBean.getGoalList();
             //All the necessary pieces of information for a goal are objtained
             
             int submitterID = Integer.parseInt(request.getParameter("member"));
