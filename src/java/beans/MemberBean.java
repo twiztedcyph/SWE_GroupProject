@@ -67,9 +67,17 @@ public class MemberBean implements Serializable
         ps.executeUpdate();
     }
     
-    public MemberBean retrieveOne()
+    public MemberBean retrieveOne(String username) throws SQLException
     {
-        return new MemberBean();
+        misc.DbConnect dbConnect = new misc.DbConnect();
+        
+        Connection myCon = dbConnect.getCon();
+        
+        PreparedStatement ps = myCon.prepareStatement("Select * from member where user_name = ?");
+        ps.setString(1, username);
+        
+        
+        return new MemberBean(ps.executeQuery());
     }
     
     public int getId()
