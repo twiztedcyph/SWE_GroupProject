@@ -1,7 +1,7 @@
-dbody
+body
 {
    
-   background-color: white;
+   
 }
 
 #header
@@ -67,7 +67,20 @@ dbody
     background-color: #ffffff;
     margin-right:5px;
     
+} 
+#loginBox input[value=Logout]
+{
+    position:relative;
+    width:40%;
+    font-family:"Courier New", Courier, monospace;
+    margin-top:7px;
+    font-weight:bold;
+    margin-bottom: 3px;
+    margin-right:5px;
+    border-radius: 8px;
+    background-color: #ffffff;
 }
+
 ul#navmenu
 {
     position:absolute;
@@ -103,11 +116,6 @@ ul#navmenu li
     float: left;
 }
 
-ul#navmenu .sub1 a 
-{
-    margin-top: 1px;
-    width:125px;
-}
 
 ul#navmenu li:hover > a 
 {
@@ -119,16 +127,6 @@ ul#navmenu li:hover a:hover
     background-color: #000;
 }
 
-ul#navmenu ul.sub1 
-{
-    display: none;
-    position: absolute;
-}
-
-ul#navmenu li:hover .sub1
-{
-    display: block;
-}
 
 #maindiv
 {
@@ -145,25 +143,7 @@ ul#navmenu li:hover .sub1
     padding-bottom: 10px;
     font-family:"Courier New", Courier, monospace; 
 }
-#p1
-{
 
-    font-size: medium;
-    color:#000000;
-    margin-right: 4.5%;
-    margin-left: 5%;
-    background-color:#ffffff; 
-    border-radius: 3px;
-    padding:6px;
-    font-weight:bold;
-    box-shadow: 0 0 10px 5px #052D6E;
-    text-align: justify;
-    position: relative;
-    overflow: hidden;
-    
-    
-
-}
 #footer
 {
     margin-bottom: -10px;
@@ -598,16 +578,17 @@ h2
 {
     position:absolute;
     bottom:37px;
-    left:30%;
-    
+    right:0;
     background-color:#69A583;
     text-align:center;
-    color:#FFFFFF  
+    color:#FFFFFF;  
 }
 
 #search p 
 {
     margin:0;
+    margin-left: 5px;
+    text-align:left;
 }
 #search input[type=submit]
 {
@@ -620,4 +601,29 @@ h2
     margin-right:15px;
     border-radius: 8px;
     background-color: #ffffff;
+}
+#backImageLeft
+{
+    position: absolute;
+    position:fixed;
+    margin-right:1px;
+    width:15%;
+    min-height:100%;
+    margin-bottom: 0px;
+    background-image: url('Images/girl-left.jpg');
+    background-size: 100%;
+    
+}
+
+#backImageRight
+{
+    position: absolute;
+    position:fixed;
+    margin-left: 84%;
+    width:15%;
+    min-height:100%;
+    background-image: url('Images/girl-right.jpg');
+    background-size: 100%;
+    
+
 }

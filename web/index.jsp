@@ -10,7 +10,7 @@
         <script type="text/javascript">
             function redirect()
             {
-                window.location = "useRegister.jsp";
+                window.location = "registration.jsp";
             }
 
             function showMsg(msgVar)
@@ -38,6 +38,8 @@
         </script>
     </head>
     <body>
+        <div id ="backImageLeft"></div>
+        <div id ="backImageRight"></div>
         <%
     //Beans.MessageBean messageBean = new Beans.MessageBean();
     //ArrayList<Beans.MessageBean> newMessages = new ArrayList();
@@ -54,7 +56,8 @@
             session.removeAttribute("msg");
         }
 %>
-        <div id ="header">
+           
+         <div id ="header">
             <a href="index.jsp" id="homelink"></a>
             <div id ="loginBox">
                 <form method="post" action="/SWE_GroupProject/LogInServlet" onsubmit="return checkForm();">
@@ -79,9 +82,10 @@
                     <input type="radio" name="searchType" checked="checked" value="google" />
                     This site
                     <input type="radio" name="searchType"  value="thisSite" />
+                    </p>
                     <input type="text"placeholder="Search..." name="theSearch"  size="30" />
                     <input type="submit" value="Submit" />
-                    </p>
+                    
                 </form>
             </div>
         </div>
@@ -118,6 +122,7 @@
             <p>Designed and created by Ian, Ash, Liam and Warren</p>
 
         </div>
+               
          <%
     } else if (memberBean.getAccessType().equals("admin"))
     {
@@ -157,13 +162,13 @@
 
         <div id ="maindiv">
             <br /><br />
-            <div id="p1">
+            
                 <h1>Hello Administrator <%= memberBean.getFirstName()%>.</h1>
                 <br />
 
                 <br /><br /><br />
 
-            </div>
+            
 
         </div>
         <div id = "footer">
@@ -224,22 +229,22 @@
                     <input type="radio" name="searchType" checked="checked" value="google" />
                     This site
                     <input type="radio" name="searchType"  value="thisSite" />
+                    </p>
                     <input type="text"placeholder="Search..." name="theSearch"  size="30" />
                     <input type="submit" value="Submit" />
-                    </p>
                 </form>
             </div>
         </div>
 
         <div id ="maindiv">
             <br /><br />
-            <div id="p1">
+            
                 <h1>Whats Up ... <%= memberBean.getFirstName()%>.</h1>
                 <br />
 
                 <br /><br /><br />
 
-            </div>
+            
 
         </div>
         <div id = "footer">

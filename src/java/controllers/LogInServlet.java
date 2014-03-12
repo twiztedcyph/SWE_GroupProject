@@ -37,6 +37,7 @@ public class LogInServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession(true);
+        String referer = request.getHeader("Referer").replace("http://localhost:8080/SWE_GroupProject/", "");
         if(logCount < 5)
         {
         try
@@ -58,8 +59,7 @@ public class LogInServlet extends HttpServlet {
                     //String encPass = encDec.encrypt(plainPassword, sks);
                     //String strongPass = makeSha.makeHash(encPass);
                     //System.out.println(strongPass);
-                    response.sendRedirect("");
-                    System.out.println("HELLO");
+                    response.sendRedirect(referer);
                     //
                     try
                     {
@@ -91,7 +91,6 @@ public class LogInServlet extends HttpServlet {
                 {
                     session.invalidate();
                     response.sendRedirect("index.jsp");
-                    System.out.println("HELLO");
                 }
             } finally
             {            
