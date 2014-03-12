@@ -50,52 +50,7 @@
         </div>
         <div id ="maindiv">
             <br /><br />
-            <div id="p1">
-                <p style="text-align: justify;padding-left:10px;padding-right:10px;">
-                    Hello visitor.
-
-                </p>
-                <br /><br />
-
-
-
-                <span id="bannerAdvertsLeft">
-
-                    
-                </span>
-                <span id="bannerAdvertsRight">   
-                    
-
-
-
-
-                </span>
-
-                <br /><br /><br /><br /><br /><br /><br /><br /><br />
-                <p id ="p2"> Some text goes here....</p>
-
-                <ul id="gallery">
-
-                    <li> <a href=""><img src="" alt="image" /></a>
-                    </li>
-                    <li> <a href=""><img src="" alt="image" /></a>
-                    </li>
-                    <li> <a href=""><img src="" alt="image" /></a>
-                    </li>
-                    <li> <a href=""><img src="" alt="image" /></a>
-                    </li>
-                    <li> <a href=""><img src="" alt="image" /></a>
-                    </li>
-                    <li> <a href=""><img src="" alt="image" /></a>
-                    </li>
-
-                </ul>
-
-
-                <div style="clear:both;"></div>  
-                <br />
-
-            </div>
+            
             <br />
         </div>
         <div id = "footer">
@@ -135,7 +90,7 @@
     <div id ="header">
             <a href="index.jsp" id="homelink"></a>
             <div id ="loginBox">
-                <form method="post" action="/SystemsCoursework/LogInServe" onsubmit="return checkForm();">
+                <form method="post" action="/SWE_GroupProject/LogInServe" onsubmit="return checkForm();">
                     <div>
                         Hello user
                     </div>
@@ -160,19 +115,34 @@
         </div>
         <div id ="maindiv">
             <br /><br />
-            <div id="p1">
-                                               
+                                                          
                 <p id ="p2">User profile</p>
-
-                <br />Username: <%= memberBean.getUserName() %>
-                <br />Password: <%= memberBean.getPassword() %>
-                <br />First Name: <%= memberBean.getFirstName() %>
-                
+                <form>
+                    <table id ="adminTableOne">
+                        <tr>
+                            <td>Username:</td> <td><%= memberBean.getUserName() %></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>Password:</td> <td><%= memberBean.getPassword() %></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>First Name:</td> <td> <%= memberBean.getFirstName() %></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>Last Name:</td> <td><%= memberBean.getLastName() %></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>Date of birth:</td> <td><%= memberBean.getDateOfBirth() %></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>Email:</td> <td><%= memberBean.getEmailAddress() %></td><td></td>
+                        </tr>
+                    </table>
+                </form>
 
                 <div style="clear:both;"></div>  
                 <br />
 
-            </div>
             <br />
         </div>
         <div id = "footer">
