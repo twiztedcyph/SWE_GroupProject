@@ -307,7 +307,7 @@ ul#gallery li img:hover
 #adminTableOne td
 {
     width: 20%;
-    text-align: center;
+    text-align: left;
     padding: 5px;
     border-spacing: 1px;
 }

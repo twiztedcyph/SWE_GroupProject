@@ -14,6 +14,8 @@
         <title>Profile page</title>
     </head>
     <body>
+        <div id ="backImageLeft"></div>
+        <div id ="backImageRight"></div>
     <%
         beans.MemberBean memberBean = (beans.MemberBean) session.getAttribute("userdetails");
         if(memberBean == null)
@@ -22,14 +24,7 @@
         <div id ="header">
             <a href="index.jsp" id="homelink"></a>
             <div id ="loginBox">
-                <form method="post" action="/SWE_GroupProject/LogInServlet" onsubmit="return checkForm();">
-                    <div>
-                        <p>Username:<input type="text" id="loginFormUser" name="username" /></p>
-                        <p>Password:<input type="password" id="loginFormPass" name="password" /></p>
-                        <p><input type="submit" value="Submit" /></p>
-                        <input type="button" name="complete1" onclick="redirect('useRegister.jsp');" value="Register" />
-                    </div>
-                </form>
+                
             </div>
             <ul id = "navmenu">
                 <li><a href="index.jsp">HOME</a></li>
@@ -90,11 +85,16 @@
     <div id ="header">
             <a href="index.jsp" id="homelink"></a>
             <div id ="loginBox">
-                <form method="post" action="/SWE_GroupProject/LogInServe" onsubmit="return checkForm();">
-                    <div>
-                        Hello user
-                    </div>
-                </form>
+                <div>
+                    Welcome back User <%= memberBean.getUserName()%>.
+                    <form method="get" action="/SWE_GroupProject/LogInServlet">
+                        <p>
+                            <input type="hidden" name="logout" value="logout" />
+                            <input type="submit" name="" value="Logout" />
+                        </p>
+                    </form>
+                </div>
+                
             </div>
             <ul id = "navmenu">
                 <li><a href="index.jsp">HOME</a></li>
@@ -117,13 +117,13 @@
             <br /><br />
                                                           
                 <p id ="p2">User profile</p>
-                <form>
+                <form method="post" action="/SWE_GroupProject/ProfileServlet">
                     <table id ="adminTableOne">
                         <tr>
                             <td>Username:</td> <td><%= memberBean.getUserName() %></td><td></td>
                         </tr>
                         <tr>
-                            <td>Password:</td> <td><%= memberBean.getPassword() %></td><td></td>
+                            <td>Password:</td> <td><%= memberBean.getPassword() %></td><td><input type="submit" name="change_pass" value="Change" /></td>
                         </tr>
                         <tr>
                             <td>First Name:</td> <td> <%= memberBean.getFirstName() %></td><td></td>
@@ -135,7 +135,7 @@
                             <td>Date of birth:</td> <td><%= memberBean.getDateOfBirth() %></td><td></td>
                         </tr>
                         <tr>
-                            <td>Email:</td> <td><%= memberBean.getEmailAddress() %></td><td></td>
+                            <td>Email:</td> <td><%= memberBean.getEmailAddress() %></td><td><input type="submit" name="change_email" value="Change" /></td>
                         </tr>
                     </table>
                 </form>
