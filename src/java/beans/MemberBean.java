@@ -27,14 +27,16 @@ public class MemberBean implements Serializable
     
     public MemberBean(ResultSet rs) throws SQLException
     {
-        this.id = rs.getInt("id");
-        this.userName = rs.getString("user_name");
-        this.password = rs.getString("password");
-        this.firstName = rs.getString("first_name");
-        this.lastName = rs.getString("last_name");
-        this.emailAddress = rs.getString("email_address");
-        this.accessType = rs.getString("access_type");
-        this.dateOfBirth = rs.getDate("date_of_birth");
+        while(rs.next())
+        {      
+            this.userName = rs.getString("user_name");
+            this.password = rs.getString("password");
+            this.firstName = rs.getString("first_name");
+            this.lastName = rs.getString("last_name");
+            this.emailAddress = rs.getString("email_address");
+            this.accessType = rs.getString("access_type");
+            this.dateOfBirth = rs.getDate("date_of_birth");
+        }
     }
     
     public MemberBean(String userName, String password, String firstName, String lastName, String emailAddress, String accessType, Date dateOfBirth)
