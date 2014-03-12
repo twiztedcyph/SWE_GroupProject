@@ -72,7 +72,7 @@
                 </span>
 
                 <br /><br /><br /><br /><br /><br /><br /><br /><br />
-                <p id ="p2"> Previously Featured Festivals:</p>
+                <p id ="p2"> Some text goes here....</p>
 
                 <ul id="gallery">
 
@@ -182,7 +182,7 @@
                 </span>
 
                 <br /><br /><br /><br /><br /><br /><br /><br /><br />
-                <p id ="p2"> Previously Featured Festivals:</p>
+                <p id ="p2"> Some text goes here....</p>
 
                 <ul id="gallery">
 
