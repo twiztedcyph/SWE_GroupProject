@@ -84,7 +84,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <input type="hidden" name="member" value="5" />
+                                    <input type="hidden" name="member" value="1" />
                                     Will you be creating this goal for yourself or one of your groups?
                                 </td>
                             </tr>
