@@ -59,7 +59,7 @@ public class LogInServlet extends HttpServlet {
                     //String strongPass = makeSha.makeHash(encPass);
                     //System.out.println(strongPass);
                     response.sendRedirect("");
-
+                    //
                     try
                     {
                         beans.MemberBean mb = new beans.MemberBean();
