@@ -59,6 +59,7 @@ public class LogInServlet extends HttpServlet {
                     //String strongPass = makeSha.makeHash(encPass);
                     //System.out.println(strongPass);
                     response.sendRedirect("");
+                    System.out.println("HELLO");
                     //
                     try
                     {
@@ -90,6 +91,7 @@ public class LogInServlet extends HttpServlet {
                 {
                     session.invalidate();
                     response.sendRedirect("index.jsp");
+                    System.out.println("HELLO");
                 }
             } finally
             {            

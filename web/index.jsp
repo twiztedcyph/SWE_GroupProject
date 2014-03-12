@@ -128,7 +128,7 @@
             <a href="index.jsp" id="homelink"></a>
             <div id ="loginBox">
                 Welcome back administrator <%= memberBean.getUserName()%>.
-                <form method="get" action="/SystemsCoursework/LogInServe">
+                <form method="get" action="/SWE_GroupProject/LogInServlet">
                     <p>
                         <input type="hidden" name="logout" value="logout" />
                         <input type="submit" name="" value="Logout" />
@@ -204,7 +204,7 @@
             <a href="index.jsp" id="homelink"></a>
             <div id ="loginBox">
                 Welcome back User <%= memberBean.getUserName()%>.
-                <form method="get" action="/SystemsCoursework/LogInServe">
+                <form method="get" action="/SWE_GroupProject/LogInServlet">
                     <p>
                         <input type="hidden" name="logout" value="logout" />
                         <input type="submit" name="" value="Logout" />
