@@ -10,6 +10,8 @@ import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import misc.DbConnect;
 
@@ -41,6 +43,21 @@ public class GoalBean implements Serializable
         goalProgress = 0;
     }
 
+    public GoalBean(ResultSet rs) throws SQLException
+    {
+        while(rs.next())
+        {   
+            this.submitter = rs.getInt("id");
+            this.groupGoal = rs.getBoolean("isgroup");
+            this.goalStartDate = rs.getDate("start_date");
+            this.goalEndDate = rs.getDate("end_date");
+            this.aim = rs.getDouble("aim");
+            this.category = rs.getString("category");
+            this.type = rs.getString("type");
+            this.goalProgress = rs.getDouble("progress");
+        }
+    }
+    
     public String toString()
     {
         String goalString = String.format("Submitted by: %s\n"
