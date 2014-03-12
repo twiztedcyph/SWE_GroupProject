@@ -50,28 +50,23 @@ public class LogInServlet extends HttpServlet {
                     String userName, plainPassword;
                     userName = request.getParameter("username");
                     plainPassword = request.getParameter("password");
-                    misc.MakeSha makeSha = new misc.MakeSha();
-                    misc.EncyptDecrypt encDec = new misc.EncyptDecrypt();
-                    misc.KeyMaker km = new misc.KeyMaker();
-                    byte[] keyByte = km.makeKeyDriver("testingtestingonetwothree");
-                    SecretKeySpec sks = new SecretKeySpec(keyByte, "AES");
-                    String encPass = encDec.encrypt(plainPassword, sks);
-                    String strongPass = makeSha.makeHash(encPass);
-                    System.out.println(strongPass);
+                    //misc.MakeSha makeSha = new misc.MakeSha();
+                    //misc.EncyptDecrypt encDec = new misc.EncyptDecrypt();
+                    //misc.KeyMaker km = new misc.KeyMaker();
+                    //byte[] keyByte = km.makeKeyDriver("testingtestingonetwothree");
+                    //SecretKeySpec sks = new SecretKeySpec(keyByte, "AES");
+                    //String encPass = encDec.encrypt(plainPassword, sks);
+                    //String strongPass = makeSha.makeHash(encPass);
+                    //System.out.println(strongPass);
                     response.sendRedirect("");
 
                     try
                     {
-                        if(userName.contains(encPass))
-                        {
-                            
-                        }
-                        beans.BasicInformationBean basicInformationBean = new beans.BasicInformationBean();
-                        beans.BasicInformationBean mb = basicInformationBean.retrieveOne(userName);
-
+                        beans.MemberBean mb = new beans.MemberBean();
+                        mb = mb.retrieveOne(userName);
                         if(mb != null)
                         {
-                            if(strongPass.equals(mb.getPassword()))
+                            if(plainPassword.equals(mb.getPassword()))
                             {
                                 System.out.println("Logged in");
                                 session.setAttribute("userdetails", mb);

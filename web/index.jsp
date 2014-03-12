@@ -41,8 +41,8 @@
         <%
     //Beans.MessageBean messageBean = new Beans.MessageBean();
     //ArrayList<Beans.MessageBean> newMessages = new ArrayList();
-    beans.BasicInformationBean userBean = (beans.BasicInformationBean) session.getAttribute("userdetails");
-    if (userBean == null)
+    beans.MemberBean memberBean = (beans.MemberBean) session.getAttribute("userdetails");
+    if (memberBean == null)
     {
         //not logged in..
         String message = (String) session.getAttribute("msg");
@@ -59,10 +59,10 @@
             <div id ="loginBox">
                 <form method="post" action="/SWE_GroupProject/LogInServlet" onsubmit="return checkForm();">
                     <div>
-                        <p>Username:<input type="text" id="loginFormUser" name="username" /></p>
-                        <p>Password:<input type="password" id="loginFormPass" name="password" /></p>
-                        <p><input type="submit" value="Submit" /></p>
-                        <input type="button" name="complete1" onclick="redirect('useRegister.jsp');" value="Register" />
+                        Username:<input type="text" id="loginFormUser" name="username" />
+                        Password:<input type="password" id="loginFormPass" name="password" />
+                        <input type="submit" value="Submit" />
+                        <p>Not registered?...<input type="button" name="complete1" onclick="redirect('useRegister.jsp');" value="Register" /></p>
                     </div>
                 </form>
             </div>
@@ -113,11 +113,11 @@
             </table>
 
             <br />
-            <p>Designed and created by Ian Weeks and Ashley Moore</p>
+            <p>Designed and created by Ian, Ash, Liam and Warren</p>
 
         </div>
          <%
-    } else if (userBean.getAccesstype().equals("admin"))
+    } else if (memberBean.getAccessType().equals("admin"))
     {
         //Logged in as admin
         //newMessages = messageBean.getAllNewMessages(userBean.getUsername());
@@ -125,7 +125,7 @@
         <div id ="header">
             <a href="index.jsp" id="homelink"></a>
             <div id ="loginBox">
-                Welcome back administrator <%= userBean.getUserName()%>.
+                Welcome back administrator <%= memberBean.getUserName()%>.
                 <form method="get" action="/SystemsCoursework/LogInServe">
                     <p>
                         <input type="hidden" name="logout" value="logout" />
@@ -156,7 +156,7 @@
         <div id ="maindiv">
             <br /><br />
             <div id="p1">
-                <h1>Hello Administrator <%= userBean.getFirstName()%>.</h1>
+                <h1>Hello Administrator <%= memberBean.getFirstName()%>.</h1>
                 <br />
 
                 <br /><br /><br />
@@ -189,7 +189,83 @@
             </table>
 
             <br />
-            <p>Designed and created by Ian Weeks and Ashley Moore</p>
+            <p>Designed and created by Ian, Ash, Liam and Warren</p>
+
+        </div>
+                 <%
+    }else if (memberBean.getAccessType().equals("user"))
+    {
+        //Logged in as a regular user
+        //newMessages = messageBean.getAllNewMessages(userBean.getUsername());
+%>
+        <div id ="header">
+            <a href="index.jsp" id="homelink"></a>
+            <div id ="loginBox">
+                Welcome back User <%= memberBean.getUserName()%>.
+                <form method="get" action="/SystemsCoursework/LogInServe">
+                    <p>
+                        <input type="hidden" name="logout" value="logout" />
+                        <input type="submit" name="" value="Logout" />
+                    </p>
+                </form>
+            </div>
+            <ul id = "navmenu">
+                <li><a href="index.jsp">1</a></li>
+                <li><a href="accountAdmin.jsp">2</a></li>		
+                <li><a href="festivalControl.jsp">3</a></li>
+                <li><a href="messages.jsp">4<span style="color: red; background: #000;"></span></a></li>
+            </ul>
+            <div id="search">
+                <form action="/SystemsCoursework/SearchServe" method="post">
+                    <p>
+                    Google
+                    <input type="radio" name="searchType" checked="checked" value="google" />
+                    This site
+                    <input type="radio" name="searchType"  value="thisSite" />
+                    <input type="text" name="theSearch" size="30" />
+                    <input type="submit" value="Submit" />
+                    </p>
+                </form>
+            </div>
+        </div>
+
+        <div id ="maindiv">
+            <br /><br />
+            <div id="p1">
+                <h1>Whats Up ... <%= memberBean.getFirstName()%>.</h1>
+                <br />
+
+                <br /><br /><br />
+
+            </div>
+
+        </div>
+        <div id = "footer">
+            <br />
+            <br />   
+            <table id = "footerTable">
+                <tr>
+                    <td><a href="index.jsp">HOME</a></td>
+                    <td><a href="accountAdmin.jsp">USER CONTROL</a></td>	
+                    <td><a href="festivalControl.jsp">FESTIVAL CONTROL</a></td>
+                    <td><a href="messages.jsp">MESSAGES</a></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>	
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>		
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <br />
+            <p>Designed and created by Ian, Ash, Liam and Warren</p>
 
         </div>
                  <%
