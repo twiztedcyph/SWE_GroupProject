@@ -15,8 +15,8 @@
     </head>
     <body>
     <%
-        beans.BasicInformationBean basicInformation = (beans.BasicInformationBean) session.getAttribute("userdetails");
-        if(basicInformation == null)
+        beans.MemberBean memberBean = (beans.MemberBean) session.getAttribute("userdetails");
+        if(memberBean == null)
         {
     %>
         <div id ="header">
@@ -127,7 +127,7 @@
 
         </div>
     <%
-        }else
+        }else if(memberBean.getAccessType().equals("user"))
         {
            //Logged in.....
     %>
@@ -161,46 +161,13 @@
         <div id ="maindiv">
             <br /><br />
             <div id="p1">
-                <p style="text-align: justify;padding-left:10px;padding-right:10px;">
-                    Hello user
+                                               
+                <p id ="p2">User profile</p>
 
-                </p>
-                <br /><br />
-
-
-
-                <span id="bannerAdvertsLeft">
-
-                    
-                </span>
-                <span id="bannerAdvertsRight">   
-                    
-
-
-
-
-                </span>
-
-                <br /><br /><br /><br /><br /><br /><br /><br /><br />
-                <p id ="p2"> Some text goes here....</p>
-
-                <ul id="gallery">
-
-                    <li> <a href=""><img src="" alt="image" /></a>
-                    </li>
-                    <li> <a href=""><img src="" alt="image" /></a>
-                    </li>
-                    <li> <a href=""><img src="" alt="image" /></a>
-                    </li>
-                    <li> <a href=""><img src="" alt="image" /></a>
-                    </li>
-                    <li> <a href=""><img src="" alt="image" /></a>
-                    </li>
-                    <li> <a href=""><img src="" alt="image" /></a>
-                    </li>
-
-                </ul>
-
+                <br />Username: <%= memberBean.getUserName() %>
+                <br />Password: <%= memberBean.getPassword() %>
+                <br />First Name: <%= memberBean.getFirstName() %>
+                
 
                 <div style="clear:both;"></div>  
                 <br />
@@ -236,6 +203,13 @@
             <p>Designed and created by Ian Weeks and Ashley Moore</p>
 
         </div>
+    
+    <%
+        }else if(memberBean.getAccessType().equals("admin"))
+        {
+    %>
+    
+    Admin page....
     
     <%
         }
