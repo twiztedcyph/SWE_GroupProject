@@ -79,14 +79,16 @@
                 <%  
                     if(session.getAttribute("member") == null){  
                  %>     
-                <p style="text-align: justify;padding-left:10px;padding-right:10px;">
+                
                     <form name="CreateGoal" action="CreateGoalServlet" method="post">
                         <table>
                             <tr>
-                                <td><input type="hidden" name="member" value="5" />
-                                Will you be creating this goal for yourself or one of your groups?
-                                </td> 
+                                <td>
+                                    <input type="hidden" name="member" value="1" />
+                                    Will you be creating this goal for yourself or one of your groups?
+                                </td>
                             </tr>
+                            <tr><td><p></p></td></tr>
                             <tr>
                                 <td>
                                     <input type="radio" name="goalFor" value="false" />Myself
@@ -95,39 +97,34 @@
                             </tr>
                             <tr><td><p></p></td></tr>
                             <tr>
-                                <td>Start Date:</td>
-                            </tr>
-                            <tr>
-                                <td><input type="date" name="startDate" /></td>
-                            </tr>
-                            <tr><td><p></p></td></tr>
-                            <tr>
-                                <td>End Date:</td>
-                            </tr>
-                             <tr>
-                                <td><input type="date" name="endDate" /></td>
+                                <td>  
+                                    Start Date:
+                                    <input type="date" name="startDate" />
+                                </td>
                             </tr>
                             <tr><td><p></p></td></tr>
-                            <tr>
-                                <td>Progress:</td>
-                            </tr>
-                            <tr><td><p></p></td></tr>
-                            <tr>
-                                <td>About Your target:</td>
-                            </tr>
-                            <tr><td>I want to</td></tr>
                             <tr>
                                 <td>
+                                    End Date:   
+                                    <input type="date" name="endDate" />
+                                </td>
+                            </tr>
+                            <tr><td><p></p></td></tr>
+                            <tr>
+                                <td>
+                                    About Your target:
+                                </td>
+                            </tr>
+                            <tr><td><p></p></td></tr>
+                            <tr>
+                                <td>
+                                I want to
                                     <select name="category">
                                         <option value ="lose">Lose</option>
                                         <option value ="gain">Gain</option>
                                     </select>
-                                </td>
-                            </tr>
-                            <tr><td><p></p></td></tr>
-                            <tr><td>Some</td></tr>
-                            <tr>
-                                <td>
+                                    <input type="text" name="aim" />
+                                    KG of
                                     <select name="type">
                                         <option value ="weight">Weight</option>
                                         <option value="bodyFatPercentage">Body Fat</option>
@@ -136,20 +133,14 @@
                                     </select>
                                 </td>
                             </tr>
-                             <tr><td><p></p></td></tr>
-                             <tr><td>And my aim is</td></tr>
-                             <tr>
-                                 <td>
-                                     <input type="text" name="aim" />
-                                 </td>
-                             </tr>
-                              <tr><td><p></p></td></tr>
-                              <tr><td>
+                            <tr><td><p></p></td></tr>
+                            <tr>
+                                <td>
                                       <input type="submit" action="Submit" />
-                               </td></tr>
+                                </td>
+                            </tr>
                         </table>
                     </form>
-                </p>
                 <br /><br />
 
                 <% } else { %>

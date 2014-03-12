@@ -68,7 +68,7 @@ public class GoalBean implements Serializable
             Connection con = databaseConnection.getCon();
        
             PreparedStatement ps = con.prepareStatement("INSERT INTO goal "
-                                   + "(startDate, endDate, progress, category, "
+                                   + "(start_date, end_date, progress, category, "
                                     + "type, aim, isgroup, submitter)"
                                     + "VALUES(?,?,?,?,?,?,?,?)"); 
             

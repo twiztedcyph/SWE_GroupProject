@@ -41,16 +41,13 @@ public class CreateGoalServlet extends HttpServlet
     {
         try
         {
-            //All the necessary pieces of information for a festival are objtained
+            //All the necessary pieces of information for a goal are objtained
             
             int submitterID = Integer.parseInt(request.getParameter("member"));
             boolean isGroupGoal  = Boolean.parseBoolean(request.getParameter("goalFor"));
-            SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
-            java.util.Date parsedStartDate = dateFormatter.parse(request.getParameter("startDate"));
-            java.util.Date parsedEndDate = dateFormatter.parse(request.getParameter("endDate"));
-            
-            Date startDate = new Date(parsedStartDate.getTime());
-            Date endDate = new Date(parsedEndDate.getTime());
+
+            Date startDate = Date.valueOf(request.getParameter("startDate"));
+            Date endDate =  Date.valueOf(request.getParameter("endDate"));
 
             Double aim = Double.parseDouble(request.getParameter("aim"));
             
@@ -60,13 +57,10 @@ public class CreateGoalServlet extends HttpServlet
 
 
             
-            //Then used to construct a festival object
+            //Then used to construct a goal object
             beans.GoalBean  goal = new beans.GoalBean(submitterID, isGroupGoal, startDate, endDate, aim, category, type); 
-            System.out.println("**********************************************************************************");
-            System.out.println(goal.toString());
             goal.persist();
             //Which is then persisted to the database
-            //goal.persist(); 
                
             //Then send to the view
             request.getRequestDispatcher("index.jsp").forward(request, response);
