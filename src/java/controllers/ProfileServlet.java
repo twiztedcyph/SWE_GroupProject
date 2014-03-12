@@ -36,7 +36,13 @@ public class ProfileServlet extends HttpServlet
         try (PrintWriter out = response.getWriter())
         {
             /* TODO output your page here. You may use following sample code. */
-            System.out.println(request.getParameter("change_email"));
+            if(request.getParameter("change").equals("change_email"))
+            {
+                System.out.println("EMAIL");
+            }else if(request.getParameter("change").equals("change_pass"))
+            {
+                System.out.println("PASS");
+            }
         }
     }
 
