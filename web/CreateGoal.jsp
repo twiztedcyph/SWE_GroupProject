@@ -44,10 +44,26 @@
         </script>
     </head>
     <body>
+        <%
+    //Beans.MessageBean messageBean = new Beans.MessageBean();
+    //ArrayList<Beans.MessageBean> newMessages = new ArrayList();
+    beans.MemberBean memberBean = (beans.MemberBean) session.getAttribute("userdetails");
+    if (memberBean == null)
+    {
+        //not logged in..
+        String message = (String) session.getAttribute("msg");
+        if (message != null)
+        {
+%>
+            <script>showMsg('<%= message%>');</script>
+<%
+            session.removeAttribute("msg");
+        }
+    %>
         <div id ="header">
             <a href="index.jsp" id="homelink"></a>
             <div id ="loginBox">
-                <form method="post" action="/SystemsCoursework/LogInServlet" onsubmit="return checkForm();">
+                <form method="post" action="/SWE_GroupProject/LogInServlet" onsubmit="return checkForm();">
                     <div>
                         <p>Username:<input type="text" id="loginFormUser" name="username" /></p>
                         <p>Password:<input type="password" id="loginFormPass" name="password" /></p>
@@ -73,18 +89,54 @@
                 </form>
             </div>
         </div>
+    <div id ="maindiv">
+        <br /><br />
+        <div id="p1">
+            <p>Sorry but you can't use this feature without being logged in,
+                    why not log in or create an account?
+              </p> 
+        </div>
+    </div>
+<% }  else if( memberBean.getAccessType().equals("user")) { %>
+ <div id ="header">
+            <a href="index.jsp" id="homelink"></a>
+            <div id ="loginBox">
+                Welcome back User <%= memberBean.getUserName()%>.
+                <form method="get" action="/SystemsCoursework/LogInServe">
+                    <p>
+                        <input type="hidden" name="logout" value="logout" />
+                        <input type="submit" name="" value="Logout" />
+                    </p>
+                </form>
+            </div>
+            <ul id = "navmenu">
+                <li><a href="index.jsp">1</a></li>
+                <li><a href="accountAdmin.jsp">2</a></li>		
+                <li><a href="festivalControl.jsp">3</a></li>
+                <li><a href="messages.jsp">4<span style="color: red; background: #000;"></span></a></li>
+            </ul>
+            <div id="search">
+                <form action="/SystemsCoursework/SearchServe" method="post">
+                    <p>
+                    Google
+                    <input type="radio" name="searchType" checked="checked" value="google" />
+                    This site
+                    <input type="radio" name="searchType"  value="thisSite" />
+                    <input type="text" name="theSearch" size="30" />
+                    <input type="submit" value="Submit" />
+                    </p>
+                </form>
+            </div>
+        </div>
+
         <div id ="maindiv">
             <br /><br />
             <div id="p1">
-                <%  
-                    if(session.getAttribute("member") == null){  
-                 %>     
-                
                     <form name="CreateGoal" action="CreateGoalServlet" method="post">
                         <table>
                             <tr>
                                 <td>
-                                    <input type="hidden" name="member" value="1" />
+                                    <input type="hidden" name="member" value="<%= memberBean.getId() %>" />
                                     Will you be creating this goal for yourself or one of your groups?
                                 </td>
                             </tr>
@@ -144,9 +196,7 @@
                 <br /><br />
 
                 <% } else { %>
-                <p>Sorry but you can't use this feature without being logged in,
-                    why not log in or create an account?
-                </p>    
+                   
                 <% } %>
           
             </div>

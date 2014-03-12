@@ -29,6 +29,7 @@ public class MemberBean implements Serializable
     {
         while(rs.next())
         {      
+            this.id = rs.getInt("id");
             this.userName = rs.getString("user_name");
             this.password = rs.getString("password");
             this.firstName = rs.getString("first_name");
