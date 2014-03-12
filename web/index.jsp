@@ -75,9 +75,11 @@
             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="get">
                     <p>
-                    Search
-                    <input type="hidden" name="searchType" value="google" />
-                    <input type="text" name="theSearch" size="30" />
+                    Google
+                    <input type="radio" name="searchType" checked="checked" value="google" />
+                    This site
+                    <input type="radio" name="searchType"  value="thisSite" />
+                    <input type="text"placeholder="Search..." name="theSearch"  size="30" />
                     <input type="submit" value="Submit" />
                     </p>
                 </form>
@@ -146,7 +148,7 @@
                     <input type="radio" name="searchType" checked="checked" value="google" />
                     This site
                     <input type="radio" name="searchType"  value="thisSite" />
-                    <input type="text" name="theSearch" size="30" />
+                    <input type="text"placeholder="Search..." name="theSearch"  size="30" />
                     <input type="submit" value="Submit" />
                     </p>
                 </form>
@@ -210,9 +212,9 @@
                 </form>
             </div>
             <ul id = "navmenu">
-                <li><a href="index.jsp">1</a></li>
-                <li><a href="accountAdmin.jsp">2</a></li>		
-                <li><a href="festivalControl.jsp">3</a></li>
+                <li><a href="index.jsp">Home</a></li>
+                <li><a href="profile.jsp">My Profile</a></li>		
+                <li><a href="createGoal.jsp">Create Goal</a></li>
                 <li><a href="messages.jsp">4<span style="color: red; background: #000;"></span></a></li>
             </ul>
             <div id="search">
@@ -222,7 +224,7 @@
                     <input type="radio" name="searchType" checked="checked" value="google" />
                     This site
                     <input type="radio" name="searchType"  value="thisSite" />
-                    <input type="text" name="theSearch" size="30" />
+                    <input type="text"placeholder="Search..." name="theSearch"  size="30" />
                     <input type="submit" value="Submit" />
                     </p>
                 </form>
