@@ -11,6 +11,7 @@ import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
@@ -68,6 +69,19 @@ public class Email
         {
             System.err.println("Error: Email not sent. " + me);
         }
+    }
+    
+    public static boolean validateEmail(String emailAddress)
+    {
+        boolean result = true;
+        try
+        {
+            InternetAddress inputEmailAddress = new InternetAddress(emailAddress);
+        } catch (AddressException ae)
+        {
+            result = false;
+        }
+        return result;
     }
 }
 

@@ -219,7 +219,7 @@
             <ul id = "navmenu">
                 <li><a href="index.jsp">Home</a></li>
                 <li><a href="profile.jsp">My Profile</a></li>		
-                <li><a href="createGoal.jsp">Create Goal</a></li>
+                <li><a href="goal.jsp">Goals</a></li>
                 <li><a href="messages.jsp">4<span style="color: red; background: #000;"></span></a></li>
             </ul>
             <div id="search">
