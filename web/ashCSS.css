@@ -11,7 +11,7 @@ body
     padding:0.2%;
     margin-left:auto;
     margin-right:auto;
-    background-color: #69A583;
+    background-color: #FFFFFF;
     border-top-style:hidden;
     border-bottom-style:hidden;
     border-color: Blue;
@@ -28,9 +28,9 @@ body
     top:0;
     right:0;
     max-width: 70%;
-    background-color:#69A583;
+    background-color:#FFFFFF;
     text-align:right;
-    color:#FFFFFF;
+    color:#000;
    
 
    
@@ -102,9 +102,10 @@ ul#navmenu a
     display: block;
     height:33px;
     line-height: 33px;
-    background-color:#EC799A;
-    
-    color:#FFFFFF;
+    background-color:#FFFFFF;;
+    border: 3px solid;
+    border-color: ghostwhite;
+    color:#000;
 }
 
 ul#navmenu li
@@ -125,6 +126,7 @@ ul#navmenu li:hover > a
 ul#navmenu li:hover a:hover
 {
     background-color: #000;
+    color:#FFFFFF;
 }
 
 
@@ -133,7 +135,7 @@ ul#navmenu li:hover a:hover
     min-height: 700px;
     position:relative;
     width:70%;
-    background-color:#E1B378;
+    background-color:gainsboro;
     margin-left:auto;
     margin-right:auto;
     margin-top: -21px;
@@ -149,7 +151,7 @@ ul#navmenu li:hover a:hover
     margin-bottom: -10px;
     position:relative;
     width:70%;
-    background-color:#4D8963;
+    background-color:#FFFFFF;
     margin-left:auto;
     margin-right:auto;
     margin-top: -16px;
@@ -579,9 +581,9 @@ h2
     position:absolute;
     bottom:37px;
     right:0;
-    background-color:#69A583;
+    background-color:#FFFFFF;
     text-align:center;
-    color:#FFFFFF;  
+    color:#000;  
 }
 
 #search p 
@@ -607,11 +609,13 @@ h2
     position: absolute;
     position:fixed;
     margin-right:1px;
-    width:15%;
+    margin-left: -10px;
+    width:16%;
     min-height:100%;
     margin-bottom: 0px;
-    background-image: url('Images/girl-left.jpg');
-    background-size: 100%;
+    background-image: url('Images/left.jpg');
+    background-repeat: no-repeat;
+    background-size: 330px;
     
 }
 
@@ -619,11 +623,13 @@ h2
 {
     position: absolute;
     position:fixed;
-    margin-left: 84%;
-    width:15%;
+    margin-left: 83%;
+    
+    width:20%;
     min-height:100%;
-    background-image: url('Images/girl-right.jpg');
-    background-size: 100%;
+    background-image: url('Images/right.jpg');
+    background-size: 320px;
+    background-repeat: no-repeat;
     
 
 }
