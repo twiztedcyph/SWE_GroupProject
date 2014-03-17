@@ -71,8 +71,8 @@
                 <p> Registration Form</p>
                 
                 <form method="post" action="/SWE_GroupProject/RegistrationServlet" tag="Create Logon">
-                    <div align="center">
-                        <div align="right" style="width: 35%">
+                    <div id = regForm>
+                        
 			Username *          : <input type="text" name="username" /><br />
 			Password *          : <input type="password" name="passwordOne" /><br />
                         Confirm Password *  : <input type="password" name="passwordTwo" /><br />
@@ -81,10 +81,9 @@
 			Date of Birth *     : <input type="date" name="dob" /><br />
 			Email *             : <input type="text" name="email" /><br />
  
-                        <div align="right" style="width: 35%">
-                            <input type="submit" value="Submit" />
-                        </div>
-                        </div>
+                        
+                        <input type="submit" value="Submit" />
+                        
                     </div>
                 </form>
 

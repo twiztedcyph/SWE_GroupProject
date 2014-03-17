@@ -72,8 +72,8 @@
             <ul id = "navmenu">
                 <li><a href="index.jsp">HOME</a></li>
                 <li><a href="benefits.jsp">BENEFITS</a></li>		
-                <li><a href="defaultFestival.jsp">TESTIMONIALS</a></li>
-                <li><a href="aboutUs.html">ABOUT US</a></li>
+                <li><a href="testimonials.jsp">TESTIMONIALS</a></li>
+                <li><a href="aboutUs.jsp">ABOUT US</a></li>
             </ul>
             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="get">
@@ -91,8 +91,33 @@
         </div>
         <div id ="maindiv">
             <br /><br />
-           
-            <br />
+            
+            Welcome to the Health Tracker!
+            <p>
+            We are...
+            </p>
+            <br /><br />
+            
+            <span id="randomBanner">
+
+                    <%
+                        java.util.Random random = new java.util.Random();
+
+                        String[] banners = new String[4];
+                        int index = 0;
+
+                        banners[0] = "<a href = 'http://www.vfestival.co.uk'><img src='Images/banner0.jpg' alt='image'/></a>";
+                        banners[1] = "<a href = 'http://www.facebook.com/SkateandSurfFest'><img src='Images/banner1.jpg' alt='image'/></a>";
+                        banners[2] = "<a href = 'http://www.filmindiaworldwide.com/2012/10/2013-call-for-entries-open-for-tiburon.html'><img src='Images/banner2.jpg' alt='image'/></a>";
+                        banners[3] = "<a href = 'http://www.redcross.org/news/event/Red-Cross-For-the-Love-of-Chocolate-Festival'><img src='Images/banner3.jpg' alt='image'/></a>";
+                        index = random.nextInt(4);
+
+
+                    %>
+                    <%= banners[index]%>
+                </span>
+                
+            
         </div>
         <div id = "footer">
             <br />
