@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package beans;
 
 import java.io.Serializable;
@@ -20,17 +19,20 @@ import java.util.ArrayList;
  */
 public class MemberBean implements Serializable
 {
+
     private int id;
     private String userName, password, firstName, lastName, emailAddress, accessType;
     private Date dateOfBirth;
     private ArrayList<GoalBean> goalList;
 
-    public MemberBean(){}
-    
+    public MemberBean()
+    {
+    }
+
     public MemberBean(ResultSet rs) throws SQLException
     {
-        while(rs.next())
-        {      
+        while (rs.next())
+        {
             this.id = rs.getInt("id");
             this.userName = rs.getString("user_name");
             this.password = rs.getString("password");
@@ -41,7 +43,7 @@ public class MemberBean implements Serializable
             this.dateOfBirth = rs.getDate("date_of_birth");
         }
     }
-    
+
     public MemberBean(String userName, String password, String firstName, String lastName, String emailAddress, String accessType, Date dateOfBirth)
     {
         this.userName = userName;
@@ -52,15 +54,15 @@ public class MemberBean implements Serializable
         this.accessType = accessType;
         this.dateOfBirth = dateOfBirth;
     }
-    
+
     public void persist() throws SQLException
     {
         misc.DbConnect dbConnect = new misc.DbConnect();
-        
+
         Connection myCon = dbConnect.getCon();
-        
+
         PreparedStatement ps = myCon.prepareStatement("INSERT INTO member (user_name, password, first_name, last_name, email_address, date_of_birth, access_type) values(?, ?, ?, ?, ?, ?, ?)");
-        
+
         ps.setString(1, userName);
         ps.setString(2, password);
         ps.setString(3, firstName);
@@ -68,23 +70,22 @@ public class MemberBean implements Serializable
         ps.setString(5, emailAddress);
         ps.setDate(6, dateOfBirth);
         ps.setString(7, accessType);
-        
+
         ps.executeUpdate();
     }
-    
+
     public MemberBean retrieveOne(String username) throws SQLException
     {
         misc.DbConnect dbConnect = new misc.DbConnect();
-        
+
         Connection myCon = dbConnect.getCon();
-        
+
         PreparedStatement ps = myCon.prepareStatement("Select * from member where user_name = ?");
         ps.setString(1, username);
-        
-        
+
         return new MemberBean(ps.executeQuery());
     }
-    
+
     public int getId()
     {
         return id;
@@ -109,7 +110,7 @@ public class MemberBean implements Serializable
     {
         this.password = password;
     }
-    
+
     public String getFirstName()
     {
         return firstName;
@@ -149,7 +150,7 @@ public class MemberBean implements Serializable
     {
         this.accessType = accessType;
     }
-    
+
     public Date getDateOfBirth()
     {
         return dateOfBirth;
@@ -159,36 +160,45 @@ public class MemberBean implements Serializable
     {
         this.dateOfBirth = dateOfBirth;
     }
+
+    public void changePassword(String newPassword) throws SQLException
+    {
+        misc.DbConnect dbConnect = new misc.DbConnect();
+        Connection myCon = dbConnect.getCon();
+        PreparedStatement ps = myCon.prepareStatement("UPDATE member SET password=? WHERE user_name = ?");
+        ps.setString(1, newPassword);
+        ps.setString(2, userName);
+        ps.executeUpdate();
+    }
     
+    public void changeEmail(String newEmail) throws SQLException
+    {
+        misc.DbConnect dbConnect = new misc.DbConnect();
+        Connection myCon = dbConnect.getCon();
+        PreparedStatement ps = myCon.prepareStatement("UPDATE member SET email_address=? WHERE user_name = ?");
+        ps.setString(1, newEmail);
+        ps.setString(2, userName);
+        ps.executeUpdate();
+    }
+
     public ArrayList<GoalBean> getGoalList() throws SQLException
     {
         goalList = new ArrayList<>();
-        
-        try
+
+        misc.DbConnect databaseConnection = new misc.DbConnect();
+
+        ResultSet rs = databaseConnection.runQuery("SELECT * FROM goal WHERE submitter = " + id + ";");
+
+        while (rs.next())
         {
-            misc.DbConnect databaseConnection = new misc.DbConnect();
-
-
-           ResultSet rs = databaseConnection.runQuery("SELECT * FROM goal WHERE submitter = "+id+";");
-
-           while(rs.next())
-           {
-               GoalBean goal = new GoalBean(rs);
-               goalList.add(goal);
-           }
-       
+            GoalBean goal = new GoalBean(rs);
+            goalList.add(goal);
         }
-        
-        catch(SQLException e)
-        {
-            throw new SQLException(e);
-        }
-        
-        for(GoalBean goal: goalList)
+        for (GoalBean goal : goalList)
         {
             System.out.println(goal);
         }
-        
+
         return goalList;
     }
 }

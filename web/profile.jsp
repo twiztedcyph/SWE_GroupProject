@@ -44,9 +44,9 @@
             </div>
             <ul id = "navmenu">
                 <li><a href="index.jsp">HOME</a></li>
-                <li><a href="benefits.jsp">BENEFITS</a></li>		
-                <li><a href="defaultFestival.jsp">TESTIMONIALS</a></li>
-                <li><a href="aboutUs.html">ABOUT US</a></li>
+                <li><a href="profile.jsp">MY PROFILE</a></li>		
+                <li><a href="goal.jsp">GOALS</a></li>
+                <li><a href="groups.jsp">GROUPS</a></li>
             </ul>
             <div id="search">
                 <form action="/SystemsCoursework/SearchServlet" method="get">
@@ -65,11 +65,9 @@
                 <p id ="p2">User profile</p>
                 <form method="post" action="/SWE_GroupProject/ProfileServlet">
                     <table id ="adminTableOne">
+                        
                         <tr>
                             <td>Username:</td> <td><%= memberBean.getUserName() %></td><td></td>
-                        </tr>
-                        <tr>
-                            <td>Password:</td> <td><%= memberBean.getPassword() %></td><td><input type="submit" name="change" value="change_pass" /></td>
                         </tr>
                         <tr>
                             <td>First Name:</td> <td> <%= memberBean.getFirstName() %></td><td></td>
@@ -81,9 +79,15 @@
                             <td>Date of birth:</td> <td><%= memberBean.getDateOfBirth() %></td><td></td>
                         </tr>
                         <tr>
-                            <td>Email:</td> <td><%= memberBean.getEmailAddress() %></td><td><input type="submit" name="change" value="change_email" /></td>
+                            <td>Password:</td> <td><%= memberBean.getPassword() %></td><td><input type="text" name="new_pass" value="" /></td><td><input type="radio" name="selector" value="pass" checked="" /></td>
+                        </tr>
+                        <tr>
+                            <td>Email:</td> <td><%= memberBean.getEmailAddress() %></td><td><input type="text" name="new_email" value="" /></td><td><input type="radio" name="selector" value="email" /></td>
+                        </tr>
+                        <tr>
                         </tr>
                     </table>
+                        <br />Password: <input type="text" name="currentPass" /><input type="submit" value="submit" />
                 </form>
 
                 <div style="clear:both;"></div>  

@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,14 +36,45 @@ public class ProfileServlet extends HttpServlet
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter())
         {
+            HttpSession session = request.getSession();
+            beans.MemberBean memberBean = (beans.MemberBean) session.getAttribute("userdetails");
             /* TODO output your page here. You may use following sample code. */
-            if(request.getParameter("change").equals("change_email"))
+            if(request.getParameter("selector").equals("pass"))
             {
-                System.out.println("EMAIL");
-            }else if(request.getParameter("change").equals("change_pass"))
+                try
+                {
+                    memberBean.changePassword(request.getParameter("new_pass"));
+                } catch (Exception e)
+                {
+                    System.out.println(e);
+                }
+                session.setAttribute("msg", "Your password has been updated.");
+                try
+                {
+                    session.setAttribute("userdetails", memberBean.retrieveOne(memberBean.getUserName()));
+                } catch (Exception e)
+                {
+                    System.out.println(e);
+                }
+            }else if(request.getParameter("selector").equals("email"))
             {
-                System.out.println("PASS");
+                try
+                {
+                    memberBean.changeEmail(request.getParameter("new_email"));
+                } catch (Exception e)
+                {
+                    System.out.println(e);
+                }
+                session.setAttribute("msg", "Your email address has been updated.");
+                try
+                {
+                    session.setAttribute("userdetails", memberBean.retrieveOne(memberBean.getUserName()));
+                } catch (Exception e)
+                {
+                    System.out.println(e);
+                }
             }
+            response.sendRedirect("profile.jsp");
         }
     }
 
