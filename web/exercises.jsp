@@ -154,9 +154,9 @@
             </div>
             <ul id = "navmenu">
                 <li><a href="index.jsp">MESSAGE CONTROL</a></li>
-                <li><a href="accountAdmin.jsp">USER CONTROL</a></li>		
-                <li><a href="festivalControl.jsp">GOAL CONTROL</a></li>
-                <li><a href="messages.jsp">GROUP CONTROL  <span style="color: red; background: #000;"></span></a></li>
+                <li><a href="registration.jsp">USER CONTROL</a></li>		
+                <li><a href="goals.jsp">GOAL CONTROL</a></li>
+                <li><a href="groups.jsp">GROUP CONTROL  <span style="color: red; background: #000;"></span></a></li>
             </ul>
             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="post">
@@ -181,7 +181,7 @@
                 </p>
 
                 <p style="text-align: justify; padding-left:20px; padding-right:100px;">
-                    Add exercises to your exercise regime here!
+                    Add and remove 'official' exercises for users to use.
                 </p>
                 
                 <div style="clear:both;"></div>  
@@ -239,7 +239,7 @@
                 <li><a href="index.jsp">HOME</a></li>
                 <li><a href="profile.jsp">PROFILE</a></li>		
                 <li><a href="goal.jsp">GOALS</a></li>
-                <li><a href="messages.jsp">GROUPS<span style="color: red; background: #000;"></span></a></li>
+                <li><a href="groups.jsp">GROUPS<span style="color: red; background: #000;"></span></a></li>
             </ul>
             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="post">
@@ -258,13 +258,13 @@
             <br /><br />
             <div>
                 <h1>Hello <%= memberBean.getFirstName()%>, welcome back!</h1>
-                
+
                 <p style="text-align: justify; padding-left:10px; padding-right:10px;">
                     Exercises!
                 </p>
 
                 <p style="text-align: justify; padding-left:20px; padding-right:100px;">
-                    Add and remove 'official' exercises for users to use.
+                    Add exercises to your exercise regime here!
                 </p>
                 
                 <div style="clear:both;"></div>  

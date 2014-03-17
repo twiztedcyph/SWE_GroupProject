@@ -6,7 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="ashCSS.css" />
-        <title>The Health Tracker - Messages</title>
+        <title>The Health Tracker - Groups</title>
         <script type="text/javascript">
             function redirect()
             {
@@ -91,7 +91,7 @@
             <br /><br />
             <div>
                 <p style="text-align: justify; padding-left:10px; padding-right:10px;">
-                    Messages!
+                    Exercises!
                 </p>
 
                 <p style="text-align: justify; padding-left:20px; padding-right:100px;">
@@ -177,13 +177,11 @@
                 <h1>Hello <%= memberBean.getFirstName()%>! (ADMIN)</h1>
                 
                 <p style="text-align: justify; padding-left:10px; padding-right:10px;">
-                    Messages!
+                    Groups!
                 </p>
 
                 <p style="text-align: justify; padding-left:20px; padding-right:100px;">
-                    Send messages to other users.
-                    
-                    Manage other users messages.
+                    Edit and remove groups or their members.
                 </p>
                 
                 <div style="clear:both;"></div>  
@@ -260,13 +258,16 @@
             <br /><br />
             <div>
                 <h1>Hello <%= memberBean.getFirstName()%>, welcome back!</h1>
-                
+
                 <p style="text-align: justify; padding-left:10px; padding-right:10px;">
-                    Messages!
+                    Groups!
                 </p>
 
                 <p style="text-align: justify; padding-left:20px; padding-right:100px;">
-                    Send messages to other users!
+                    Create a group! This could be a group of friends, people who
+                    share the same goals as you or anyone you enjoy interacting with.
+                    
+                    Enhance your experience!
                 </p>
                 
                 <div style="clear:both;"></div>  
