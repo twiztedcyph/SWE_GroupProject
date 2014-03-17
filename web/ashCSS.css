@@ -611,20 +611,64 @@ h2
 #randomBanner
 {
     width:100%;
-    
+}
+#randomBanner2
+{
+    width:100%;
+    position: absolute;
+    bottom: 0;
+    left:0;
+    margin-bottom:-5px;
 }
 
-#randomBanner img
+#randomBanner img, #randomBanner2 img
 {
     width: 100%;
-    height:80px;
-    
+    height:80px;  
 }
 
-#regForm 
+
+#regForm label, #regForm input[type=text],#regForm input[type=password],
+#regForm input[type=date]
 {
-  border: solid 2px;
-  border-color: red;
+    display: block;
+    float:left;
+    margin-bottom: 30px;
+
+}
+#regForm input[type=text],#regForm input[type=password],
+#regForm input[type=date]
+{
+    width:17%;
+}
+#regForm label
+{
+    text-align: right;
+    padding-right: 20px;
+    margin-left:15%;
+    width: 30%;
 }
 
+#regForm input[type=submit] 
+{
+    margin-left:40%; 
+    border-radius: 8px;
+    background-color: #ffffff;
+    float:left;
+    width: 10%;
+}
+#regForm input[type=reset]
+{
+    float:left;
+    border-radius: 8px;
+    background-color: #ffffff;
+    margin-left:6%;
+    width: 10%;
+}
+
+
+#regForm br
+{
+    clear:left;
+}
 
