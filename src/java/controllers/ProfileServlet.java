@@ -60,7 +60,15 @@ public class ProfileServlet extends HttpServlet
             {
                 try
                 {
-                    memberBean.changeEmail(request.getParameter("new_email"));
+                    String email = request.getParameter("new_email");
+                    if(misc.Email.validateEmail(email))
+                    {
+                        memberBean.changeEmail(email);
+                    }else
+                    {
+                        session.setAttribute("msg", "The email address was not valid.");
+                        System.out.println("NOT VALID");
+                    }
                 } catch (Exception e)
                 {
                     System.out.println(e);
