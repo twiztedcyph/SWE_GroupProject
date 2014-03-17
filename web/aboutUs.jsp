@@ -90,11 +90,11 @@
         <div id ="maindiv">
             <br /><br />
             <div>
-                <p style="text-align: justify; padding-left:20px; padding-right:10px;">
+                <p style="text-align: justify; padding-left:10px; padding-right:10px;">
                     About Us!
                 </p>
 
-                <p style="text-align: justify; padding-left:10px; padding-right:100px;">
+                <p style="text-align: justify; padding-left:20px; padding-right:100px;">
                     Our goal is to provide a free and easily accessible way for
                     our members to tailor and monitor every aspect of their diet and
                     exercise regime.
@@ -176,11 +176,11 @@
             <div>
                 <h1>Hello <%= memberBean.getFirstName()%>! (ADMIN)</h1>
                 
-                <p style="text-align: justify; padding-left:20px; padding-right:10px;">
+                <p style="text-align: justify; padding-left:10px; padding-right:10px;">
                     About Us!
                 </p>
 
-                <p style="text-align: justify; padding-left:10px; padding-right:100px;">
+                <p style="text-align: justify; padding-left:20px; padding-right:100px;">
                     Our goal is to provide a free and easily accessible way for
                     our members to tailor and monitor every aspect of their diet and
                     exercise regime.
@@ -261,11 +261,11 @@
             <div>
                 <h1>Hello <%= memberBean.getFirstName()%>, welcome back!</h1>
                 
-                <p style="text-align: justify; padding-left:20px; padding-right:10px;">
+                <p style="text-align: justify; padding-left:10px; padding-right:10px;">
                     About Us!
                 </p>
 
-                <p style="text-align: justify; padding-left:10px; padding-right:100px;">
+                <p style="text-align: justify; padding-left:20px; padding-right:100px;">
                     Our goal is to provide a free and easily accessible way for
                     our members to tailor and monitor every aspect of their diet and
                     exercise regime.

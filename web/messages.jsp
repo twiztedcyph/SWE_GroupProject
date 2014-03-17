@@ -6,7 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="ashCSS.css" />
-        <title>The Health Tracker - Testimonials</title>
+        <title>The Health Tracker - Messages</title>
         <script type="text/javascript">
             function redirect()
             {
@@ -58,7 +58,6 @@
 %>
            
          <div id ="header">
-            <a href="index.jsp" id="homelink"></a>
             <div id ="loginBox">
                 <form method="post" action="/SWE_GroupProject/LogInServlet" onsubmit="return checkForm();">
                     <div>
@@ -92,12 +91,13 @@
             <br /><br />
             <div>
                 <p style="text-align: justify; padding-left:10px; padding-right:10px;">
-                    Testimonials!
+                    Messages!
                 </p>
 
                 <p style="text-align: justify; padding-left:20px; padding-right:100px;">
-                    Here are the genuine testimonials provided by our members. If these
-                    can't convince you that The Health Tracker works, nothing will!
+                    Unfortunately, only members can use this feature.
+                    
+                    Register <a href="registration.jsp"> HERE!</a> It's free!
                 </p>
                 
                 <div style="clear:both;"></div>  
@@ -177,12 +177,13 @@
                 <h1>Hello <%= memberBean.getFirstName()%>! (ADMIN)</h1>
                 
                 <p style="text-align: justify; padding-left:10px; padding-right:10px;">
-                    Testimonials!
+                    Messages!
                 </p>
 
                 <p style="text-align: justify; padding-left:20px; padding-right:100px;">
-                    Here are the genuine testimonials provided by our members. If these
-                    can't convince you that The Health Tracker works, nothing will!
+                    Send messages to other users.
+                    
+                    Manage other users messages.
                 </p>
                 
                 <div style="clear:both;"></div>  
@@ -261,12 +262,11 @@
                 <h1>Hello <%= memberBean.getFirstName()%>, welcome back!</h1>
                 
                 <p style="text-align: justify; padding-left:10px; padding-right:10px;">
-                    Testimonials!
+                    Messages!
                 </p>
 
                 <p style="text-align: justify; padding-left:20px; padding-right:100px;">
-                    Here are the genuine testimonials provided by our members. If these
-                    can't convince you that The Health Tracker works, nothing will!
+                    Send messages to other users!
                 </p>
                 
                 <div style="clear:both;"></div>  
