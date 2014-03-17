@@ -8,6 +8,7 @@ package controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,25 +39,35 @@ public class ProfileServlet extends HttpServlet
         {
             HttpSession session = request.getSession();
             beans.MemberBean memberBean = (beans.MemberBean) session.getAttribute("userdetails");
+            beans.LifeStyleBean lifeStyleBean = new beans.LifeStyleBean();
+            try
+            {
+                lifeStyleBean = lifeStyleBean.getLifeStyle(memberBean.getId());
+            } catch (SQLException e)
+            {
+                e.printStackTrace();
+            }
+            
+            
             /* TODO output your page here. You may use following sample code. */
-            if(request.getParameter("selector").equals("pass"))
+            if(request.getParameter("selector")!= null && request.getParameter("selector").equals("pass"))
             {
                 try
                 {
                     memberBean.changePassword(request.getParameter("new_pass"));
-                } catch (Exception e)
+                } catch (SQLException e)
                 {
-                    System.out.println(e);
+                    e.printStackTrace();
                 }
                 session.setAttribute("msg", "Your password has been updated.");
                 try
                 {
                     session.setAttribute("userdetails", memberBean.retrieveOne(memberBean.getUserName()));
-                } catch (Exception e)
+                } catch (SQLException e)
                 {
-                    System.out.println(e);
+                   e.printStackTrace();
                 }
-            }else if(request.getParameter("selector").equals("email"))
+            }else if(request.getParameter("selector")!= null && request.getParameter("selector").equals("email"))
             {
                 try
                 {
@@ -71,7 +82,7 @@ public class ProfileServlet extends HttpServlet
                     }
                 } catch (Exception e)
                 {
-                    System.out.println(e);
+                    e.printStackTrace();
                 }
                 session.setAttribute("msg", "Your email address has been updated.");
                 try
@@ -79,8 +90,11 @@ public class ProfileServlet extends HttpServlet
                     session.setAttribute("userdetails", memberBean.retrieveOne(memberBean.getUserName()));
                 } catch (Exception e)
                 {
-                    System.out.println(e);
+                    e.printStackTrace();
                 }
+            }else
+            {
+                session.setAttribute("lifestlye", lifeStyleBean);
             }
             response.sendRedirect("profile.jsp");
         }

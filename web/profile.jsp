@@ -63,6 +63,11 @@
 <%
             session.removeAttribute("msg");
         }
+        beans.LifeStyleBean lifeStyleBean = (beans.LifeStyleBean) session.getAttribute("lifestlye");
+        if(lifeStyleBean == null)
+        {
+            request.getRequestDispatcher("ProfileServlet").forward(request, response);
+        }
 %>
     
     <div id ="header">
@@ -99,7 +104,7 @@
         <div id ="maindiv">
             <br /><br />
                                                           
-                <p id ="p2">User profile</p>
+                <%= lifeStyleBean.getUserOccupation() %>
                 <form method="post" action="/SWE_GroupProject/ProfileServlet">
                     <table id ="adminTableOne">
                         
@@ -116,13 +121,18 @@
                             <td>Date of birth:</td> <td><%= memberBean.getDateOfBirth() %></td><td></td>
                         </tr>
                         <tr>
+                            <td>Occupation:</td> <td><%= lifeStyleBean.getUserOccupation() %></td>
+                        </tr>
+                        <tr>
+                            <td>Occupation:</td> <td><%= lifeStyleBean.getUserHobbies()[0] %></td>
+                        </tr>
+                        <tr>
                             <td>Password:</td> <td><%= memberBean.getPassword() %></td><td><input type="text" name="new_pass" value="" /></td><td><input type="radio" name="selector" value="pass" checked="" /></td>
                         </tr>
                         <tr>
                             <td>Email:</td> <td><%= memberBean.getEmailAddress() %></td><td><input type="email" name="new_email" value="" /></td><td><input type="radio" name="selector" value="email" /></td>
                         </tr>
-                        <tr>
-                        </tr>
+                        
                     </table>
                         <br />Password: <input type="text" name="currentPass" /><br /><input type="submit" value="submit" />
                 </form>
