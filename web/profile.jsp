@@ -29,7 +29,7 @@
     %>
     
     <div id ="header">
-            <a href="index.jsp" id="homelink"></a>
+            <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
                 <div>
                     Welcome back User <%= memberBean.getUserName()%>.
