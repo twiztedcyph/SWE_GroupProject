@@ -85,15 +85,19 @@
                 <li><a href="goal.jsp">GOALS</a></li>
                 <li><a href="groups.jsp">GROUPS</a></li>
             </ul>
-            <div id="search">
-                <form action="/SystemsCoursework/SearchServlet" method="get">
+             <div id="search">
+                <form action="/SystemsCoursework/SearchServe" method="get">
                     <p>
-                    Search
-                    <input type="hidden" name="searchType" value="google" />
-                    <input type="text" name="theSearch" size="30" />
-                    <input type="submit" value="Submit" />
+                    Google
+                    <input type="radio" name="searchType" checked="checked" value="google" />
+                    This site
+                    <input type="radio" name="searchType"  value="thisSite" />
                     </p>
+                    <input type="text"placeholder="Search..." name="theSearch"  size="30" />
+                    <input type="submit" value="Submit" />
+                    
                 </form>
+            </div>
             </div>
         </div>
         <div id ="maindiv">
