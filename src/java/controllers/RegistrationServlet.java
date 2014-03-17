@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import static misc.Email.validateEmail;
 
 /**
  *
@@ -71,6 +72,11 @@ public class RegistrationServlet extends HttpServlet {
                 String accessType = "user";
                 
                 //Password check
+                if(validateEmail(email)==false){
+                    session.setAttribute("msg", "Invalid Email Address Entered");
+                    response.sendRedirect("index.jsp");
+                }else    
+                {
                 if(passwordOne.equals(passwordTwo))
                 {
                     //encryption settings.
@@ -111,7 +117,7 @@ public class RegistrationServlet extends HttpServlet {
                 {
                     session.setAttribute("msg", "Passwords must match. Please try again.");
                     response.sendRedirect("registration.jsp");
-                }
+                }}
                 
             //if the user is a visitor.   
             }else if(mb!= null && mb.getAccessType().equals("admin"))

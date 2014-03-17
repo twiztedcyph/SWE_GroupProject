@@ -5,6 +5,8 @@
 --%>
 
 <%@page import="java.util.ArrayList"%>
+<%@page import="beans.GoalBean"%>
+
 <!--<%@page contentType="text/html" pageEncoding="UTF-8"%>-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -44,6 +46,8 @@
         </script>
     </head>
     <body>
+        <div id="backImageLeft"></div>
+        <div id="backImageRight"></div>
         <%
     //Beans.MessageBean messageBean = new Beans.MessageBean();
     //ArrayList<Beans.MessageBean> newMessages = new ArrayList();
@@ -60,6 +64,7 @@
             session.removeAttribute("msg");
         }
     %>
+        
         <div id ="header">
             <a href="index.jsp" id="homelink"></a>
             <div id ="loginBox">
@@ -74,9 +79,9 @@
             </div>
             <ul id = "navmenu">
                 <li><a href="index.jsp">HOME</a></li>
-                <li><a href="index.jsp">NULL</a></li>		
-                <li><a href="index.jsp">NULL</a></li>
-                <li><a href="index.html">NULL</a></li>
+                <li><a href="index.jsp">BENEFITS</a></li>		
+                <li><a href="index.jsp">TESTIMONIALS</a></li>
+                <li><a href="index.html">ABOUT US</a></li>
             </ul>
             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="get">
@@ -96,11 +101,21 @@
               </p> 
     </div>
 <% }  else if( memberBean.getAccessType().equals("user")) { %>
+        <% if(request.getAttribute("goalsList") == null) 
+              {
+                  System.out.println("Redirecting.............");
+                  request.getRequestDispatcher("ListGoalServlet").forward(request, response);
+              }
+        
+
+        %>
+  
+ <jsp:useBean id="goalsList" type="ArrayList<GoalBean>" scope="request" />
  <div id ="header">
             <a href="index.jsp" id="homelink"></a>
             <div id ="loginBox">
                 Welcome back User <%= memberBean.getUserName()%>.
-                <form method="get" action="/SystemsCoursework/LogInServe">
+                <form method="get" action="/SWE_GroupProject/LogInServlet">
                     <p>
                         <input type="hidden" name="logout" value="logout" />
                         <input type="submit" name="" value="Logout" />
@@ -108,10 +123,10 @@
                 </form>
             </div>
             <ul id = "navmenu">
-                <li><a href="index.jsp">1</a></li>
-                <li><a href="accountAdmin.jsp">2</a></li>		
-                <li><a href="festivalControl.jsp">3</a></li>
-                <li><a href="messages.jsp">4<span style="color: red; background: #000;"></span></a></li>
+                <li><a href="index.jsp">HOME</a></li>
+                <li><a href="profile.jsp">MY PROFILE</a></li>		
+                <li><a href="goal.jsp">GOALS</a></li>
+                <li><a href="index.html">GROUPS</a></li>
             </ul>
             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="post">
@@ -128,12 +143,32 @@
         </div>
 
         <div id ="maindiv">
+            <% if (goalsList.size() != 0)
+            {
+                %><table> <%
+                for(int i = 0; i < goalsList.size(); i++)
+                { 
+                    GoalBean tempGoal = new GoalBean(); 
+                    tempGoal = goalsList.get(i);
+                    %>
+                    <tr>
+                        <td><p>Your Goal started on <%=tempGoal.getGoalStartDate() %> and you wanted to 
+                                <%=tempGoal.getCategory() %> <%=tempGoal.getAim() %>KG of  <%=tempGoal.getType() %>
+                            by <%=tempGoal.getGoalEndDate() %>
+                            </p>
+                            <p>So far this goal is <%=tempGoal.getGoalProgress() %>% complete.
+                        </td>
+                    </tr>
+                <% } %>
+                </table>
+           <% } else { %> 
+            <p> You don't have any goals right now, why not create one below?</p>
+            <% } %>
             <br /><br />
                     <form method="post" name="GoalServlet" action="CreateGoalServlet" >
                         <table id="adminTableOne">
                             <tr>
                                 <td>
-                                    <input type="hidden" name="member" value="<%= memberBean.getId() %>" />
                                     Will you be creating this goal for yourself or one of your groups?
                                 </td>
                             </tr>

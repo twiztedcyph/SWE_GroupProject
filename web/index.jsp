@@ -92,9 +92,9 @@
         <div id ="maindiv">
             <br /><br />
             
-            Welcome to the Health Tracker!
+            <h1>Welcome to the Health Tracker!</h1>
             <p>
-            We are...
+            We are pleased to announce the....
             </p>
             <br /><br />
             
@@ -116,7 +116,27 @@
                     %>
                     <%= banners[index]%>
                 </span>
+                <p>Below are some of our members...</p>
+                <br /><br /><br /><br /><br />
                 
+                <span id="randomBanner2">
+
+                    <%
+                        
+
+                        String[] banners2 = new String[4];
+                        
+
+                        banners[0] = "<a href = 'http://www.vfestival.co.uk'><img src='Images/banner0.jpg' alt='image'/></a>";
+                        banners[1] = "<a href = 'http://www.facebook.com/SkateandSurfFest'><img src='Images/banner1.jpg' alt='image'/></a>";
+                        banners[2] = "<a href = 'http://www.filmindiaworldwide.com/2012/10/2013-call-for-entries-open-for-tiburon.html'><img src='Images/banner2.jpg' alt='image'/></a>";
+                        banners[3] = "<a href = 'http://www.redcross.org/news/event/Red-Cross-For-the-Love-of-Chocolate-Festival'><img src='Images/banner3.jpg' alt='image'/></a>";
+                        index = random.nextInt(4);
+
+
+                    %>
+                    <%= banners[index]%>
+                </span>
             
         </div>
         <div id = "footer">
@@ -190,7 +210,7 @@
             
                 <h1>Hello Administrator <%= memberBean.getFirstName()%>.</h1>
                 <br />
-
+                
                 <br /><br /><br />
 
             
@@ -245,7 +265,7 @@
                 <li><a href="index.jsp">Home</a></li>
                 <li><a href="profile.jsp">My Profile</a></li>		
                 <li><a href="goal.jsp">Goals</a></li>
-                <li><a href="messages.jsp">4<span style="color: red; background: #000;"></span></a></li>
+                <li><a href="messages.jsp">Groups<span style="color: red; background: #000;"></span></a></li>
             </ul>
             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="post">
@@ -264,9 +284,10 @@
         <div id ="maindiv">
             <br /><br />
             
-                <h1>Whats Up ... <%= memberBean.getFirstName()%>.</h1>
+                <h1>Welcome back <%= memberBean.getFirstName()%>.</h1>
                 <br />
-
+                <h2> Latest News</h2>
+                <p>We have some new.....</p>
                 <br /><br /><br />
 
             

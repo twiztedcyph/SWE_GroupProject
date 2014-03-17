@@ -12,6 +12,17 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="ashCSS.css" />
         <title>Registration Page</title>
+        <script type="text/javascript">
+            function redirect()
+            {
+                window.location = "registration.jsp";
+            }
+
+            function showMsg(msgVar)
+            {
+                window.alert(msgVar);
+            }
+            </script>
     </head>
     <body>
         <%
@@ -64,27 +75,26 @@
         <div id ="maindiv">
             <br /><br />
             <div>
-                <p style="text-align: justify;padding-left:10px;padding-right:10px;">
-                    Register Now!
-                </p>
+                <br /><br />
 
                 <p> Registration Form</p>
+                <br /><br /><br />
                 
-                <form method="post" action="/SWE_GroupProject/RegistrationServlet" tag="Create Logon">
-                    <div id = regForm>
+                <form id ="regForm" method="post" action="/SWE_GroupProject/RegistrationServlet" tag="Create Logon">
+                    
                         
-			Username *          : <input type="text" name="username" /><br />
-			Password *          : <input type="password" name="passwordOne" /><br />
-                        Confirm Password *  : <input type="password" name="passwordTwo" /><br />
-                        Forename *          : <input type="text" name="forename" /><br />
-			Surname *           : <input type="text" name="surname" /><br />
-			Date of Birth *     : <input type="date" name="dob" /><br />
-			Email *             : <input type="text" name="email" /><br />
+                    <label>Username :</label><input type="text" name="username" /><br />
+                    <label>Password :</label><input type="password" name="passwordOne" /><br />
+                    <label>Confirm Password :</label><input type="password" name="passwordTwo" /><br />
+                    <label>Forename :</label><input type="text" name="forename" /><br />
+                    <label>Surname :</label><input type="text" name="surname" /><br />
+                    <label>Date of Birth :</label><input type="date" name="dob" /><br />
+                    <label>Email :</label><input type="text" name="email" /><br />
  
-                        
-                        <input type="submit" value="Submit" />
-                        
-                    </div>
+                    <br /><br />    
+                    <input type="submit" value="Submit" />
+                    <input type="reset" value="Clear" id="reset_button"/>     
+                   
                 </form>
 
 
