@@ -47,7 +47,7 @@ public class CreateGoalServlet extends HttpServlet
             memberBean.getGoalList();
             //All the necessary pieces of information for a goal are objtained
             
-            int submitterID = Integer.parseInt(request.getParameter("member"));
+            int submitterID = memberBean.getId();
             boolean isGroupGoal  = Boolean.parseBoolean(request.getParameter("goalFor"));
 
             Date startDate = Date.valueOf(request.getParameter("startDate"));
@@ -67,12 +67,12 @@ public class CreateGoalServlet extends HttpServlet
             //Which is then persisted to the database
                
             //Then send to the view
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getRequestDispatcher("ListGoalServlet").forward(request, response);
         }
         catch(Exception e)
         {
-            System.out.println(e);
-            request.getRequestDispatcher("CreateGoal.jsp").forward(request, response);
+            e.printStackTrace();
+            request.getRequestDispatcher("goal.jsp").forward(request, response);
         }
     }
 

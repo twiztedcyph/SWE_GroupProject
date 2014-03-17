@@ -143,20 +143,25 @@
         </div>
 
         <div id ="maindiv">
+            <br />
+            <br />
             <% if (goalsList.size() != 0)
             {
-                %><table> <%
+                %><table id="adminTableOne">
+                    <tr><td>Goal Start Date</td><td>Goal End Date</td><td>Category</td><td>Type</td><td>Aim</td><td>Progress</td></tr>
+                    <%
                 for(int i = 0; i < goalsList.size(); i++)
                 { 
                     GoalBean tempGoal = new GoalBean(); 
                     tempGoal = goalsList.get(i);
                     %>
                     <tr>
-                        <td><p>Your Goal started on <%=tempGoal.getGoalStartDate() %> and you wanted to 
-                                <%=tempGoal.getCategory() %> <%=tempGoal.getAim() %>KG of  <%=tempGoal.getType() %>
-                            by <%=tempGoal.getGoalEndDate() %>
-                            </p>
-                            <p>So far this goal is <%=tempGoal.getGoalProgress() %>% complete.
+                        <td><%=tempGoal.getGoalStartDate() %></td>
+                        <td><%=tempGoal.getGoalEndDate() %></td>
+                        <td><%=tempGoal.getCategory() %></td>
+                        <td><%=tempGoal.getType() %></td>
+                        <td><%=tempGoal.getAim() %></td>
+                        <td><%=tempGoal.getGoalProgress() %>
                         </td>
                     </tr>
                 <% } %>

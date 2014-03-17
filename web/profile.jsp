@@ -12,6 +12,35 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="ashCSS.css" />
         <title>Profile page</title>
+        <script type="text/javascript">
+            function redirect()
+            {
+                window.location = "registration.jsp";
+            }
+
+            function showMsg(msgVar)
+            {
+                window.alert(msgVar);
+            }
+            
+            function checkForm()
+            {
+                var username = document.getElementById('loginFormUser');
+                var password = document.getElementById('loginFormPass');
+                
+                if(username.value === "")
+                {
+                    window.alert("User Name Field is Empty");
+                    document.getElementById('loginFormUser').focus();
+                    return false;
+                }else if(password.value === "")
+                {
+                    window.alert("Password field is empty");
+                    document.getElementById('loginFormPass').focus();
+                    return false;
+                }
+            }
+        </script>
     </head>
     <body>
         <div id ="backImageLeft"></div>
@@ -26,7 +55,15 @@
         }else if(memberBean.getAccessType().equals("user"))
         {
            //Logged in.....
-    %>
+            String message = (String) session.getAttribute("msg");
+        if (message != null)
+        {
+%>
+            <script>showMsg('<%= message%>');</script>
+<%
+            session.removeAttribute("msg");
+        }
+%>
     
     <div id ="header">
             <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
@@ -82,12 +119,12 @@
                             <td>Password:</td> <td><%= memberBean.getPassword() %></td><td><input type="text" name="new_pass" value="" /></td><td><input type="radio" name="selector" value="pass" checked="" /></td>
                         </tr>
                         <tr>
-                            <td>Email:</td> <td><%= memberBean.getEmailAddress() %></td><td><input type="text" name="new_email" value="" /></td><td><input type="radio" name="selector" value="email" /></td>
+                            <td>Email:</td> <td><%= memberBean.getEmailAddress() %></td><td><input type="email" name="new_email" value="" /></td><td><input type="radio" name="selector" value="email" /></td>
                         </tr>
                         <tr>
                         </tr>
                     </table>
-                        <br />Password: <input type="text" name="currentPass" /><input type="submit" value="submit" />
+                        <br />Password: <input type="text" name="currentPass" /><br /><input type="submit" value="submit" />
                 </form>
 
                 <div style="clear:both;"></div>  
