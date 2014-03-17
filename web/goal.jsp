@@ -66,14 +66,14 @@
     %>
         
         <div id ="header">
-            <a href="index.jsp" id="homelink"></a>
+             <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
                 <form method="post" action="/SWE_GroupProject/LogInServlet" onsubmit="return checkForm();">
                     <div>
-                        <p>Username:<input type="text" id="loginFormUser" name="username" /></p>
-                        <p>Password:<input type="password" id="loginFormPass" name="password" /></p>
-                        <p><input type="submit" value="Submit" /></p>
-                        <input type="button" name="complete1" onclick="redirect('useRegister.jsp');" value="Register" />
+                        Username:<input type="text" id="loginFormUser" name="username" />
+                        Password:<input type="password" id="loginFormPass" name="password" />
+                        <input type="submit" value="Submit" />
+                        <p>Not registered?...<input type="button" name="complete1" onclick="redirect('useRegister.jsp');" value="Register" /></p>
                     </div>
                 </form>
             </div>
@@ -83,23 +83,54 @@
                 <li><a href="index.jsp">TESTIMONIALS</a></li>
                 <li><a href="index.html">ABOUT US</a></li>
             </ul>
-            <div id="search">
+             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="get">
                     <p>
-                    Search
-                    <input type="hidden" name="searchType" value="google" />
-                    <input type="text" name="theSearch" size="30" />
-                    <input type="submit" value="Submit" />
+                    Google
+                    <input type="radio" name="searchType" checked="checked" value="google" />
+                    This site
+                    <input type="radio" name="searchType"  value="thisSite" />
                     </p>
+                    <input type="text"placeholder="Search..." name="theSearch"  size="30" />
+                    <input type="submit" value="Submit" />
+                    
                 </form>
             </div>
         </div>
     <div id ="maindiv">
         <br /><br />
-            <p>Sorry but you can't use this feature without being logged in,
+            <h1>Sorry but you can't use this feature without being logged in,
                     why not log in or create an account?
-              </p> 
+              </h1> 
     </div>
+    <div id = "footer">
+            <br />
+            <br />   
+            <table id = "footerTable">
+                <tr>
+                    <td><a href="index.jsp">HOME</a></td>
+                    <td><a href="benefits.jsp">BENEFITS</a></td>	
+                    <td><a href="defaultFestival.jsp">FESTIVALS</a></td>
+                    <td><a href="aboutUs.html">ABOUT US</a></td>
+                </tr>
+                <tr>
+                    <td><a href="useRegister.jsp">USER REGISTRATION</a></td>
+                    <td></td>	
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>		
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <br />
+            <p>Designed and created by Ian Weeks and Ashley Moore</p>
+
+        </div>
 <% }  else if( memberBean.getAccessType().equals("user")) { %>
         <% if(request.getAttribute("goalsList") == null) 
               {
@@ -112,7 +143,7 @@
   
  <jsp:useBean id="goalsList" type="ArrayList<GoalBean>" scope="request" />
  <div id ="header">
-            <a href="index.jsp" id="homelink"></a>
+            <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
                 Welcome back User <%= memberBean.getUserName()%>.
                 <form method="get" action="/SWE_GroupProject/LogInServlet">
@@ -161,7 +192,13 @@
                         <td><%=tempGoal.getCategory() %></td>
                         <td><%=tempGoal.getType() %></td>
                         <td><%=tempGoal.getAim() %></td>
-                        <td><%=tempGoal.getGoalProgress() %>
+                        <td><%=tempGoal.getGoalProgress() %>%</td>
+                        <td>
+                            <form action="CreateGoalServlet" method="post">
+                                <input type="hidden" value="<%=tempGoal.getID() %>" name="goalID" />
+                                <input type="hidden" value="delete" name="formType" />
+                                <input type="submit" value="Delete Goal" />
+                            </form>   
                         </td>
                     </tr>
                 <% } %>
@@ -225,19 +262,15 @@
                             <tr><td><p></p></td></tr>
                             <tr>
                                 <td>
-                                      <input type="submit" action="Submit" />
+                                    <input type="hidden" value="create" name="formType" />
+                                    <input type="submit" action="Submit" />
                                 </td>
                             </tr>
                         </table>
                     </form>
                 <br /><br />
-
-                <% } else { %>
-                   
-                <% } %>
-            <br />
         </div>
-        <div id = "footer">
+<div id = "footer">
             <br />
             <br />   
             <table id = "footerTable">
@@ -248,7 +281,6 @@
                     <td><a href="aboutUs.html">ABOUT US</a></td>
                 </tr>
                 <tr>
-                    <td><a href="useRegister.jsp">USER REGISTRATION</a></td>
                     <td></td>	
                     <td></td>
                     <td></td>
@@ -265,6 +297,8 @@
             <p>Designed and created by Ian Weeks and Ashley Moore</p>
 
         </div>
-        
+                <% } else { %>
+                   
+                <% } %>
     </body>
 </html>

@@ -6,6 +6,7 @@
 
 package controllers;
 
+import beans.GoalBean;
 import java.io.IOException;
 import java.sql.Date;
 import javax.servlet.ServletException;
@@ -42,32 +43,43 @@ public class CreateGoalServlet extends HttpServlet
         
         try
         {
+            
             HttpSession session = request.getSession();
             beans.MemberBean memberBean = (beans.MemberBean) session.getAttribute("userdetails");
-            memberBean.getGoalList();
-            //All the necessary pieces of information for a goal are objtained
-            
             int submitterID = memberBean.getId();
-            boolean isGroupGoal  = Boolean.parseBoolean(request.getParameter("goalFor"));
+            String formType = request.getParameter("formType");
+            //All the necessary pieces of information for a goal are objtained
+            if(formType.equals("create"))
+            {
+                
+                boolean isGroupGoal  = Boolean.parseBoolean(request.getParameter("goalFor"));
 
-            Date startDate = Date.valueOf(request.getParameter("startDate"));
-            Date endDate =  Date.valueOf(request.getParameter("endDate"));
+                Date startDate = Date.valueOf(request.getParameter("startDate"));
+                Date endDate =  Date.valueOf(request.getParameter("endDate"));
 
-            Double aim = Double.parseDouble(request.getParameter("aim"));
-            
-            String category = request.getParameter("category");
-            
-            String type = request.getParameter("type");
+                Double aim = Double.parseDouble(request.getParameter("aim"));
+
+                String category = request.getParameter("category");
+
+                String type = request.getParameter("type");
 
 
-            
-            //Then used to construct a goal object
-            beans.GoalBean  goal = new beans.GoalBean(submitterID, isGroupGoal, startDate, endDate, aim, category, type); 
-            goal.persist();
-            //Which is then persisted to the database
-               
-            //Then send to the view
-            request.getRequestDispatcher("ListGoalServlet").forward(request, response);
+
+                //Then used to construct a goal object
+                beans.GoalBean  goal = new beans.GoalBean(submitterID, isGroupGoal, startDate, endDate, aim, category, type); 
+                goal.persist();
+                //Which is then persisted to the database
+
+                //Then send to the view
+                request.getRequestDispatcher("ListGoalServlet").forward(request, response);
+            }
+            else if(formType.equals("delete"))
+            {
+                System.out.println("*********TRYING TO DELETE A GOAL************");
+                int goalID = Integer.parseInt(request.getParameter("goalID"));
+                GoalBean.deleteGoal(goalID, submitterID);
+                request.getRequestDispatcher("ListGoalServlet").forward(request, response);
+            }
         }
         catch(Exception e)
         {

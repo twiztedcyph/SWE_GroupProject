@@ -21,7 +21,7 @@ import misc.DbConnect;
  */
 public class GoalBean implements Serializable
 {
-    private int submitter;
+    private int submitter, id;
     boolean groupGoal;
     private Date goalStartDate, goalEndDate;
     private double goalProgress, aim;
@@ -46,7 +46,8 @@ public class GoalBean implements Serializable
     public GoalBean(ResultSet rs) throws SQLException
     {
 
-            this.submitter = rs.getInt("id");
+            this.id = rs.getInt("id");
+            this.submitter = rs.getInt("submitter");
             this.groupGoal = rs.getBoolean("isgroup");
             this.goalStartDate = rs.getDate("start_date");
             this.goalEndDate = rs.getDate("end_date");
@@ -184,5 +185,25 @@ public class GoalBean implements Serializable
     public void setGoalProgress(double goalProgress)
     {
         this.goalProgress = goalProgress;
+    }
+    
+    public int getID()
+    {
+        return id;
+    }
+    
+    public static void deleteGoal(int goalID, int userID) throws SQLException
+    {
+        misc.DbConnect connection = new misc.DbConnect();
+        Connection con = connection.getCon();
+        
+        PreparedStatement ps = con.prepareStatement("DELETE from GOAL WHERE id=? AND submitter =?;");
+        
+        ps.setInt(1, goalID);
+        ps.setInt(2, userID);
+        
+        ps.executeUpdate();
+        
+        con.close();
     }
 }

@@ -6,7 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="ashCSS.css" />
-        <title>The Health Tracker</title>
+        <title>The Health Tracker - About Us</title>
         <script type="text/javascript">
             function redirect()
             {
@@ -25,12 +25,12 @@
                 
                 if(username.value === "")
                 {
-                    window.alert("User Name Field is Empty");
+                    window.alert("Username field is empty!");
                     document.getElementById('loginFormUser').focus();
                     return false;
                 }else if(password.value === "")
                 {
-                    window.alert("Password field is empty");
+                    window.alert("Password field is empty!");
                     document.getElementById('loginFormPass').focus();
                     return false;
                 }
@@ -65,7 +65,7 @@
                         Username:<input type="text" id="loginFormUser" name="username" />
                         Password:<input type="password" id="loginFormPass" name="password" />
                         <input type="submit" value="Submit" />
-                        <p>Not registered?...<input type="button" name="complete1" onclick="redirect('useRegister.jsp');" value="Register" /></p>
+                        <p>Not registered?...<input type="button" name="complete1" onclick="redirect('registration.jsp');" value="Register" /></p>
                     </div>
                 </form>
             </div>
@@ -84,73 +84,38 @@
                     <input type="radio" name="searchType"  value="thisSite" />
                     </p>
                     <input type="text"placeholder="Search..." name="theSearch"  size="30" />
-                    <input type="submit" value="Submit" />
-                    
+                    <input type="submit" value="Submit" /> 
                 </form>
             </div>
         </div>
         <div id ="maindiv">
             <br /><br />
-            
-            <h1>Welcome to the simplyhealth</h1>
-            <p>
-            We are pleased to announce the....
-            </p>
-            <br /><br />
-            
-            <span id="randomBanner">
+            <div>
+                <p style="text-align: justify; padding-left:10px; padding-right:10px;">
+                    About Us!
+                </p>
 
-                    <%
-                        java.util.Random random = new java.util.Random();
-
-                        String[] banners = new String[4];
-                        int index = 0;
-
-                        banners[0] = "<a href = 'http://www.vfestival.co.uk'><img src='Images/banner0.jpg' alt='image'/></a>";
-                        banners[1] = "<a href = 'http://www.facebook.com/SkateandSurfFest'><img src='Images/banner1.jpg' alt='image'/></a>";
-                        banners[2] = "<a href = 'http://www.nhs.uk/Pages/HomePage.aspx'><img src='Images/banner2.png' alt='image'/></a>";
-                        banners[3] = "<a href = 'http://www.redcross.org/news/event/Red-Cross-For-the-Love-of-Chocolate-Festival'><img src='Images/banner3.jpg' alt='image'/></a>";
-                        index = random.nextInt(4);
-
-
-                    %>
-                    <%= banners[index]%>
-                </span>
-                <p>Below are some of our members...</p>
-                <br /><br /><br /><br /><br />
+                <p style="text-align: justify; padding-left:20px; padding-right:100px;">
+                    Our goal is to provide a free and easily accessible way for
+                    our members to tailor and monitor every aspect of their diet and
+                    exercise regime.
+                </p>
                 
-                <span id="randomBanner2">
+                <div style="clear:both;"></div>  
+                <br />
 
-                    <%
-                        
-
-                        String[] banners2 = new String[4];
-                        
-
-                        banners[0] = "<a href = 'http://www.vfestival.co.uk'><img src='Images/banner0.jpg' alt='image'/></a>";
-                        banners[1] = "<a href = 'http://www.facebook.com/SkateandSurfFest'><img src='Images/banner1.jpg' alt='image'/></a>";
-                        banners[2] = "<a href = 'http://www.nhs.uk/Pages/HomePage.aspx'><img src='Images/banner2.png' alt='image'/></a>";
-                        banners[3] = "<a href = 'http://www.redcross.org/news/event/Red-Cross-For-the-Love-of-Chocolate-Festival'><img src='Images/banner3.jpg' alt='image'/></a>";
-                        index = random.nextInt(4);
-
-
-                    %>
-                    <%= banners[index]%>
-                </span>
-            
+            </div>
+            <br />
         </div>
         <div id = "footer">
             <br />
             <br />   
             <table id = "footerTable">
-            <br />
-            <br />   
-            <table id = "footerTable">
                 <tr>
                     <td><a href="index.jsp">HOME</a></td>
-                    <td><a href="accountAdmin.jsp">USER CONTROL</a></td>	
-                    <td><a href="festivalControl.jsp">FESTIVAL CONTROL</a></td>
-                    <td><a href="messages.jsp">MESSAGES</a></td>
+                    <td><a href="benefits.jsp">BENEFITS</a></td>
+                    <td><a href="testimonials.jsp">TESTIMONIALS</a></td>	
+                    <td><a href="aboutUs.jsp">ABOUT US</a></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -192,7 +157,7 @@
                 <li><a href="index.jsp">MESSAGE CONTROL</a></li>
                 <li><a href="accountAdmin.jsp">USER CONTROL</a></li>		
                 <li><a href="festivalControl.jsp">GOAL CONTROL</a></li>
-                <li><a href="messages.jsp">MESSAGES  <span style="color: red; background: #000;"></span></a></li>
+                <li><a href="messages.jsp">GROUP CONTROL  <span style="color: red; background: #000;"></span></a></li>
             </ul>
             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="post">
@@ -207,26 +172,35 @@
                 </form>
             </div>
         </div>
-
         <div id ="maindiv">
             <br /><br />
-            
-                <h1>Hello Administrator <%= memberBean.getFirstName()%>.</h1>
-                <br />
+            <div>
+                <h1>Hello <%= memberBean.getFirstName()%>! (ADMIN)</h1>
                 
-                <br /><br /><br />
+                <p style="text-align: justify; padding-left:10px; padding-right:10px;">
+                    About Us!
+                </p>
 
-            
+                <p style="text-align: justify; padding-left:20px; padding-right:100px;">
+                    Our goal is to provide a free and easily accessible way for
+                    our members to tailor and monitor every aspect of their diet and
+                    exercise regime.
+                </p>
+                
+                <div style="clear:both;"></div>  
+                <br />
 
+            </div>
+            <br />
         </div>
         <div id = "footer">
             <br />
             <br />   
             <table id = "footerTable">
                 <tr>
-                    <td><a href="index.jsp">HOME</a></td>
-                    <td><a href="accountAdmin.jsp">USER CONTROL</a></td>	
-                    <td><a href="festivalControl.jsp">FESTIVAL CONTROL</a></td>
+                    <td><a href="index.jsp">BENEFITS</a></td>
+                    <td><a href="testimonials.jsp">TESTIMONIALS</a></td>	
+                    <td><a href="aboutUs.jsp">ABOUT US</a></td>
                     <td><a href="messages.jsp">MESSAGES</a></td>
                 </tr>
                 <tr>
@@ -265,10 +239,10 @@
                 </form>
             </div>
             <ul id = "navmenu">
-                <li><a href="index.jsp">Home</a></li>
-                <li><a href="profile.jsp">My Profile</a></li>		
-                <li><a href="goal.jsp">Goals</a></li>
-                <li><a href="messages.jsp">Groups<span style="color: red; background: #000;"></span></a></li>
+                <li><a href="index.jsp">HOME</a></li>
+                <li><a href="profile.jsp">PROFILE</a></li>		
+                <li><a href="goal.jsp">GOALS</a></li>
+                <li><a href="messages.jsp">GROUPS<span style="color: red; background: #000;"></span></a></li>
             </ul>
             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="post">
@@ -283,27 +257,35 @@
                 </form>
             </div>
         </div>
-
         <div id ="maindiv">
             <br /><br />
-            
-                <h1>Welcome back <%= memberBean.getFirstName()%>.</h1>
+            <div>
+                <h1>Hello <%= memberBean.getFirstName()%>, welcome back!</h1>
+                
+                <p style="text-align: justify; padding-left:10px; padding-right:10px;">
+                    About Us!
+                </p>
+
+                <p style="text-align: justify; padding-left:20px; padding-right:100px;">
+                    Our goal is to provide a free and easily accessible way for
+                    our members to tailor and monitor every aspect of their diet and
+                    exercise regime.
+                </p>
+                
+                <div style="clear:both;"></div>  
                 <br />
-                <h2> Latest News</h2>
-                <p>We have some new.....</p>
-                <br /><br /><br />
 
-            
-
+            </div>
+            <br />
         </div>
         <div id = "footer">
             <br />
             <br />   
             <table id = "footerTable">
                 <tr>
-                    <td><a href="index.jsp">HOME</a></td>
-                    <td><a href="accountAdmin.jsp">USER CONTROL</a></td>	
-                    <td><a href="festivalControl.jsp">FESTIVAL CONTROL</a></td>
+                    <td><a href="index.jsp">BENEFITS</a></td>
+                    <td><a href="testimonials.jsp">TESTIMONIALS</a></td>	
+                    <td><a href="aboutUs.jsp">ABOUT US</a></td>
                     <td><a href="messages.jsp">MESSAGES</a></td>
                 </tr>
                 <tr>
