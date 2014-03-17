@@ -45,8 +45,7 @@ public class GoalBean implements Serializable
 
     public GoalBean(ResultSet rs) throws SQLException
     {
-        while(rs.next())
-        {   
+
             this.submitter = rs.getInt("id");
             this.groupGoal = rs.getBoolean("isgroup");
             this.goalStartDate = rs.getDate("start_date");
@@ -55,7 +54,6 @@ public class GoalBean implements Serializable
             this.category = rs.getString("category");
             this.type = rs.getString("type");
             this.goalProgress = rs.getDouble("progress");
-        }
     }
     
     public String toString()
