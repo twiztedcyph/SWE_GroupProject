@@ -58,7 +58,7 @@
 %>
            
          <div id ="header">
-            <a href="index.jsp" id="homelink"></a>
+             <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
                 <form method="post" action="/SWE_GroupProject/LogInServlet" onsubmit="return checkForm();">
                     <div>
@@ -92,7 +92,7 @@
         <div id ="maindiv">
             <br /><br />
             
-            <h1>Welcome to the Health Tracker!</h1>
+            <h1>Welcome to the simplyhealth</h1>
             <p>
             We are pleased to announce the....
             </p>
@@ -108,7 +108,7 @@
 
                         banners[0] = "<a href = 'http://www.vfestival.co.uk'><img src='Images/banner0.jpg' alt='image'/></a>";
                         banners[1] = "<a href = 'http://www.facebook.com/SkateandSurfFest'><img src='Images/banner1.jpg' alt='image'/></a>";
-                        banners[2] = "<a href = 'http://www.filmindiaworldwide.com/2012/10/2013-call-for-entries-open-for-tiburon.html'><img src='Images/banner2.jpg' alt='image'/></a>";
+                        banners[2] = "<a href = 'http://www.nhs.uk/Pages/HomePage.aspx'><img src='Images/banner2.png' alt='image'/></a>";
                         banners[3] = "<a href = 'http://www.redcross.org/news/event/Red-Cross-For-the-Love-of-Chocolate-Festival'><img src='Images/banner3.jpg' alt='image'/></a>";
                         index = random.nextInt(4);
 
@@ -129,7 +129,7 @@
 
                         banners[0] = "<a href = 'http://www.vfestival.co.uk'><img src='Images/banner0.jpg' alt='image'/></a>";
                         banners[1] = "<a href = 'http://www.facebook.com/SkateandSurfFest'><img src='Images/banner1.jpg' alt='image'/></a>";
-                        banners[2] = "<a href = 'http://www.filmindiaworldwide.com/2012/10/2013-call-for-entries-open-for-tiburon.html'><img src='Images/banner2.jpg' alt='image'/></a>";
+                        banners[2] = "<a href = 'http://www.nhs.uk/Pages/HomePage.aspx'><img src='Images/banner2.png' alt='image'/></a>";
                         banners[3] = "<a href = 'http://www.redcross.org/news/event/Red-Cross-For-the-Love-of-Chocolate-Festival'><img src='Images/banner3.jpg' alt='image'/></a>";
                         index = random.nextInt(4);
 
@@ -143,11 +143,14 @@
             <br />
             <br />   
             <table id = "footerTable">
+            <br />
+            <br />   
+            <table id = "footerTable">
                 <tr>
-                    <td></td>
-                    <td></td>	
-                    <td></td>
-                    <td></td>
+                    <td><a href="index.jsp">HOME</a></td>
+                    <td><a href="accountAdmin.jsp">USER CONTROL</a></td>	
+                    <td><a href="festivalControl.jsp">FESTIVAL CONTROL</a></td>
+                    <td><a href="messages.jsp">MESSAGES</a></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -175,7 +178,7 @@
         //newMessages = messageBean.getAllNewMessages(userBean.getUsername());
 %>
         <div id ="header">
-            <a href="index.jsp" id="homelink"></a>
+            <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
                 Welcome back administrator <%= memberBean.getUserName()%>.
                 <form method="get" action="/SWE_GroupProject/LogInServlet">
@@ -251,7 +254,7 @@
         //newMessages = messageBean.getAllNewMessages(userBean.getUsername());
 %>
         <div id ="header">
-            <a href="index.jsp" id="homelink"></a>
+            <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
                 Welcome back User <%= memberBean.getUserName()%>.
                 <form method="get" action="/SWE_GroupProject/LogInServlet">

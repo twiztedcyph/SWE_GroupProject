@@ -43,7 +43,7 @@
         <div id ="backImageRight"></div>
         
         <div id ="header">
-            <a href="index.jsp" id="homelink"></a>
+            <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
                 <form method="post" action="/SWE_GroupProject/RegistrationServlet" onsubmit="return checkForm();">
                     <div>
@@ -89,7 +89,7 @@
                     <label>Forename :</label><input type="text" name="forename" /><br />
                     <label>Surname :</label><input type="text" name="surname" /><br />
                     <label>Date of Birth :</label><input type="date" name="dob" /><br />
-                    <label>Email :</label><input type="text" name="email" /><br />
+                    <label>Email :</label><input type="email" name="email" /><br />
  
                     <br /><br />    
                     <input type="submit" value="Submit" />
@@ -113,7 +113,7 @@
         <div id ="backImageRight"></div>
         
         <div id ="header">
-            <a href="index.jsp" id="homelink"></a>
+            <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <ul id = "navmenu">
                 <li><a href="index.jsp">HOME</a></li>
                 <li><a href="benefits.jsp">BENEFITS</a></li>		
