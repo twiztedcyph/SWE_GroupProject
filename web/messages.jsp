@@ -58,6 +58,7 @@
 %>
            
          <div id ="header">
+            <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
                 <form method="post" action="/SWE_GroupProject/LogInServlet" onsubmit="return checkForm();">
                     <div>
@@ -142,7 +143,7 @@
         //newMessages = messageBean.getAllNewMessages(userBean.getUsername());
 %>
         <div id ="header">
-            <a href="index.jsp" id="homelink"></a>
+            <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
                 Welcome back administrator <%= memberBean.getUserName()%>.
                 <form method="get" action="/SWE_GroupProject/LogInServlet">
@@ -227,7 +228,7 @@
         //newMessages = messageBean.getAllNewMessages(userBean.getUsername());
 %>
         <div id ="header">
-            <a href="index.jsp" id="homelink"></a>
+            <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
                 Welcome back User <%= memberBean.getUserName()%>.
                 <form method="get" action="/SWE_GroupProject/LogInServlet">
