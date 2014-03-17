@@ -161,7 +161,7 @@
                         <td><%=tempGoal.getCategory() %></td>
                         <td><%=tempGoal.getType() %></td>
                         <td><%=tempGoal.getAim() %></td>
-                        <td><%=tempGoal.getGoalProgress() %></td>
+                        <td><%=tempGoal.getGoalProgress() %>%</td>
                         <td>
                             <form action="CreateGoalServlet" method="post">
                                 <input type="hidden" value="<%=tempGoal.getID() %>" name="goalID" />
