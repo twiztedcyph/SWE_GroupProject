@@ -161,7 +161,13 @@
                         <td><%=tempGoal.getCategory() %></td>
                         <td><%=tempGoal.getType() %></td>
                         <td><%=tempGoal.getAim() %></td>
-                        <td><%=tempGoal.getGoalProgress() %>
+                        <td><%=tempGoal.getGoalProgress() %></td>
+                        <td>
+                            <form action="CreateGoalServlet" method="post">
+                                <input type="hidden" value="<%=tempGoal.getID() %>" name="goalID" />
+                                <input type="hidden" value="delete" name="formType" />
+                                <input type="submit" value="Delete Goal" />
+                            </form>   
                         </td>
                     </tr>
                 <% } %>
@@ -225,7 +231,8 @@
                             <tr><td><p></p></td></tr>
                             <tr>
                                 <td>
-                                      <input type="submit" action="Submit" />
+                                    <input type="hidden" value="create" name="formType" />
+                                    <input type="submit" action="Submit" />
                                 </td>
                             </tr>
                         </table>
