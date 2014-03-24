@@ -48,6 +48,9 @@ public class ListGoalServlet extends HttpServlet
             if(memberBean != null)
             {
                 ArrayList<GoalBean> goalsList = memberBean.getGoalList();
+                ArrayList<GoalBean> inProgressGoals = new ArrayList<>();
+                ArrayList<GoalBean> failedGoals = new ArrayList<>();
+                ArrayList<GoalBean> completeGoals = new ArrayList<>();
                 
                 if(!goalsList.isEmpty())
                 {
@@ -55,10 +58,6 @@ public class ListGoalServlet extends HttpServlet
                     SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd"); 
                     String localDateFormatted = dateFormatter.format(calLocal.getTime());  
                     java.sql.Date localDate = java.sql.Date.valueOf(localDateFormatted);
-                
-                    ArrayList<GoalBean> inProgressGoals = new ArrayList<>();
-                    ArrayList<GoalBean> failedGoals = new ArrayList<>();
-                    ArrayList<GoalBean> completeGoals = new ArrayList<>();
                 
                     for(GoalBean tempGoal : goalsList)
                     {
@@ -79,7 +78,7 @@ public class ListGoalServlet extends HttpServlet
                             inProgressGoals.add(tempGoal); 
                         }
                      }
-                
+                }
                 
                 
                 
@@ -88,16 +87,14 @@ public class ListGoalServlet extends HttpServlet
                 request.setAttribute("completeGoals", completeGoals);
                 request.setAttribute("failedGoals", failedGoals);
                 request.setAttribute("inProgressGoals", inProgressGoals);
-                }
-                //Then send to the view
+               
+
                 request.getRequestDispatcher("goal.jsp").forward(
                               request, response);
-                return;
             }
             else
             {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
-                return;
             }
         }
         catch(Exception e)

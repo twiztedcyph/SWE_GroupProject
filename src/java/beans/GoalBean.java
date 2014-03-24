@@ -57,6 +57,18 @@ public class GoalBean implements Serializable
             this.goalProgress = rs.getDouble("progress");
     }
     
+    public static GoalBean findByID(int goalID) throws SQLException
+    {
+        DbConnect databaseConnection = new DbConnect();
+            Connection con = databaseConnection.getCon();
+
+        PreparedStatement ps = con.prepareStatement("Select * from goal where id = ?");
+        ps.setInt(1, goalID);
+
+        return new GoalBean(ps.executeQuery());
+        
+    }
+    
     public String toString()
     {
         String goalString = String.format("Submitted by: %s\n"
@@ -76,10 +88,9 @@ public class GoalBean implements Serializable
             
     }
     
-    public void persist() throws ServletException
+    public void persist() throws SQLException
     {
-        try
-        {
+       
             DbConnect databaseConnection = new DbConnect();
             Connection con = databaseConnection.getCon();
        
@@ -100,11 +111,6 @@ public class GoalBean implements Serializable
             ps.executeUpdate();
             
             con.close();
-        }
-        catch(Exception e)
-        {
-            throw new ServletException("Goal persist issue: "+e);
-        }
     }
     
     public int getSubmitter()
