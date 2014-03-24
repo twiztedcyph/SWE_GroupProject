@@ -89,10 +89,16 @@ public class CreateGoalServlet extends HttpServlet
             }
             else if(formType.equals("delete"))
             {
-                System.out.println("*********TRYING TO DELETE A GOAL************");
                 int goalID = Integer.parseInt(request.getParameter("goalID"));
                 GoalBean.deleteGoal(goalID, submitterID);
                 request.getRequestDispatcher("ListGoalServlet").forward(request, response);
+            }
+            else if(formType.equals("update"))
+            {
+                int goalID = Integer.parseInt(request.getParameter("goalID"));
+                GoalBean goalToEdit =  GoalBean.findByID(goalID);
+                request.setAttribute("goalToEdit", goalToEdit);
+                request.getRequestDispatcher("editGoal.jsp").forward(request, response);
             }
         }
         catch(Exception e)

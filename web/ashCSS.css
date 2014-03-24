@@ -577,6 +577,25 @@ h2
     margin-left: 5px;
     text-align:left;
 }
+
+
+#goalComplete
+{
+    background-color: #7fff7f;
+    color: #000000;
+}
+
+#goalInProgress
+{
+    background-color: #FFFF91;
+    color: #000000;
+}
+
+#goalFailed
+{
+    background-color: #FF6C6C;
+    color: #000000;
+}
 #search input[type=submit]
 {
     position:relative;
