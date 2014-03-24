@@ -6,7 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="ashCSS.css" />
-        <title>The Health Tracker - About Us</title>
+        <title>The Health Tracker - Groups</title>
         <script type="text/javascript">
             function redirect()
             {
@@ -58,7 +58,7 @@
 %>
            
          <div id ="header">
-             <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
+            <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
                 <form method="post" action="/SWE_GroupProject/LogInServlet" onsubmit="return checkForm();">
                     <div>
@@ -92,13 +92,13 @@
             <br /><br />
             <div>
                 <p style="text-align: justify; padding-left:10px; padding-right:10px;">
-                    About Us!
+                    Groups!
                 </p>
 
                 <p style="text-align: justify; padding-left:20px; padding-right:100px;">
-                    Our goal is to provide a free and easily accessible way for
-                    our members to tailor and monitor every aspect of their diet and
-                    exercise regime.
+                    Unfortunately, only members can use this feature.
+                    
+                    Register <a href="registration.jsp"> HERE!</a> It's free!
                 </p>
                 
                 <div style="clear:both;"></div>  
@@ -178,13 +178,11 @@
                 <h1>Hello <%= memberBean.getFirstName()%>! (ADMIN)</h1>
                 
                 <p style="text-align: justify; padding-left:10px; padding-right:10px;">
-                    About Us!
+                    Groups!
                 </p>
 
                 <p style="text-align: justify; padding-left:20px; padding-right:100px;">
-                    Our goal is to provide a free and easily accessible way for
-                    our members to tailor and monitor every aspect of their diet and
-                    exercise regime.
+                    Edit and remove groups or their members.
                 </p>
                 
                 <div style="clear:both;"></div>  
@@ -261,15 +259,16 @@
             <br /><br />
             <div>
                 <h1>Hello <%= memberBean.getFirstName()%>, welcome back!</h1>
-                
+
                 <p style="text-align: justify; padding-left:10px; padding-right:10px;">
-                    About Us!
+                    Groups!
                 </p>
 
                 <p style="text-align: justify; padding-left:20px; padding-right:100px;">
-                    Our goal is to provide a free and easily accessible way for
-                    our members to tailor and monitor every aspect of their diet and
-                    exercise regime.
+                    Create a group! This could be a group of friends, people who
+                    share the same goals as you or anyone you enjoy interacting with.
+                    
+                    Enhance your experience!
                 </p>
                 
                 <div style="clear:both;"></div>  

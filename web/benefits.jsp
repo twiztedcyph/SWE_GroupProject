@@ -158,9 +158,9 @@
             </div>
             <ul id = "navmenu">
                 <li><a href="index.jsp">MESSAGE CONTROL</a></li>
-                <li><a href="accountAdmin.jsp">USER CONTROL</a></li>		
-                <li><a href="festivalControl.jsp">GOAL CONTROL</a></li>
-                <li><a href="messages.jsp">GROUP CONTROL  <span style="color: red; background: #000;"></span></a></li>
+                <li><a href="registration.jsp">USER CONTROL</a></li>		
+                <li><a href="goals.jsp">GOAL CONTROL</a></li>
+                <li><a href="groups.jsp">GROUP CONTROL  <span style="color: red; background: #000;"></span></a></li>
             </ul>
             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="post">
@@ -248,7 +248,7 @@
                 <li><a href="index.jsp">HOME</a></li>
                 <li><a href="profile.jsp">PROFILE</a></li>		
                 <li><a href="goal.jsp">GOALS</a></li>
-                <li><a href="messages.jsp">GROUPS<span style="color: red; background: #000;"></span></a></li>
+                <li><a href="groups.jsp">GROUPS<span style="color: red; background: #000;"></span></a></li>
             </ul>
             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="post">

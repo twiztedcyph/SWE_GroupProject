@@ -56,8 +56,8 @@
             <ul id = "navmenu">
                 <li><a href="index.jsp">HOME</a></li>
                 <li><a href="benefits.jsp">BENEFITS</a></li>		
-                <li><a href="defaultFestival.jsp">TESTIMONIALS</a></li>
-                <li><a href="aboutUs.html">ABOUT US</a></li>
+                <li><a href="testimonials.jsp">TESTIMONIALS</a></li>
+                <li><a href="aboutUs.jsp">ABOUT US</a></li>
             </ul>
             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="get">
@@ -115,10 +115,10 @@
         <div id ="header">
             <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <ul id = "navmenu">
-                <li><a href="index.jsp">HOME</a></li>
-                <li><a href="benefits.jsp">BENEFITS</a></li>		
-                <li><a href="defaultFestival.jsp">TESTIMONIALS</a></li>
-                <li><a href="aboutUs.html">ABOUT US</a></li>
+                <li><a href="index.jsp">MESSAGE CONTROL</a></li>
+                <li><a href="registration.jsp">USER CONTROL</a></li>		
+                <li><a href="goals.jsp">GOAL CONTROL</a></li>
+                <li><a href="groups.jsp">GROUP CONTROL  <span style="color: red; background: #000;"></span></a></li>
             </ul>
             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="get">
@@ -181,11 +181,11 @@
                 <tr>
                     <td><a href="index.jsp">HOME</a></td>
                     <td><a href="benefits.jsp">BENEFITS</a></td>	
-                    <td><a href="testimonials.html">TESTIMONIALS</a></td>
-                    <td><a href="aboutUs.html">ABOUT US</a></td>
+                    <td><a href="testimonials.jsp">TESTIMONIALS</a></td>
+                    <td><a href="aboutUs.jsp">ABOUT US</a></td>
                 </tr>
                 <tr>
-                    <td><a href="useRegister.jsp">USER REGISTRATION</a></td>
+                    <td></td>
                     <td></td>	
                     <td></td>
                     <td></td>

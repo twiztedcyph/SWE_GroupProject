@@ -58,6 +58,7 @@
 %>
            
          <div id ="header">
+            <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
                 <form method="post" action="/SWE_GroupProject/LogInServlet" onsubmit="return checkForm();">
                     <div>
@@ -142,7 +143,7 @@
         //newMessages = messageBean.getAllNewMessages(userBean.getUsername());
 %>
         <div id ="header">
-            <a href="index.jsp" id="homelink"></a>
+            <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
                 Welcome back administrator <%= memberBean.getUserName()%>.
                 <form method="get" action="/SWE_GroupProject/LogInServlet">
@@ -154,9 +155,9 @@
             </div>
             <ul id = "navmenu">
                 <li><a href="index.jsp">MESSAGE CONTROL</a></li>
-                <li><a href="accountAdmin.jsp">USER CONTROL</a></li>		
-                <li><a href="festivalControl.jsp">GOAL CONTROL</a></li>
-                <li><a href="messages.jsp">GROUP CONTROL  <span style="color: red; background: #000;"></span></a></li>
+                <li><a href="registration.jsp">USER CONTROL</a></li>		
+                <li><a href="goals.jsp">GOAL CONTROL</a></li>
+                <li><a href="groups.jsp">GROUP CONTROL  <span style="color: red; background: #000;"></span></a></li>
             </ul>
             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="post">
@@ -227,7 +228,7 @@
         //newMessages = messageBean.getAllNewMessages(userBean.getUsername());
 %>
         <div id ="header">
-            <a href="index.jsp" id="homelink"></a>
+            <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
                 Welcome back User <%= memberBean.getUserName()%>.
                 <form method="get" action="/SWE_GroupProject/LogInServlet">
@@ -241,7 +242,7 @@
                 <li><a href="index.jsp">HOME</a></li>
                 <li><a href="profile.jsp">PROFILE</a></li>		
                 <li><a href="goal.jsp">GOALS</a></li>
-                <li><a href="messages.jsp">GROUPS<span style="color: red; background: #000;"></span></a></li>
+                <li><a href="groups.jsp">GROUPS<span style="color: red; background: #000;"></span></a></li>
             </ul>
             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="post">
