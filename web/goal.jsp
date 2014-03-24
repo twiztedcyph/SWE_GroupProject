@@ -188,6 +188,69 @@
         <div id ="maindiv">
             <br />
             <br />
+            <h1>Create A New Goal</h1>
+                    <form method="post" name="GoalServlet" action="CreateGoalServlet" >
+                        <table id="adminTableOne">
+                            <tr>
+                                <td>
+                                    Will you be creating this goal for yourself or one of your groups?
+                                </td>
+                            </tr>
+                            <tr><td><p></p></td></tr>
+                            <tr>
+                                <td>
+                                    <input type="radio" name="goalFor" value="false" />Myself
+                                    <input type="radio" name="goalFor" value="true" />One of my groups
+                                </td>
+                            </tr>
+                            <tr><td><p></p></td></tr>
+                            <tr>
+                                <td>  
+                                    Start Date:
+                                    <input type="date" name="startDate" />
+                                </td>
+                            </tr>
+                            <tr><td><p></p></td></tr>
+                            <tr>
+                                <td>
+                                    End Date:   
+                                    <input type="date" name="endDate" />
+                                </td>
+                            </tr>
+                            <tr><td><p></p></td></tr>
+                            <tr>
+                                <td>
+                                    About Your target:
+                                </td>
+                            </tr>
+                            <tr><td><p></p></td></tr>
+                            <tr>
+                                <td>
+                                I want to
+                                    <select name="category">
+                                        <option value ="lose">Lose</option>
+                                        <option value ="gain">Gain</option>
+                                    </select>
+                                    <input type="text" name="aim" pattern=".{1,2}[0-9]+"  required/>
+                                    KG of
+                                    <select name="type">
+                                        <option value ="weight">Weight</option>
+                                        <option value="bodyFatPercentage">Body Fat</option>
+                                        <option value="BMI">Body Mass Index</option>
+                                        <option value="muscleMass">Muscle Mass</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr><td><p></p></td></tr>
+                            <tr>
+                                <td>
+                                    <input type="hidden" value="create" name="formType" />
+                                    <input type="submit" action="Submit" />
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                <br /><br />
             <h1>Your Current Goals</h1>
             <% if (inProgressGoals.size() != 0)
             {
@@ -211,6 +274,13 @@
                                 <input type="hidden" value="<%=tempGoal.getID() %>" name="goalID" />
                                 <input type="hidden" value="delete" name="formType" />
                                 <input type="submit" value="Delete Goal" />
+                            </form>   
+                        </td>
+                         <td>
+                            <form action="CreateGoalServlet" method="post">
+                                <input type="hidden" value="<%=tempGoal.getID() %>" name="goalID" />
+                                <input type="hidden" value="update" name="formType" />
+                                <input type="submit" value="Edit Goal" />
                             </form>   
                         </td>
                     </tr>
@@ -280,72 +350,10 @@
                     %></table> 
                     <%}
                else { %> 
-            <h1> You don't have any goals right now, why not create one below?</h1>
+            <h1> You don't have any goals right now, why not create one above?</h1>
             <% } %>
             <br /><br />
-            <h1>Create A New Goal</h1>
-                    <form method="post" name="GoalServlet" action="CreateGoalServlet" >
-                        <table id="adminTableOne">
-                            <tr>
-                                <td>
-                                    Will you be creating this goal for yourself or one of your groups?
-                                </td>
-                            </tr>
-                            <tr><td><p></p></td></tr>
-                            <tr>
-                                <td>
-                                    <input type="radio" name="goalFor" value="false" />Myself
-                                    <input type="radio" name="goalFor" value="true" />One of my groups
-                                </td>
-                            </tr>
-                            <tr><td><p></p></td></tr>
-                            <tr>
-                                <td>  
-                                    Start Date:
-                                    <input type="date" name="startDate" />
-                                </td>
-                            </tr>
-                            <tr><td><p></p></td></tr>
-                            <tr>
-                                <td>
-                                    End Date:   
-                                    <input type="date" name="endDate" />
-                                </td>
-                            </tr>
-                            <tr><td><p></p></td></tr>
-                            <tr>
-                                <td>
-                                    About Your target:
-                                </td>
-                            </tr>
-                            <tr><td><p></p></td></tr>
-                            <tr>
-                                <td>
-                                I want to
-                                    <select name="category">
-                                        <option value ="lose">Lose</option>
-                                        <option value ="gain">Gain</option>
-                                    </select>
-                                    <input type="text" name="aim" pattern=".{1,2}[0-9]+"  required/>
-                                    KG of
-                                    <select name="type">
-                                        <option value ="weight">Weight</option>
-                                        <option value="bodyFatPercentage">Body Fat</option>
-                                        <option value="BMI">Body Mass Index</option>
-                                        <option value="muscleMass">Muscle Mass</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr><td><p></p></td></tr>
-                            <tr>
-                                <td>
-                                    <input type="hidden" value="create" name="formType" />
-                                    <input type="submit" action="Submit" />
-                                </td>
-                            </tr>
-                        </table>
-                    </form>
-                <br /><br />
+            
         </div>
 <div id = "footer">
             <br />
