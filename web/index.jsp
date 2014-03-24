@@ -65,7 +65,7 @@
                         Username:<input type="text" id="loginFormUser" name="username" />
                         Password:<input type="password" id="loginFormPass" name="password" />
                         <input type="submit" value="Submit" />
-                        <p>Not registered?...<input type="button" name="complete1" onclick="redirect('useRegister.jsp');" value="Register" /></p>
+                        <p>Not registered?...<input type="button" name="complete1" onclick="redirect('registration.jsp');" value="Register" /></p>
                     </div>
                 </form>
             </div>
@@ -92,9 +92,10 @@
         <div id ="maindiv">
             <br /><br />
             
-            <h1>Welcome to the simplyhealth</h1>
+            <h1>Welcome to simplyhealth</h1>
             <p>
-            We are pleased to announce the....
+            We are pleased to announce the launch of our new and exiting health 
+            tracking website. simplyhealth offers you the opportunity to
             </p>
             <br /><br />
             
@@ -250,6 +251,15 @@
                  <%
     }else if (memberBean.getAccessType().equals("user"))
     {
+        String message = (String) session.getAttribute("msg");
+        if (message != null)
+        {
+%>
+            <script>showMsg('<%= message%>');</script>
+<%
+            session.removeAttribute("msg");
+        }
+
         //Logged in as a regular user
         //newMessages = messageBean.getAllNewMessages(userBean.getUsername());
 %>

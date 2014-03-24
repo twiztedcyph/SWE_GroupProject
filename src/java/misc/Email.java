@@ -81,7 +81,7 @@ public class Email
         {
             result = false;
         }
-        return result && emailAddress.matches("\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\b");
+        return result;
     }
 }
 

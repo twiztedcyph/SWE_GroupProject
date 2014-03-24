@@ -224,6 +224,14 @@
     {
         //Logged in as a regular user
         //newMessages = messageBean.getAllNewMessages(userBean.getUsername());
+        String message = (String) session.getAttribute("msg");
+        if (message != null)
+        {
+%>
+            <script>showMsg('<%= message%>');</script>
+<%
+            session.removeAttribute("msg");
+        }
 %>
         <div id ="header">
             <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
