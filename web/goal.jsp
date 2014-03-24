@@ -141,10 +141,15 @@
                   System.out.println("Redirecting.............");
                   request.getRequestDispatcher("ListGoalServlet").forward(request, response);
               }
-        
-
-        %>
-  
+        String message = (String) session.getAttribute("msg");
+        if (message != null)
+        {
+%>
+            <script>showMsg('<%= message%>');</script>
+<%
+            session.removeAttribute("msg");
+        }
+%>
  <jsp:useBean id="goalsList" type="ArrayList<GoalBean>" scope="request" />
  <jsp:useBean id="completeGoals" type="ArrayList<GoalBean>" scope="request" />
  <jsp:useBean id="failedGoals" type="ArrayList<GoalBean>" scope="request" />
@@ -321,7 +326,7 @@
                                         <option value ="lose">Lose</option>
                                         <option value ="gain">Gain</option>
                                     </select>
-                                    <input type="text" name="aim" />
+                                    <input type="text" name="aim" pattern=".{1,2}[0-9]+"  required/>
                                     KG of
                                     <select name="type">
                                         <option value ="weight">Weight</option>
