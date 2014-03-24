@@ -60,10 +60,8 @@ public class CreateGoalServlet extends HttpServlet
                 final long DAY_IN_MILLIS = 1000 * 60 * 60 * 24;
                 final double healthyRate = 0.4;
                 int days = (int)((endDate.getTime() - startDate.getTime())/ DAY_IN_MILLIS);
-                System.out.println("yo");
-                System.out.println(days);
                 Double aim = Double.parseDouble(request.getParameter("aim"));
-                
+                long today = new java.util.Date().getTime();
                 String category = request.getParameter("category");
 
                 String type = request.getParameter("type");
@@ -73,7 +71,13 @@ public class CreateGoalServlet extends HttpServlet
                 {
                     session.setAttribute("msg", "Unhealthy Rate");
                     response.sendRedirect("goal.jsp");
-                }else {
+                }else if(endDate.before(startDate)|| startDate.getTime() < today)
+                {
+                    session.setAttribute("msg", "Invalid dates! Make sure start "
+                            + "date is not before today or after the end date");
+                    response.sendRedirect("goal.jsp");
+                }
+                else {
                     //Then used to construct a goal object
                     beans.GoalBean  goal = new beans.GoalBean(submitterID, isGroupGoal, startDate, endDate, aim, category, type); 
                     goal.persist();

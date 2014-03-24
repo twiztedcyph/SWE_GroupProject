@@ -222,7 +222,7 @@
                             <tr><td><p></p></td></tr>
                             <tr>
                                 <td>
-                                    <input type="radio" name="goalFor" value="false" />Myself
+                                    <input type="radio" name="goalFor" value="false" checked />Myself
                                     <input type="radio" name="goalFor" value="true" />One of my groups
                                 </td>
                             </tr>
