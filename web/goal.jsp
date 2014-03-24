@@ -83,9 +83,9 @@
             </div>
             <ul id = "navmenu">
                 <li><a href="index.jsp">HOME</a></li>
-                <li><a href="index.jsp">BENEFITS</a></li>		
-                <li><a href="index.jsp">TESTIMONIALS</a></li>
-                <li><a href="index.html">ABOUT US</a></li>
+                <td><a href="benefits.jsp">BENEFITS</a></td>
+                <td><a href="testimonials.jsp">TESTIMONIALS</a></td>	
+                <td><a href="aboutUs.jsp">ABOUT US</a></td>
             </ul>
              <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="get">
@@ -112,13 +112,13 @@
             <br />   
             <table id = "footerTable">
                 <tr>
-                    <td><a href="index.jsp">HOME</a></td>
-                    <td><a href="benefits.jsp">BENEFITS</a></td>	
-                    <td><a href="defaultFestival.jsp">FESTIVALS</a></td>
-                    <td><a href="aboutUs.html">ABOUT US</a></td>
+                    <td><a href="benefits.jsp">BENEFITS</a></td>
+                    <td><a href="testimonials.jsp">TESTIMONIALS</a></td>	
+                    <td><a href="aboutUs.jsp">ABOUT US</a></td>
+                    <td><a href="messages.jsp">MESSAGES</a></td>
                 </tr>
                 <tr>
-                    <td><a href="useRegister.jsp">USER REGISTRATION</a></td>
+                    <td></td>
                     <td></td>	
                     <td></td>
                     <td></td>
@@ -352,10 +352,10 @@
             <br />   
             <table id = "footerTable">
                 <tr>
-                    <td><a href="index.jsp">HOME</a></td>
-                    <td><a href="benefits.jsp">BENEFITS</a></td>	
-                    <td><a href="defaultFestival.jsp">FESTIVALS</a></td>
-                    <td><a href="aboutUs.html">ABOUT US</a></td>
+                    <td><a href="benefits.jsp">BENEFITS</a></td>
+                    <td><a href="testimonials.jsp">TESTIMONIALS</a></td>	
+                    <td><a href="aboutUs.jsp">ABOUT US</a></td>
+                    <td><a href="messages.jsp">MESSAGES</a></td>
                 </tr>
                 <tr>
                     <td></td>	
