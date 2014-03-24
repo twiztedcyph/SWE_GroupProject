@@ -639,7 +639,7 @@ h2
 #regForm input[type=text],#regForm input[type=password],
 #regForm input[type=date], #regForm input[type=email]
 {
-    width:17%;
+    width:17%;    
 }
 #regForm label
 {
@@ -682,3 +682,23 @@ h2
     margin-left:5px;
     
 }
+
+
+
+
+#regFrom input:valid,
+input:in-range 
+{
+    background:hsl(120, 50%, 90%);
+    border-color:hsl(120, 50%, 50%);
+}
+
+input:invalid,
+input:out-of-range 
+{
+    border-color:hsl(0, 50%, 50%);
+    background:hsl(0, 50%, 90%);
+}
+
+
+

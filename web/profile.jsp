@@ -120,7 +120,8 @@
                             <td>Date of birth:</td> <td><%= memberBean.getDateOfBirth() %></td><td></td>
                         </tr>
                         <tr>
-                            <td>Password:</td> <td><%= memberBean.getPassword() %></td><td><input type="text" name="new_pass" value="" /></td><td><input type="radio" name="selector" value="pass" checked="" /></td>
+                            <td>Password:</td> <td><%= memberBean.getPassword() %></td><td><input type="text" name="new_pass" pattern =".{5,20}[A-Za-z-0-9]+" 
+                                                    required title="At least 5 charecters. Uppercase, Lowercase and Numbers Only!" /></td><td><input type="radio" name="selector" value="pass" checked="" /></td>
                         </tr>
                         <tr>
                             <td>Email:</td> <td><%= memberBean.getEmailAddress() %></td><td><input type="email" name="new_email" value="" /></td><td><input type="radio" name="selector" value="email" /></td>

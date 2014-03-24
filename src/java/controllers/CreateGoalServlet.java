@@ -46,6 +46,7 @@ public class CreateGoalServlet extends HttpServlet
             
             HttpSession session = request.getSession();
             beans.MemberBean memberBean = (beans.MemberBean) session.getAttribute("userdetails");
+            String referer = request.getHeader("Referer").replace("http://localhost:8080/SWE_GroupProject/", "");
             int submitterID = memberBean.getId();
             String formType = request.getParameter("formType");
             //All the necessary pieces of information for a goal are objtained
@@ -56,22 +57,31 @@ public class CreateGoalServlet extends HttpServlet
 
                 Date startDate = Date.valueOf(request.getParameter("startDate"));
                 Date endDate =  Date.valueOf(request.getParameter("endDate"));
-
+                final long DAY_IN_MILLIS = 1000 * 60 * 60 * 24;
+                final double healthyRate = 0.4;
+                int days = (int)((endDate.getTime() - startDate.getTime())/ DAY_IN_MILLIS);
+                System.out.println("yo");
+                System.out.println(days);
                 Double aim = Double.parseDouble(request.getParameter("aim"));
-
+                
                 String category = request.getParameter("category");
 
                 String type = request.getParameter("type");
 
 
+                if(aim/days > healthyRate)
+                {
+                    session.setAttribute("msg", "Unhealthy Rate");
+                    response.sendRedirect("goal.jsp");
+                }else {
+                    //Then used to construct a goal object
+                    beans.GoalBean  goal = new beans.GoalBean(submitterID, isGroupGoal, startDate, endDate, aim, category, type); 
+                    goal.persist();
+                    //Which is then persisted to the database
 
-                //Then used to construct a goal object
-                beans.GoalBean  goal = new beans.GoalBean(submitterID, isGroupGoal, startDate, endDate, aim, category, type); 
-                goal.persist();
-                //Which is then persisted to the database
-
-                //Then send to the view
-                request.getRequestDispatcher("ListGoalServlet").forward(request, response);
+                    //Then send to the view
+                    request.getRequestDispatcher("ListGoalServlet").forward(request, response);
+                }
             }
             else if(formType.equals("delete"))
             {
