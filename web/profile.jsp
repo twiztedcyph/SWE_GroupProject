@@ -63,11 +63,12 @@
 <%
             session.removeAttribute("msg");
         }
-        beans.LifeStyleBean lifeStyleBean = (beans.LifeStyleBean) session.getAttribute("lifestlye");
-        if(lifeStyleBean == null)
+        
+        if(session.getAttribute("lifestlye") == null)
         {
             request.getRequestDispatcher("ProfileServlet").forward(request, response);
         }
+        beans.LifeStyleBean lifeStyleBean = (beans.LifeStyleBean) session.getAttribute("lifestlye");
 %>
     
     <div id ="header">

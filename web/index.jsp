@@ -40,9 +40,7 @@
     <body>
         <div id ="backImageLeft"></div>
         <div id ="backImageRight"></div>
-        <%
-    //Beans.MessageBean messageBean = new Beans.MessageBean();
-    //ArrayList<Beans.MessageBean> newMessages = new ArrayList();
+<%
     beans.MemberBean memberBean = (beans.MemberBean) session.getAttribute("userdetails");
     if (memberBean == null)
     {

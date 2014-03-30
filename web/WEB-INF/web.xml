@@ -12,6 +12,10 @@
         <servlet-name>ListGoalServlet</servlet-name>
         <servlet-class>controllers.ListGoalServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>foodServlet</servlet-name>
+        <servlet-class>controllers.FoodServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProfileServlet</servlet-name>
         <url-pattern>/ProfileServlet</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>ListGoalServlet</servlet-name>
         <url-pattern>/ListGoalServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>foodServlet</servlet-name>
+        <url-pattern>/FoodServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -61,7 +61,9 @@ public class MemberBean implements Serializable
 
         Connection myCon = dbConnect.getCon();
 
-        PreparedStatement ps = myCon.prepareStatement("INSERT INTO member (user_name, password, first_name, last_name, email_address, date_of_birth, access_type) values(?, ?, ?, ?, ?, ?, ?)");
+        PreparedStatement ps = myCon.prepareStatement("INSERT INTO member "
+                + "(user_name, password, first_name, last_name, email_address, "
+                + "date_of_birth, access_type) values(?, ?, ?, ?, ?, ?, ?)");
 
         ps.setString(1, userName);
         ps.setString(2, password);
@@ -72,18 +74,20 @@ public class MemberBean implements Serializable
         ps.setString(7, accessType);
 
         ps.executeUpdate();
+        myCon.close();
     }
 
     public MemberBean retrieveOne(String username) throws SQLException
     {
         misc.DbConnect dbConnect = new misc.DbConnect();
 
-        Connection myCon = dbConnect.getCon();
-
-        PreparedStatement ps = myCon.prepareStatement("Select * from member where user_name = ?");
-        ps.setString(1, username);
-
-        return new MemberBean(ps.executeQuery());
+        PreparedStatement ps;
+        try (Connection myCon = dbConnect.getCon())
+        {
+            ps = myCon.prepareStatement("Select * from member where user_name = ?");
+            ps.setString(1, username);
+            return new MemberBean(ps.executeQuery());
+        }
     }
 
     public int getId()
@@ -169,6 +173,7 @@ public class MemberBean implements Serializable
         ps.setString(1, newPassword);
         ps.setString(2, userName);
         ps.executeUpdate();
+        myCon.close();
     }
     
     public void changeEmail(String newEmail) throws SQLException
@@ -179,6 +184,7 @@ public class MemberBean implements Serializable
         ps.setString(1, newEmail);
         ps.setString(2, userName);
         ps.executeUpdate();
+        myCon.close();
     }
 
     public ArrayList<GoalBean> getGoalList() throws SQLException
@@ -198,7 +204,6 @@ public class MemberBean implements Serializable
         {
             System.out.println(goal);
         }
-
         return goalList;
     }
 }
