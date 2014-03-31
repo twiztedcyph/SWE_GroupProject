@@ -64,7 +64,7 @@ public class FoodServlet extends HttpServlet
                 foodBean.persist();
                 session.setAttribute("msg", "Your meal was added.");
                 request.getRequestDispatcher("food.jsp").forward(request, response);
-            }else if(viewFoodRequest != null && viewFoodRequest.equals("Veiw food history"))
+            }else if(viewFoodRequest != null && viewFoodRequest.equals("View food history"))
             {
                 beans.FoodBean foodBean = new beans.FoodBean();
                 ArrayList<beans.FoodBean> foodList = foodBean.getFood(memberBean.getId());
@@ -73,7 +73,6 @@ public class FoodServlet extends HttpServlet
             }else
             {
                 beans.FoodBean foodBean = (beans.FoodBean) session.getAttribute("foodlist");
-                
             }
         }catch (SQLException sqle)
         {
