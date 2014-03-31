@@ -44,6 +44,13 @@
         response.sendRedirect("index.jsp");
     }else if(memberBean.getAccessType().equals("user"))
     {
+        ArrayList<beans.FoodBean> foodList = (ArrayList<beans.FoodBean>) session.getAttribute("foodlist");
+        if(foodList == null)
+        {
+            System.out.println("Before request");
+            request.getRequestDispatcher("FoodServlet").forward(request, response);
+            System.out.println("After request");
+        }
         String message = (String) session.getAttribute("msg");
         if (message != null)
         {
@@ -51,10 +58,10 @@
             <script>showMsg('<%= message%>');</script>
 <%
             session.removeAttribute("msg");
+            
         }
         // Logged in
 %>
-        
         <div id ="header">
             <a href="index.jsp" id="homelink"><img src="Images/logo.jpg" alt="home" /></a>
             <div id ="loginBox">
@@ -89,50 +96,40 @@
         <div id ="maindiv">
             <br />
             <br />
-            <h1>Lifestyle details.</h1>
+            <h1>Food History</h1>
             <br />
-            <h2></h2>
-            <p></p>
+            <br />
             <form method="post" action="/SWE_GroupProject/FoodServlet">
-                <table id="adminRegTable">
+                <table id="messageDisplay">
                     <tr>
-                        <td>Food name</td><td></td><td><input type="text" name="foodname" required="" /></td>
+                        <th>Food name</th>
+                        <th>Date eaten</th>
+                        <th>Time eaten</th>
+                        <th>Kilo calories</th>
                     </tr>
+<%
+            for(beans.FoodBean food : foodList)
+            {
+%>  
+
                     <tr>
-                        <td>Date eaten</td><td></td><td><input type="date" name="dateeaten" required="" /></td>
+                        <td> <%= food.getFoodName() %> </td>
+                        <td> <%= food.getDateEaten() %> </td>
+                        <td> <%= food.getTimeEaten().toString().replace(":00", "") %> </td>
+                        <td>
+                            <input type="hidden" name="fname" value=" <%= food.getFoodName() %> " />
+                            <input type="submit" value="Submit" /> 
+                        </td>
                     </tr>
-                    <tr>
-                        <td>Time eaten</td><td></td><td><input type="time" name="timeeaten" required="" /></td>
-                    </tr>
-                    <tr>
-                        <td>Protein / 100g</td><td></td><td><input type="text" name="protein" required="" /></td>
-                    </tr>
-                    <tr>
-                        <td>Carbs / 100g</td><td></td><td><input type="text" name="carbs" required="" /></td>
-                    </tr>
-                    <tr>
-                        <td>Fats<br />Unsaturated</td><td></td><td><input type="text" name="unsatfat" required="" /></td>
-                    </tr>
-                    <tr>
-                        <td>Fats<br />Saturated</td><td></td><td><input type="text" name="satfat" required="" /></td>
-                    </tr>
-                    <tr>
-                        <td>Sugar / 100g</td><td></td><td><input type="text" name="sugar" required=""/></td>
-                    </tr>
-                    <tr>
-                        <td>Salt / 100g</td><td></td><td><input type="text" name="salt" required="" /></td>
-                    </tr>
-                    <tr>
-                        <td>KiloCalories  / 100g</td><td></td><td><input type="text" name="kcal" required="" /></td>
-                    </tr> 
-                    <tr>
-                        <td></td><td><input type="submit" name="lifestyle_submit" value="Submit"/></td><td></td>
-                    </tr>
+<%
+            }
+%>
                 </table>
             </form>
-            <br />
-            <form method="post" action="/SWE_GroupProject/FoodServlet">
-                <input type="submit" name="view_food_history" value="Veiw food history" />
+            <form> 
+                <input type=button 
+                value="Back to food entry"
+                onClick="self.location='food.jsp'">
             </form>
             <br />
             <br />    
