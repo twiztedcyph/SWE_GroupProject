@@ -320,7 +320,7 @@
                 <li><a href="profile.jsp">PROFILE</a></li>		
                 <li><a href="goal.jsp">GOALS</a></li>
                 <li><a href="food.jsp">FOODS</a></li>
-                <li><a href="exercise.jsp">EXERCISES</a></li>
+                <li><a href="exercises.jsp">EXERCISES</a></li>
                 <li><a href="messages.jsp">GROUPS<span style="color: red; background: #000;"></span></a></li>
             </ul>
             <div id="search">

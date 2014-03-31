@@ -26,7 +26,10 @@ import javax.servlet.http.HttpSession;
 })
 public class CreateGoalServlet extends HttpServlet
 {
-
+    
+    final double HEALTHY_RATE = 0.4;
+    final long DAY_IN_MILLIS = 1000 * 60 * 60 * 24;
+    long today = new java.util.Date().getTime();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -57,17 +60,17 @@ public class CreateGoalServlet extends HttpServlet
 
                 Date startDate = Date.valueOf(request.getParameter("startDate"));
                 Date endDate =  Date.valueOf(request.getParameter("endDate"));
-                final long DAY_IN_MILLIS = 1000 * 60 * 60 * 24;
-                final double healthyRate = 0.4;
+                
+      
                 int days = (int)((endDate.getTime() - startDate.getTime())/ DAY_IN_MILLIS);
                 Double aim = Double.parseDouble(request.getParameter("aim"));
-                long today = new java.util.Date().getTime();
+                
                 String category = request.getParameter("category");
 
                 String type = request.getParameter("type");
 
 
-                if(aim/days > healthyRate)
+                if(aim/days >HEALTHY_RATE)
                 {
                     session.setAttribute("msg", "Unhealthy Rate");
                     response.sendRedirect("goal.jsp");
@@ -108,34 +111,74 @@ public class CreateGoalServlet extends HttpServlet
                 switch(fieldToEdit)
                 {
                     case "aim":
+                                Date startDate = Date.valueOf(request.getParameter("currentStartDate"));
+                                Date endDate =  Date.valueOf(request.getParameter("currentEndDate"));
+                                int days = (int)((endDate.getTime() - startDate.getTime())/ DAY_IN_MILLIS);
                                 Double aim = Double.parseDouble(request.getParameter("newAim"));
-                                GoalBean.updateAim(goalID, aim);
-                                session.setAttribute("msg", "This goal's aim was updated");
+                                if(aim/days > HEALTHY_RATE)
+                                {
+                                    session.setAttribute("msg", "Unhealthy Rate");
+                                    request.getRequestDispatcher("ListGoalServlet").forward(request, response);
+                                }
+                                else
+                                {
+                                  GoalBean.updateAim(goalID, aim);
+                                  session.setAttribute("msg", "Goal aim updated"); 
+                                  request.getRequestDispatcher("ListGoalServlet").forward(request, response);
+                                }
+                                
                                 break;
                     
                     case "type": 
                                  String type = request.getParameter("newType");
                                  GoalBean.updateType(goalID, type);
-                                 session.setAttribute("msg", "This goal's type was updated");
+                                 session.setAttribute("msg", "Goal type updated"); 
+                                 request.getRequestDispatcher("ListGoalServlet").forward(request, response);
                                  break;
                     case "category":
                                 String category = request.getParameter("newCategory");
                                 GoalBean.updateCategory(goalID, category);
                                 session.setAttribute("msg", "This goal's category was updated");
+                                request.getRequestDispatcher("ListGoalServlet").forward(request, response);
                                 break;
                     case "startDate":
-                                Date startDate = Date.valueOf(request.getParameter("newStartDate"));
-                                GoalBean.updateStartDate(goalID, startDate);
-                                session.setAttribute("msg", "This goal's start date was updated");
+                                Date newStartDate = Date.valueOf(request.getParameter("newStartDate"));
+                                Date currentEndDate = Date.valueOf(request.getParameter("currentEndDate"));
+                               
+                                if(currentEndDate.before(newStartDate)|| newStartDate.getTime() < today)
+                                {
+                                    session.setAttribute("msg", "Invalid dates! Make sure start "
+                                    + "date is not before today or after the end date");
+                                    request.getRequestDispatcher("ListGoalServlet").forward(request, response);
+                                }
+                                else
+                                {
+                                   GoalBean.updateStartDate(goalID, newStartDate);
+                                   session.setAttribute("msg", "This goal's start date was updated"); 
+                                   request.getRequestDispatcher("ListGoalServlet").forward(request, response);
+                                }
+                                
                                 break;
                     case "endDate":
-                                Date endDate = Date.valueOf(request.getParameter("newEndDate"));
-                                GoalBean.updateEndDate(goalID, endDate);
-                                session.setAttribute("msg", "This goal's end date was updated");
+                                Date newEndDate = Date.valueOf(request.getParameter("newEndDate"));
+                                Date currentStartDate = Date.valueOf(request.getParameter("currentStartDate"));
+                               
+                                if(newEndDate.before(currentStartDate)|| newEndDate.getTime() < today)
+                                {
+                                    session.setAttribute("msg", "Invalid dates! Make sure start "
+                                    + "date is not before today or after the end date");
+                                    request.getRequestDispatcher("ListGoalServlet").forward(request, response);
+                                }
+                                else
+                                {
+                                    GoalBean.updateEndDate(goalID, newEndDate);
+                                    session.setAttribute("msg", "This goal's end date was updated");
+                                    request.getRequestDispatcher("ListGoalServlet").forward(request, response);
+                                }
+                                
                                 break;
                 }
                 
-                request.getRequestDispatcher("ListGoalServlet").forward(request, response);
             }
         }
         catch(Exception e)
