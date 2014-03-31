@@ -72,7 +72,8 @@ public class FoodServlet extends HttpServlet
                 response.sendRedirect("viewfood.jsp");
             }else
             {
-                System.out.println("Reached else.....");
+                beans.FoodBean foodBean = (beans.FoodBean) session.getAttribute("foodlist");
+                
             }
         }catch (SQLException sqle)
         {

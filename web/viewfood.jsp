@@ -111,14 +111,12 @@
             for(beans.FoodBean food : foodList)
             {
 %>  
-
                     <tr>
                         <td> <%= food.getFoodName() %> </td>
                         <td> <%= food.getDateEaten() %> </td>
                         <td> <%= food.getTimeEaten().toString().replace(":00", "") %> </td>
                         <td>
-                            <input type="hidden" name="fname" value=" <%= food.getFoodName() %> " />
-                            <input type="submit" value="Submit" /> 
+                            <input type="button" value="More details" onclick="showMsg('<%= food %>')" /> 
                         </td>
                     </tr>
 <%

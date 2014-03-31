@@ -132,7 +132,7 @@
             </form>
             <br />
             <form method="post" action="/SWE_GroupProject/FoodServlet">
-                <input type="submit" name="view_food_history" value="Veiw food history" />
+                <input type="submit" name="view_food_history" value="View food history" />
             </form>
             <br />
             <br />    
