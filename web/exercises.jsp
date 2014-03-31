@@ -1,4 +1,6 @@
 
+<%@page import="beans.ExerciseBean"%>
+<%@page import="java.util.ArrayList"%>
 <!--<%@page contentType="text/html" pageEncoding="UTF-8"%>-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -226,6 +228,7 @@
         //Logged in as a regular user
         //newMessages = messageBean.getAllNewMessages(userBean.getUsername());
 %>
+        
         <div id ="header">
             <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <a href="index.jsp" id="homelink"></a>
@@ -245,7 +248,7 @@
                 <li><a href="groups.jsp">GROUPS<span style="color: red; background: #000;"></span></a></li>
             </ul>
             <div id="search">
-                <form action="/SystemsCoursework/SearchServe" method="post">
+                <form action="/SWE_GroupProject/SearchServe" method="post">
                     <p>
                     Google
                     <input type="radio" name="searchType" checked="checked" value="google" />
@@ -260,14 +263,37 @@
         <div id ="maindiv">
             <br /><br />
             <div>
-                <h1>Hello <%= memberBean.getFirstName()%>, welcome back!</h1>
-
-                <p style="text-align: justify; padding-left:10px; padding-right:10px;">
-                    Exercises!
-                </p>
-
+                <h1>Exercises</h1>
+                 <form method="post" action="/SWE_GroupProject/ExerciseServlet">
+                <table id="adminRegTable">
+                    <tr>
+                        <td>Exercise Type</td><td></td><td><input type="text" name="type" required="" /></td>
+                    </tr>
+                    <tr>
+                        <td>Date </td><td></td><td><input type="date" name="date" required="" /></td>
+                    </tr>
+                    <tr>
+                        <td>Time </td><td></td><td><input type="time" name="time" required="" /></td>
+                    </tr>
+                    <tr>
+                        <td>Intensity</td><td></td><td><input type="text" name="intensity" required="" /></td>
+                    </tr>
+                    <tr>
+                        <td>Duration(minutes)</td><td></td><td><input type="text" name="duration" required="" /></td>
+                    </tr>
+                    <tr>
+                        <td></td><td><input type="submit" name="exercise_submit" value="Submit"/></td><td></td>
+                    </tr>
+                    <tr>
+                        <td></td><td><input type="submit" name="exercise_submit" value="ViewExercise"/></td><td></td>
+                    </tr>
+                </table>
+            </form>
+            <br />
+            <br />
+            <br />    
                 <p style="text-align: justify; padding-left:20px; padding-right:100px;">
-                    Add exercises to your exercise regime here!
+                    Below is your history of all the exercises you have undertaken
                 </p>
                 
                 <div style="clear:both;"></div>  
