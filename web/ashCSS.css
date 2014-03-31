@@ -280,6 +280,32 @@ ul#gallery li img:hover
 
 }
 
+#adminTableTwo
+{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#adminTableTwo td
+{
+    width: 20%;
+    text-align: left;
+    padding: 5px;
+    border-spacing: 1px;
+}
+
+#adminTableTwo tr
+{
+    width: auto;
+    text-align: center;
+}
+
+#adminTableTwo th
+{
+    color: blue;
+    text-decoration: underline;
+    text-align: left;
+}
 
 #adminTableOne
 {
@@ -306,6 +332,7 @@ ul#gallery li img:hover
 {
     color: blue;
     text-decoration: underline;
+    text-align: left;
 }
 
 #adminPage
