@@ -4,6 +4,7 @@
     Author     : Twiz
 --%>
 
+<%@page import="beans.GoalBean"%>
 <!--<%@page contentType="text/html" pageEncoding="UTF-8"%>-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -101,35 +102,52 @@
             </div>
         </div>
         <div id ="maindiv">
+            <% if(request.getAttribute("goalToEdit") == null) 
+              {
+                  System.out.println("Redirecting.............");
+                  request.getRequestDispatcher("ListGoalServlet").forward(request, response);
+              }
+            %>
+
+ <jsp:useBean id="goalToEdit" type="GoalBean" scope="request" />
             <br /><br />
                                                           
-                <p id ="p2">User profile</p>
-                <form method="post" action="/SWE_GroupProject/ProfileServlet">
+                <p id ="p2">Edit Goal</p>
+                <form method="post" action="/SWE_GroupProject/CreateGoalServlet">
                     <table id ="adminTableOne">
                         
                         <tr>
-                            <td>Username:</td> <td><%= memberBean.getUserName() %></td><td></td>
+                            <td>Goal Start Date:</td> <td><%= goalToEdit.getGoalStartDate() %></td><td><input type="date" name="newStartDate" value="<%= goalToEdit.getGoalStartDate() %>"/></td><td><input type="radio" name="selector" value="startDate" checked="" /></td>
                         </tr>
                         <tr>
-                            <td>First Name:</td> <td> <%= memberBean.getFirstName() %></td><td></td>
+                            <td>Goal End Date:</td> <td> <%= goalToEdit.getGoalEndDate() %></td><td><input type="date" name="newEndDate" value="<%= goalToEdit.getGoalEndDate() %>" /></td><td><input type="radio" name="selector" value="endDate" checked="" /></td>
                         </tr>
                         <tr>
-                            <td>Last Name:</td> <td><%= memberBean.getLastName() %></td><td></td>
+                            <td>Category:</td> <td><%= goalToEdit.getCategory() %></td><td><select name="newCategory" value="<%= goalToEdit.getCategory() %>">
+                                                                                <option value ="lose">Lose</option>
+                                                                                <option value ="gain">Gain</option>
+                                                                                </select></td><td><input type="radio" name="selector" value="category" checked="" /></td>
                         </tr>
                         <tr>
-                            <td>Date of birth:</td> <td><%= memberBean.getDateOfBirth() %></td><td></td>
+                            <td>Type:</td> <td><%= goalToEdit.getType() %></td><td>
+                                        <select name="newType" value="<%= goalToEdit.getType() %>">
+                                        <option value ="weight">Weight</option>
+                                        <option value="bodyFatPercentage">Body Fat</option>
+                                        <option value="BMI">Body Mass Index</option>
+                                        <option value="muscleMass">Muscle Mass</option>
+                                        </select></td><td><input type="radio" name="selector" value="type" checked="" /></td>
                         </tr>
                         <tr>
-                            <td>Password:</td> <td><%= memberBean.getPassword() %></td><td><input type="text" name="new_pass" pattern =".{5,20}[A-Za-z-0-9]+" 
-                                                    required title="At least 5 charecters. Uppercase, Lowercase and Numbers Only!" /></td><td><input type="radio" name="selector" value="pass" checked="" /></td>
+                            <td>Aim:</td> <td><%= (int)goalToEdit.getAim() %></td><td><input type="text" name="newAim" pattern=".{1,2}[0-9]+" value="<%= goalToEdit.getAim() %>"/></td><td><input type="radio" name="selector" value="aim" checked="" /></td>
                         </tr>
+      
                         <tr>
-                            <td>Email:</td> <td><%= memberBean.getEmailAddress() %></td><td><input type="email" name="new_email" value="" /></td><td><input type="radio" name="selector" value="email" /></td>
+                            <input type="hidden" value="EditGoal" name="formType" />
+                            <input type="hidden" value="<%= goalToEdit.getID() %>" name="goalID" /><td></td><td></td>
                         </tr>
-                        <tr>
-                        </tr>
+                        
                     </table>
-                        <br />Password: <input type="text" name="currentPass" /><br /><input type="submit" value="submit" />
+                        <br /><br /><input type="submit" value="Submit" />
                 </form>
 
                 <div style="clear:both;"></div>  

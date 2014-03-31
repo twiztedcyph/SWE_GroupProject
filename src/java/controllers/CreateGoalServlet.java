@@ -100,6 +100,43 @@ public class CreateGoalServlet extends HttpServlet
                 request.setAttribute("goalToEdit", goalToEdit);
                 request.getRequestDispatcher("editGoal.jsp").forward(request, response);
             }
+            else if(formType.equals("EditGoal"))
+            {
+                int goalID = Integer.parseInt(request.getParameter("goalID"));
+                String fieldToEdit = request.getParameter("selector");
+                
+                switch(fieldToEdit)
+                {
+                    case "aim":
+                                Double aim = Double.parseDouble(request.getParameter("newAim"));
+                                GoalBean.updateAim(goalID, aim);
+                                session.setAttribute("msg", "This goal's aim was updated");
+                                break;
+                    
+                    case "type": 
+                                 String type = request.getParameter("newType");
+                                 GoalBean.updateType(goalID, type);
+                                 session.setAttribute("msg", "This goal's type was updated");
+                                 break;
+                    case "category":
+                                String category = request.getParameter("newCategory");
+                                GoalBean.updateCategory(goalID, category);
+                                session.setAttribute("msg", "This goal's category was updated");
+                                break;
+                    case "startDate":
+                                Date startDate = Date.valueOf(request.getParameter("newStartDate"));
+                                GoalBean.updateStartDate(goalID, startDate);
+                                session.setAttribute("msg", "This goal's start date was updated");
+                                break;
+                    case "endDate":
+                                Date endDate = Date.valueOf(request.getParameter("newEndDate"));
+                                GoalBean.updateEndDate(goalID, endDate);
+                                session.setAttribute("msg", "This goal's end date was updated");
+                                break;
+                }
+                
+                request.getRequestDispatcher("ListGoalServlet").forward(request, response);
+            }
         }
         catch(Exception e)
         {

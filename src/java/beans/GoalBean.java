@@ -65,7 +65,14 @@ public class GoalBean implements Serializable
         PreparedStatement ps = con.prepareStatement("Select * from goal where id = ?");
         ps.setInt(1, goalID);
 
-        return new GoalBean(ps.executeQuery());
+        ResultSet rs = ps.executeQuery();
+  
+        rs.next();
+        GoalBean returnGoal = new GoalBean(rs);
+        
+        con.close();
+        
+        return returnGoal;
         
     }
     
@@ -207,6 +214,81 @@ public class GoalBean implements Serializable
         
         ps.setInt(1, goalID);
         ps.setInt(2, userID);
+        
+        ps.executeUpdate();
+        
+        con.close();
+    }
+    
+    public static void updateAim(int goalID, Double aim) throws SQLException
+    {
+        misc.DbConnect connection = new misc.DbConnect();
+        Connection con = connection.getCon();
+        
+        PreparedStatement ps = con.prepareStatement("UPDATE goal SET aim=? WHERE id = ?");
+        
+        ps.setDouble(1, aim);
+        ps.setInt(2, goalID);
+        
+        ps.executeUpdate();
+        
+        con.close();
+    }
+    
+    public static void updateType(int goalID, String type) throws SQLException
+    {
+        misc.DbConnect connection = new misc.DbConnect();
+        Connection con = connection.getCon();
+        
+        PreparedStatement ps = con.prepareStatement("UPDATE goal SET type=? WHERE id = ?");
+        
+        ps.setString(1, type);
+        ps.setInt(2, goalID);
+        
+        ps.executeUpdate();
+        
+        con.close();
+    }
+    
+    public static void updateCategory(int goalID, String category) throws SQLException
+    {
+        misc.DbConnect connection = new misc.DbConnect();
+        Connection con = connection.getCon();
+        
+        PreparedStatement ps = con.prepareStatement("UPDATE goal SET category=? WHERE id = ?");
+        
+        ps.setString(1, category);
+        ps.setInt(2, goalID);
+        
+        ps.executeUpdate();
+        
+        con.close();
+    }
+    
+    public static void updateStartDate(int goalID, Date startDate) throws SQLException
+    {
+        misc.DbConnect connection = new misc.DbConnect();
+        Connection con = connection.getCon();
+        
+        PreparedStatement ps = con.prepareStatement("UPDATE goal SET start_date=? WHERE id = ?");
+        
+        ps.setDate(1, startDate);
+        ps.setInt(2, goalID);
+        
+        ps.executeUpdate();
+        
+        con.close();
+    }
+    
+    public static void updateEndDate(int goalID, Date endDate) throws SQLException
+    {
+        misc.DbConnect connection = new misc.DbConnect();
+        Connection con = connection.getCon();
+        
+        PreparedStatement ps = con.prepareStatement("UPDATE goal SET end_date=? WHERE id = ?");
+        
+        ps.setDate(1, endDate);
+        ps.setInt(2, goalID);
         
         ps.executeUpdate();
         
