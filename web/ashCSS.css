@@ -158,6 +158,17 @@ ul#navmenu li:hover a:hover
     font-family:"Courier New", Courier, monospace; 
 }
 
+#maindiv input [type = button]
+{
+    position:relative;
+    width:20%;
+    font-family:"Courier New", Courier, monospace; 
+    font-weight:bold;
+    border-radius: 8px;
+    background-color: #ffffff;
+    margin-right:5px;
+}
+
 #footer
 {
     
