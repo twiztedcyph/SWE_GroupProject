@@ -181,17 +181,16 @@ public class FoodBean implements Serializable
     @Override
     public String toString()
     {
-        return "FoodBean{" + "foodName=" + foodName 
-                + ", dateEaten=" + dateEaten 
-                + ", timeEaten=" + timeEaten 
-                + ", proteinPerHundredGrams=" + proteinPerHundredGrams 
-                + ", carbsPerHundredGrams=" + carbsPerHundredGrams 
-                + ", NonSatFatPerHundredGrams=" + NonSatFatPerHundredGrams 
-                + ", satFatPerHundredGrams=" + satFatPerHundredGrams 
-                + ", kiloCalPerHundredGrams=" + kiloCalPerHundredGrams 
-                + ", sugarPerHundredGrams=" + sugarPerHundredGrams 
-                + ", saltPerHundredGrams=" + saltPerHundredGrams
-                + '}';
+        return "Food name = " + foodName 
+                + "\\nDate eaten = " + dateEaten 
+                + "\\nTime eaten = " + timeEaten 
+                + "\\nProtein = " + proteinPerHundredGrams 
+                + "\\nCarbohydrates = " + carbsPerHundredGrams 
+                + "\\nNon saturating fat = " + NonSatFatPerHundredGrams 
+                + "\\nSaturating fat = " + satFatPerHundredGrams 
+                + "\\nKilo Calories = " + kiloCalPerHundredGrams 
+                + "\\nSugar = " + sugarPerHundredGrams 
+                + "\\nSalt = " + saltPerHundredGrams;
     }
     
     public void persist() throws SQLException
