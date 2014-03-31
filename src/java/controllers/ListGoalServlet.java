@@ -44,7 +44,6 @@ public class ListGoalServlet extends HttpServlet
             HttpSession session = request.getSession();
             beans.MemberBean memberBean = (beans.MemberBean) session.getAttribute("userdetails");
             
-            System.out.println("*******************************LANDED AT LIST GOAL SERVLET*******************************************");
             if(memberBean != null)
             {
                 ArrayList<GoalBean> goalsList = memberBean.getGoalList();
@@ -63,8 +62,6 @@ public class ListGoalServlet extends HttpServlet
                     {
                         
                         int dateDifference = tempGoal.getGoalEndDate().compareTo(localDate);
-                        System.out.println("***Date Difference***"+dateDifference);
-                        System.out.println("Todays Date: "+localDate + "Goal Date: " + tempGoal.getGoalEndDate() + "Difference: "+ dateDifference);
                         if(tempGoal.getGoalProgress() >= 100)
                         {
                             completeGoals.add(tempGoal);
