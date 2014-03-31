@@ -69,7 +69,7 @@
             </div>
             <ul id = "navmenu">
                 <li><a href="index.jsp">HOME</a></li>
-                <li><a href="benefits.jsp">BENEFITS</a></li>		
+                <li><a href="benefits.jsp">BENEFITS</a></li>	
                 <li><a href="testimonials.jsp">TESTIMONIALS</a></li>
                 <li><a href="aboutUs.jsp">ABOUT US</a></li>
             </ul>
@@ -90,53 +90,96 @@
         <div id ="maindiv">
             <br /><br />
             
-            <h1>Welcome to simplyhealth</h1>
+            <h1>Welcome to SimplyHealth!</h1>
             <p>
             We are pleased to announce the launch of our new and exiting health 
-            tracking website. simplyhealth offers you the opportunity to
+            tracking website. SimplyHealth offers you the opportunity to get access
+            to our extensive nutrition database absolutely FREE!
+            
+            All you need to do is become a member!
             </p>
-            <br /><br />
+            <table>
+                <tr><h3>- Medical studies have shown that keeping a food journal
+                    can help DOUBLE your weight loss, or increase muscle gain!</h3></tr>
+                <tr><h3>- Keep track of your nutritional intake!</h3></tr>	
+                <tr><h3>- Keep track of your exercise regime!</h3></tr>
+                <tr><h3>- It's quick and easy!</h3></tr>
+                <tr><h3>- Do it all completely FREE!</h3></tr>
+            </table>
+            <h2>Stay fit and healthy the easy way!</h2>
+            <p>
+            We have created a free website that makes calorie counting, food tracking
+            and exercise logging easier that ever! There are no gimmicks or fad diets
+            that give you healthy, concrete results. Keeping track of the foods you
+            eat and the exercise you do is the only way to really see what works for
+            you. Let us help you achieve your goals and feel great doing it!
+            
+            After all, our goal is simply health.
+            </p>
+            <br />
             
             <span id="randomBanner">
 
-                    <%
-                        java.util.Random random = new java.util.Random();
+            <%
+                java.util.Random random = new java.util.Random();
 
-                        String[] banners = new String[4];
-                        int index = 0;
+                String[] banners = new String[4];
+                int index = 0;
 
-                        banners[0] = "<a href = 'http://www.vfestival.co.uk'><img src='Images/banner0.jpg' alt='image'/></a>";
-                        banners[1] = "<a href = 'http://www.facebook.com/SkateandSurfFest'><img src='Images/banner1.jpg' alt='image'/></a>";
-                        banners[2] = "<a href = 'http://www.nhs.uk/Pages/HomePage.aspx'><img src='Images/banner2.png' alt='image'/></a>";
-                        banners[3] = "<a href = 'http://www.redcross.org/news/event/Red-Cross-For-the-Love-of-Chocolate-Festival'><img src='Images/banner3.jpg' alt='image'/></a>";
-                        index = random.nextInt(4);
-
-
-                    %>
-                    <%= banners[index]%>
-                </span>
-                <p>Below are some of our members...</p>
-                <br /><br /><br /><br /><br />
-                
-                <span id="randomBanner2">
-
-                    <%
-                        
-
-                        String[] banners2 = new String[4];
-                        
-
-                        banners[0] = "<a href = 'http://www.vfestival.co.uk'><img src='Images/banner0.jpg' alt='image'/></a>";
-                        banners[1] = "<a href = 'http://www.facebook.com/SkateandSurfFest'><img src='Images/banner1.jpg' alt='image'/></a>";
-                        banners[2] = "<a href = 'http://www.nhs.uk/Pages/HomePage.aspx'><img src='Images/banner2.png' alt='image'/></a>";
-                        banners[3] = "<a href = 'http://www.redcross.org/news/event/Red-Cross-For-the-Love-of-Chocolate-Festival'><img src='Images/banner3.jpg' alt='image'/></a>";
-                        index = random.nextInt(4);
+                banners[0] = "<a href = 'http://www.vfestival.co.uk'><img src='Images/banner0.jpg' alt='image'/></a>";
+                banners[1] = "<a href = 'http://www.facebook.com/SkateandSurfFest'><img src='Images/banner1.jpg' alt='image'/></a>";
+                banners[2] = "<a href = 'http://www.nhs.uk/Pages/HomePage.aspx'><img src='Images/banner2.png' alt='image'/></a>";
+                banners[3] = "<a href = 'http://www.redcross.org/news/event/Red-Cross-For-the-Love-of-Chocolate-Festival'><img src='Images/banner3.jpg' alt='image'/></a>";
+                index = random.nextInt(4);
 
 
-                    %>
-                    <%= banners[index]%>
-                </span>
+            %>
+            <%= banners[index]%>
+            </span>
             
+            <br />    
+            <h2>It really works!</h2>
+            <p>
+            "The SimplyHealth tracker has been instrumental to my weight loss. 
+            I've tried countless times to lose weight but nothing worked. 
+            Anything restrictive and I would just gain the weight right back. 
+            But it really works. SimplyHealth makes counting calories SO easy. 
+            I log onto the site every day and I'm proud to say I haven't 
+            missed a single day of logging in. The community aspect on this 
+            site is amazing and I've made some really great friends throughout 
+            this journey. I can't wait to continue losing weight with SimplyHealth!"
+            </p>
+            <p>Joost Noppen (peshwari_naan)</p>
+            <br />
+            
+            <br />    
+            <h2>It's so easy to use!</h2>
+            <p>
+            "A friend recommended SimplyHealth to me, but I was concerned that 
+            it would be too time consuming, but it's so easy to use! After a few
+            days, it's just a couple of clicks and you're done! If you're serious
+            about fitness, weight loss or even just eating healthier, SimplyHealth
+            is an excellent way to keep you in check and on track."
+            </p>
+            <p>Gavin Crawley (SpaceCowboy)</p>
+            <br /><br /><br /><br />
+            <span id="randomBanner2">
+
+                    <%
+                        
+
+                String[] banners2 = new String[4];
+                        
+                banners2[0] = "<a href = 'http://www.vfestival.co.uk'><img src='Images/banner0.jpg' alt='image'/></a>";
+                banners2[1] = "<a href = 'http://www.facebook.com/SkateandSurfFest'><img src='Images/banner1.jpg' alt='image'/></a>";
+                banners2[2] = "<a href = 'http://www.nhs.uk/Pages/HomePage.aspx'><img src='Images/banner2.png' alt='image'/></a>";
+                banners2[3] = "<a href = 'http://www.redcross.org/news/event/Red-Cross-For-the-Love-of-Chocolate-Festival'><img src='Images/banner3.jpg' alt='image'/></a>";
+                index = random.nextInt(4);
+
+
+            %>
+            <%= banners2[index]%>
+            </span>  
         </div>
         <div id = "footer">
             <br />
@@ -273,10 +316,12 @@
                 </form>
             </div>
             <ul id = "navmenu">
-                <li><a href="index.jsp">Home</a></li>
-                <li><a href="profile.jsp">My Profile</a></li>		
-                <li><a href="goal.jsp">Goals</a></li>
-                <li><a href="messages.jsp">Groups<span style="color: red; background: #000;"></span></a></li>
+                <li><a href="index.jsp">HOME</a></li>
+                <li><a href="profile.jsp">PROFILE</a></li>		
+                <li><a href="goal.jsp">GOALS</a></li>
+                <li><a href="food.jsp">FOODS</a></li>
+                <li><a href="exercise.jsp">EXERCISES</a></li>
+                <li><a href="messages.jsp">GROUPS<span style="color: red; background: #000;"></span></a></li>
             </ul>
             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="post">
@@ -297,7 +342,7 @@
             
                 <h1>Welcome back <%= memberBean.getFirstName()%>.</h1>
                 <br />
-                <h2> Latest News</h2>
+                <h2>Latest News</h2>
                 <p>We have some new.....</p>
                 <br /><br /><br />
 
@@ -310,9 +355,11 @@
             <table id = "footerTable">
                 <tr>
                     <td><a href="index.jsp">HOME</a></td>
-                    <td><a href="accountAdmin.jsp">USER CONTROL</a></td>	
-                    <td><a href="festivalControl.jsp">FESTIVAL CONTROL</a></td>
-                    <td><a href="messages.jsp">MESSAGES</a></td>
+                    <td><a href="profile.jsp">PROFILE</a></td>		
+                    <td><a href="goal.jsp">GOALS</a></td>
+                    <td><a href="food.jsp">FOODS</a></td>
+                    <td><a href="exercise.jsp">EXERCISES</a></td>
+                    <td><a href="messages.jsp">GROUPS<span style="color: red; background: #000;"></span></a></td>
                 </tr>
                 <tr>
                     <td></td>

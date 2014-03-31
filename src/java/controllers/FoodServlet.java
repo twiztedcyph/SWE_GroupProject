@@ -43,6 +43,7 @@ public class FoodServlet extends HttpServlet
             HttpSession session = request.getSession();
             beans.MemberBean memberBean = (beans.MemberBean) session.getAttribute("userdetails");
             String s = request.getParameter("lifestyle_submit");
+            String viewFoodRequest = request.getParameter("view_food_history");
             if(s != null && s.equals("Submit"))
             {
                 String foodName = request.getParameter("foodname");
@@ -56,19 +57,22 @@ public class FoodServlet extends HttpServlet
                 double salt = Double.parseDouble(request.getParameter("salt"));
                 double kCal = Double.parseDouble(request.getParameter("kcal"));
                 int member_id = memberBean.getId();
-                
+                System.out.println(foodName);
                 beans.FoodBean foodBean = new beans.FoodBean(member_id, 
                         foodName, dateEaten, timeEaten, protein, carbs, 
                         unsatFat, satFat, kCal, sugar, salt);
                 foodBean.persist();
                 session.setAttribute("msg", "Your meal was added.");
                 request.getRequestDispatcher("food.jsp").forward(request, response);
-            }else
+            }else if(viewFoodRequest != null && viewFoodRequest.equals("Veiw food history"))
             {
                 beans.FoodBean foodBean = new beans.FoodBean();
                 ArrayList<beans.FoodBean> foodList = foodBean.getFood(memberBean.getId());
                 session.setAttribute("foodlist", foodList);
-                response.sendRedirect("food.jsp");
+                response.sendRedirect("viewfood.jsp");
+            }else
+            {
+                System.out.println("Reached else.....");
             }
         }catch (SQLException sqle)
         {
