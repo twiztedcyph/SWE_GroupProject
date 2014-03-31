@@ -63,7 +63,7 @@ public class FoodBean implements Serializable
             this.timeEaten = rs.getTime("timeeaten");
             this.proteinPerHundredGrams = rs.getDouble("protein");
             this.carbsPerHundredGrams = rs.getDouble("carbohydrate");
-            this.NonSatFatPerHundredGrams = rs.getDouble("unsfat");
+            this.NonSatFatPerHundredGrams = rs.getDouble("unsatfat");
             this.satFatPerHundredGrams = rs.getDouble("satfat");
             this.kiloCalPerHundredGrams = rs.getDouble("sugar");
             this.sugarPerHundredGrams = rs.getDouble("salt");

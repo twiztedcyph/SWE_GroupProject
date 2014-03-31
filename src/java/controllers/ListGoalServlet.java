@@ -9,7 +9,10 @@ package controllers;
 import beans.GoalBean;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,19 +48,53 @@ public class ListGoalServlet extends HttpServlet
             if(memberBean != null)
             {
                 ArrayList<GoalBean> goalsList = memberBean.getGoalList();
+                ArrayList<GoalBean> inProgressGoals = new ArrayList<>();
+                ArrayList<GoalBean> failedGoals = new ArrayList<>();
+                ArrayList<GoalBean> completeGoals = new ArrayList<>();
+                
+                if(!goalsList.isEmpty())
+                {
+                    Calendar calLocal = new GregorianCalendar();
+                    SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd"); 
+                    String localDateFormatted = dateFormatter.format(calLocal.getTime());  
+                    java.sql.Date localDate = java.sql.Date.valueOf(localDateFormatted);
+                
+                    for(GoalBean tempGoal : goalsList)
+                    {
+                        
+                        int dateDifference = tempGoal.getGoalEndDate().compareTo(localDate);
+                        System.out.println("***Date Difference***"+dateDifference);
+                        System.out.println("Todays Date: "+localDate + "Goal Date: " + tempGoal.getGoalEndDate() + "Difference: "+ dateDifference);
+                        if(tempGoal.getGoalProgress() >= 100)
+                        {
+                            completeGoals.add(tempGoal);
+                        }
+                        else if(tempGoal.getGoalProgress() < 100 && dateDifference < 0)
+                        {
+                            failedGoals.add(tempGoal);
+                        }
+                        else
+                        {
+                            inProgressGoals.add(tempGoal); 
+                        }
+                     }
+                }
+                
+                
+                
                //Set the patient in the request
                 request.setAttribute("goalsList", goalsList);
+                request.setAttribute("completeGoals", completeGoals);
+                request.setAttribute("failedGoals", failedGoals);
+                request.setAttribute("inProgressGoals", inProgressGoals);
+               
 
-                System.out.println("GOAL LIST SIZE = "+goalsList.size());
-                //Then send to the view
                 request.getRequestDispatcher("goal.jsp").forward(
                               request, response);
-                return;
             }
             else
             {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
-                return;
             }
         }
         catch(Exception e)

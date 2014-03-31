@@ -61,6 +61,7 @@ public class FoodServlet extends HttpServlet
                         foodName, dateEaten, timeEaten, protein, carbs, 
                         unsatFat, satFat, kCal, sugar, salt);
                 foodBean.persist();
+                session.setAttribute("msg", "Your meal was added.");
                 request.getRequestDispatcher("food.jsp").forward(request, response);
             }else
             {
@@ -71,6 +72,7 @@ public class FoodServlet extends HttpServlet
             }
         }catch (SQLException sqle)
         {
+            System.out.println("EXCEPTION HERE!!!");
             sqle.printStackTrace();
         }
     }

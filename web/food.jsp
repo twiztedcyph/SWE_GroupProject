@@ -47,7 +47,9 @@
         ArrayList<beans.FoodBean> foodList = (ArrayList<beans.FoodBean>) session.getAttribute("foodlist");
         if(foodList == null)
         {
+            System.out.println("Before request");
             request.getRequestDispatcher("FoodServlet").forward(request, response);
+            System.out.println("After request");
         }
         // Logged in
 %>
@@ -128,19 +130,6 @@
                 </table>
             </form>
             <br />
-            <h2>Food history</h2>
-            <table>
-<%
-            for(beans.FoodBean fb : foodList)
-            {
-%>
-                <tr>
-                    <td> <%= fb.getFoodName() %> </td>
-                </tr>
-<%
-            }
-%>
-            </table>
             <br />
             <br />    
         </div>

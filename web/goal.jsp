@@ -4,8 +4,12 @@
     Author     : Liam
 --%>
 
+<%@page import="java.util.Calendar"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="beans.GoalBean"%>
+<%@page import="java.util.GregorianCalendar" %>
+<%@page import="java.util.Date" %>
+<%@page import="java.text.SimpleDateFormat" %>
 
 <!--<%@page contentType="text/html" pageEncoding="UTF-8"%>-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -79,9 +83,9 @@
             </div>
             <ul id = "navmenu">
                 <li><a href="index.jsp">HOME</a></li>
-                <li><a href="index.jsp">BENEFITS</a></li>		
-                <li><a href="index.jsp">TESTIMONIALS</a></li>
-                <li><a href="index.html">ABOUT US</a></li>
+                <td><a href="benefits.jsp">BENEFITS</a></td>
+                <td><a href="testimonials.jsp">TESTIMONIALS</a></td>	
+                <td><a href="aboutUs.jsp">ABOUT US</a></td>
             </ul>
              <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="get">
@@ -108,13 +112,13 @@
             <br />   
             <table id = "footerTable">
                 <tr>
-                    <td><a href="index.jsp">HOME</a></td>
-                    <td><a href="benefits.jsp">BENEFITS</a></td>	
-                    <td><a href="defaultFestival.jsp">FESTIVALS</a></td>
-                    <td><a href="aboutUs.html">ABOUT US</a></td>
+                    <td><a href="benefits.jsp">BENEFITS</a></td>
+                    <td><a href="testimonials.jsp">TESTIMONIALS</a></td>	
+                    <td><a href="aboutUs.jsp">ABOUT US</a></td>
+                    <td><a href="messages.jsp">MESSAGES</a></td>
                 </tr>
                 <tr>
-                    <td><a href="useRegister.jsp">USER REGISTRATION</a></td>
+                    <td></td>
                     <td></td>	
                     <td></td>
                     <td></td>
@@ -137,11 +141,19 @@
                   System.out.println("Redirecting.............");
                   request.getRequestDispatcher("ListGoalServlet").forward(request, response);
               }
-        
-
-        %>
-  
+        String message = (String) session.getAttribute("msg");
+        if (message != null)
+        {
+%>
+            <script>showMsg('<%= message%>');</script>
+<%
+            session.removeAttribute("msg");
+        }
+%>
  <jsp:useBean id="goalsList" type="ArrayList<GoalBean>" scope="request" />
+ <jsp:useBean id="completeGoals" type="ArrayList<GoalBean>" scope="request" />
+ <jsp:useBean id="failedGoals" type="ArrayList<GoalBean>" scope="request" />
+ <jsp:useBean id="inProgressGoals" type="ArrayList<GoalBean>" scope="request" />
  <div id ="header">
             <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
@@ -176,37 +188,7 @@
         <div id ="maindiv">
             <br />
             <br />
-            <% if (goalsList.size() != 0)
-            {
-                %><table id="adminTableOne">
-                    <tr><td>Goal Start Date</td><td>Goal End Date</td><td>Category</td><td>Type</td><td>Aim</td><td>Progress</td></tr>
-                    <%
-                for(int i = 0; i < goalsList.size(); i++)
-                { 
-                    GoalBean tempGoal = new GoalBean(); 
-                    tempGoal = goalsList.get(i);
-                    %>
-                    <tr>
-                        <td><%=tempGoal.getGoalStartDate() %></td>
-                        <td><%=tempGoal.getGoalEndDate() %></td>
-                        <td><%=tempGoal.getCategory() %></td>
-                        <td><%=tempGoal.getType() %></td>
-                        <td><%=tempGoal.getAim() %></td>
-                        <td><%=tempGoal.getGoalProgress() %>%</td>
-                        <td>
-                            <form action="CreateGoalServlet" method="post">
-                                <input type="hidden" value="<%=tempGoal.getID() %>" name="goalID" />
-                                <input type="hidden" value="delete" name="formType" />
-                                <input type="submit" value="Delete Goal" />
-                            </form>   
-                        </td>
-                    </tr>
-                <% } %>
-                </table>
-           <% } else { %> 
-            <h1> You don't have any goals right now, why not create one below?</h1>
-            <% } %>
-            <br /><br />
+            <h1>Create A New Goal</h1>
                     <form method="post" name="GoalServlet" action="CreateGoalServlet" >
                         <table id="adminTableOne">
                             <tr>
@@ -217,7 +199,7 @@
                             <tr><td><p></p></td></tr>
                             <tr>
                                 <td>
-                                    <input type="radio" name="goalFor" value="false" />Myself
+                                    <input type="radio" name="goalFor" value="false" checked />Myself
                                     <input type="radio" name="goalFor" value="true" />One of my groups
                                 </td>
                             </tr>
@@ -249,7 +231,7 @@
                                         <option value ="lose">Lose</option>
                                         <option value ="gain">Gain</option>
                                     </select>
-                                    <input type="text" name="aim" />
+                                    <input type="text" name="aim" pattern=".{1,2}[0-9]+"  required/>
                                     KG of
                                     <select name="type">
                                         <option value ="weight">Weight</option>
@@ -269,16 +251,119 @@
                         </table>
                     </form>
                 <br /><br />
+            <h1>Your Current Goals</h1>
+            <% if (inProgressGoals.size() != 0)
+            {
+                %><table id="adminTableOne">
+                    <tr><td>Goal Start Date</td><td>Goal End Date</td><td>Category</td><td>Type</td><td>Aim</td><td>Progress</td></tr>
+                    <%
+                for(int i = 0; i < inProgressGoals.size(); i++)
+                { 
+                    GoalBean tempGoal = new GoalBean(); 
+                    tempGoal = inProgressGoals.get(i);
+                    %>
+                    <tr id="goalInProgress">
+                        <td><%=tempGoal.getGoalStartDate() %></td>
+                        <td><%=tempGoal.getGoalEndDate() %></td>
+                        <td><%=tempGoal.getCategory() %></td>
+                        <td><%=tempGoal.getType() %></td>
+                        <td><%=tempGoal.getAim() %></td>
+                        <td><%=tempGoal.getGoalProgress() %>%</td>
+                        <td>
+                            <form action="CreateGoalServlet" method="post">
+                                <input type="hidden" value="<%=tempGoal.getID() %>" name="goalID" />
+                                <input type="hidden" value="delete" name="formType" />
+                                <input type="submit" value="Delete Goal" />
+                            </form>   
+                        </td>
+                         <td>
+                            <form action="CreateGoalServlet" method="post">
+                                <input type="hidden" value="<%=tempGoal.getID() %>" name="goalID" />
+                                <input type="hidden" value="update" name="formType" />
+                                <input type="submit" value="Edit Goal" />
+                            </form>   
+                        </td>
+                    </tr>
+                <% } %>
+                </table>
+                <br />
+                <br />
+                <% } if(completeGoals.size() != 0)
+                {
+                    %>
+                    <h1>Your Completed Goals</h1>
+                    <table id="adminTableOne">
+                    <tr><td>Goal Start Date</td><td>Goal End Date</td><td>Category</td><td>Type</td><td>Aim</td><td>Progress</td></tr>
+                    <%
+                    for(int i = 0; i < completeGoals.size(); i++)
+                    {
+                        GoalBean tempGoal = new GoalBean();
+                        tempGoal = completeGoals.get(i);
+                        
+                        %><tr id="goalComplete">
+                        <td><%=tempGoal.getGoalStartDate() %></td>
+                        <td><%=tempGoal.getGoalEndDate() %></td>
+                        <td><%=tempGoal.getCategory() %></td>
+                        <td><%=tempGoal.getType() %></td>
+                        <td><%=tempGoal.getAim() %></td>
+                        <td><%=tempGoal.getGoalProgress() %>%</td>
+                        <td>
+                            <form action="CreateGoalServlet" method="post">
+                                <input type="hidden" value="<%=tempGoal.getID() %>" name="goalID" />
+                                <input type="hidden" value="delete" name="formType" />
+                                <input type="submit" value="Delete Goal" />
+                            </form>   
+                        </td>
+                    </tr>
+                   <% }
+                    %></table>
+                    <br />
+                    <br />
+                    <% } if(failedGoals.size() != 0)
+                    {
+                       %>
+                       <h1>Goals You Failed</h1>
+                    <table id="adminTableOne">
+                    <tr><td>Goal Start Date</td><td>Goal End Date</td><td>Category</td><td>Type</td><td>Aim</td><td>Progress</td></tr>
+                    <%
+                    for(int i = 0; i < failedGoals.size(); i++)
+                    {
+                        GoalBean tempGoal = new GoalBean();
+                        tempGoal = failedGoals.get(i);
+                        
+                        %><tr id="goalFailed">
+                        <td><%=tempGoal.getGoalStartDate() %></td>
+                        <td><%=tempGoal.getGoalEndDate() %></td>
+                        <td><%=tempGoal.getCategory() %></td>
+                        <td><%=tempGoal.getType() %></td>
+                        <td><%=tempGoal.getAim() %></td>
+                        <td><%=tempGoal.getGoalProgress() %>%</td>
+                        <td>
+                            <form action="CreateGoalServlet" method="post">
+                                <input type="hidden" value="<%=tempGoal.getID() %>" name="goalID" />
+                                <input type="hidden" value="delete" name="formType" />
+                                <input type="submit" value="Delete Goal" />
+                            </form>   
+                        </td>
+                    </tr>
+                   <% }
+                    %></table> 
+                    <%}
+               else { %> 
+            <h1> You don't have any goals right now, why not create one above?</h1>
+            <% } %>
+            <br /><br />
+            
         </div>
 <div id = "footer">
             <br />
             <br />   
             <table id = "footerTable">
                 <tr>
-                    <td><a href="index.jsp">HOME</a></td>
-                    <td><a href="benefits.jsp">BENEFITS</a></td>	
-                    <td><a href="defaultFestival.jsp">FESTIVALS</a></td>
-                    <td><a href="aboutUs.html">ABOUT US</a></td>
+                    <td><a href="benefits.jsp">BENEFITS</a></td>
+                    <td><a href="testimonials.jsp">TESTIMONIALS</a></td>	
+                    <td><a href="aboutUs.jsp">ABOUT US</a></td>
+                    <td><a href="messages.jsp">MESSAGES</a></td>
                 </tr>
                 <tr>
                     <td></td>	

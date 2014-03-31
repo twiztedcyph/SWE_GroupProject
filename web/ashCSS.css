@@ -3,7 +3,19 @@ body
  background-color: black;  
    
 }
+#regFrom input:valid,
+input:in-range 
+{
+    background:hsl(120, 50%, 90%);
+    border-color:hsl(120, 50%, 50%);
+}
 
+input:invalid,
+input:out-of-range 
+{
+    border-color:hsl(0, 50%, 50%);
+    background:hsl(0, 50%, 90%);
+}
 #header
 {
     width:69.5%;
@@ -565,6 +577,25 @@ h2
     margin-left: 5px;
     text-align:left;
 }
+
+
+#goalComplete
+{
+    background-color: #7fff7f;
+    color: #000000;
+}
+
+#goalInProgress
+{
+    background-color: #FFFF91;
+    color: #000000;
+}
+
+#goalFailed
+{
+    background-color: #FF6C6C;
+    color: #000000;
+}
 #search input[type=submit]
 {
     position:relative;
@@ -639,7 +670,7 @@ h2
 #regForm input[type=text],#regForm input[type=password],
 #regForm input[type=date], #regForm input[type=email]
 {
-    width:17%;
+    width:17%;    
 }
 #regForm label
 {
@@ -682,3 +713,11 @@ h2
     margin-left:5px;
     
 }
+
+
+
+
+
+
+
+

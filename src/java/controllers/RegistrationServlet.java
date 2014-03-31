@@ -4,6 +4,7 @@ import beans.MemberBean;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
+import java.util.Calendar;
 import java.sql.Date;
 import java.sql.SQLException;
 import javax.crypto.spec.SecretKeySpec;
@@ -70,12 +71,19 @@ public class RegistrationServlet extends HttpServlet {
                 Date dateOfBirth = Date.valueOf(request.getParameter("dob"));
                 String email = request.getParameter("email");
                 String accessType = "user";
-                
+                Calendar ageCheck = Calendar.getInstance();
+                ageCheck.add(Calendar.YEAR, -18);
+                Calendar dob = Calendar.getInstance();
+                dob.setTime(dateOfBirth);
                 //Password check
                 if(validateEmail(email)==false){
                     session.setAttribute("msg", "Invalid Email Address Entered");
-                    response.sendRedirect("index.jsp");
-                }else    
+                    response.sendRedirect("registration.jsp");
+                }else if(ageCheck.getTimeInMillis() - dob.getTimeInMillis() < 0)
+                {
+                    session.setAttribute("msg", "Invalid Date of Birth");
+                    response.sendRedirect("registration.jsp");
+                }else
                 {
                 if(passwordOne.equals(passwordTwo))
                 {

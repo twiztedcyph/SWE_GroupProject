@@ -83,13 +83,17 @@
                 <form id ="regForm" method="post" action="/SWE_GroupProject/RegistrationServlet" tag="Create Logon">
                     
                         
-                    <label>Username :</label><input type="text" name="username" /><br />
-                    <label>Password :</label><input type="password" name="passwordOne" /><br />
-                    <label>Confirm Password :</label><input type="password" name="passwordTwo" /><br />
-                    <label>Forename :</label><input type="text" name="forename" /><br />
-                    <label>Surname :</label><input type="text" name="surname" /><br />
-                    <label>Date of Birth :</label><input type="date" name="dob" /><br />
-                    <label>Email :</label><input type="email" name="email" /><br />
+                    <label>Username :</label><input type="text" name="username" pattern =".{5,20}[A-Za-z-0-9]+" required title="Uppercase, Lowercase and Numbers Only!"/><br />
+                    <label>Password :</label><input type="password" name="passwordOne" 
+                                                    pattern =".{5,20}[A-Za-z-0-9]+" 
+                                                    required title="At least 5 charecters. Uppercase, Lowercase and Numbers Only!"/><br />
+                    <label>Confirm Password :</label><input type="password" name="passwordTwo" 
+                                                            pattern =".{5,20}[A-Za-z-0-9]+" 
+                                                            required title="Uppercase, Lowercase and Numbers Only!"/><br />
+                    <label>Forename :</label><input type="text" name="forename" pattern ="[A-Za-z]+" required Title="No Special Charecters" /><br />
+                    <label>Surname :</label><input type="text" name="surname" pattern ="[A-Za-z]+" required Title="No Special Charecters" /><br />
+                    <label>Date of Birth :</label><input type="date" name="dob" required/><br />
+                    <label>Email :</label><input type="email" name="email" required/><br />
  
                     <br /><br />    
                     <input type="submit" value="Submit" />
