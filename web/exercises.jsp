@@ -267,7 +267,13 @@
                  <form method="post" action="/SWE_GroupProject/ExerciseServlet">
                 <table id="adminRegTable">
                     <tr>
-                        <td>Exercise Type</td><td></td><td><input type="text" name="type" required="" /></td>
+                        <td>Exercise Type</td>
+                        <td></td><td>
+                        <select name="type">
+                                        <option value ="cardio">Cardio</option>
+                                        <option value ="weights">Weights</option>
+                        </select>
+                            </td>
                     </tr>
                     <tr>
                         <td>Date </td><td></td><td><input type="date" name="date" required="" /></td>
@@ -276,7 +282,15 @@
                         <td>Time </td><td></td><td><input type="time" name="time" required="" /></td>
                     </tr>
                     <tr>
-                        <td>Intensity</td><td></td><td><input type="text" name="intensity" required="" /></td>
+                        <td>Intensity</td>
+                        <td></td><td>
+                        <select name="intensity">
+                                        <option value ="low">Low</option>
+                                        <option value ="medium">Medium</option>
+                                        <option value ="high">High</option>
+                                        <option value ="beast">Beeaasssttt</option>
+                        </select>
+                            </td>
                     </tr>
                     <tr>
                         <td>Duration(minutes)</td><td></td><td><input type="text" name="duration" required="" /></td>
@@ -284,11 +298,12 @@
                     <tr>
                         <td></td><td><input type="submit" name="exercise_submit" value="Submit"/></td><td></td>
                     </tr>
-                    <tr>
-                        <td></td><td><input type="submit" name="exercise_submit" value="ViewExercise"/></td><td></td>
-                    </tr>
+                    
                 </table>
             </form>
+                <form method="post" action="/SWE_GroupProject/ExerciseServlet">
+                      <input type="submit" name="view_exercise_history" value="Veiw Exercise history" />
+                </form>
             <br />
             <br />
             <br />    
