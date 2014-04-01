@@ -1,4 +1,5 @@
 
+<%@page import="java.util.ArrayList"%>
 <!--<%@page contentType="text/html" pageEncoding="UTF-8"%>-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -40,201 +41,52 @@
     <body>
         <div id ="backImageLeft"></div>
         <div id ="backImageRight"></div>
-        <%
-    //Beans.MessageBean messageBean = new Beans.MessageBean();
-    //ArrayList<Beans.MessageBean> newMessages = new ArrayList();
+<%
     beans.MemberBean memberBean = (beans.MemberBean) session.getAttribute("userdetails");
     if (memberBean == null)
     {
         //not logged in..
-        String message = (String) session.getAttribute("msg");
-        if (message != null)
-        {
-%>
-            <script>showMsg('<%= message%>');</script>
-<%
-            session.removeAttribute("msg");
-        }
-%>
-           
-         <div id ="header">
-            <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
-            <div id ="loginBox">
-                <form method="post" action="/SWE_GroupProject/LogInServlet" onsubmit="return checkForm();">
-                    <div>
-                        Username:<input type="text" id="loginFormUser" name="username" />
-                        Password:<input type="password" id="loginFormPass" name="password" />
-                        <input type="submit" value="Submit" />
-                        <p>Not registered?...<input type="button" name="complete1" onclick="redirect('registration.jsp');" value="Register" /></p>
-                    </div>
-                </form>
-            </div>
-            <ul id = "navmenu">
-                <li><a href="index.jsp">HOME</a></li>
-                <li><a href="benefits.jsp">BENEFITS</a></li>		
-                <li><a href="testimonials.jsp">TESTIMONIALS</a></li>
-                <li><a href="aboutUs.jsp">ABOUT US</a></li>
-            </ul>
-            <div id="search">
-                <form action="/SystemsCoursework/SearchServe" method="get">
-                    <p>
-                    Google
-                    <input type="radio" name="searchType" checked="checked" value="google" />
-                    This site
-                    <input type="radio" name="searchType"  value="thisSite" />
-                    </p>
-                    <input type="text"placeholder="Search..." name="theSearch"  size="30" />
-                    <input type="submit" value="Submit" /> 
-                </form>
-            </div>
-        </div>
-        <div id ="maindiv">
-            <br /><br />
-            <div>
-                <p style="text-align: justify; padding-left:10px; padding-right:10px;">
-                    Groups!
-                </p>
-
-                <p style="text-align: justify; padding-left:20px; padding-right:100px;">
-                    Unfortunately, only members can use this feature.
-                    
-                    Register <a href="registration.jsp"> HERE!</a> It's free!
-                </p>
-                
-                <div style="clear:both;"></div>  
-                <br />
-
-            </div>
-            <br />
-        </div>
-        <div id = "footer">
-            <br />
-            <br />   
-            <table id = "footerTable">
-                <tr>
-                    <td><a href="index.jsp">HOME</a></td>
-                    <td><a href="benefits.jsp">BENEFITS</a></td>
-                    <td><a href="testimonials.jsp">TESTIMONIALS</a></td>	
-                    <td><a href="aboutUs.jsp">ABOUT US</a></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>	
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>		
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-
-            <br />
-            <p>Designed and created by Ian, Ash, Liam and Warren</p>
-
-        </div>
-               
-         <%
+        session.setAttribute("msg", "You must be logged in to view that page.");
+        response.sendRedirect("index.jsp");
     } else if (memberBean.getAccessType().equals("admin"))
     {
         //Logged in as admin
-        //newMessages = messageBean.getAllNewMessages(userBean.getUsername());
-%>
-        <div id ="header">
-            <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
-            <div id ="loginBox">
-                Welcome back administrator <%= memberBean.getUserName()%>.
-                <form method="get" action="/SWE_GroupProject/LogInServlet">
-                    <p>
-                        <input type="hidden" name="logout" value="logout" />
-                        <input type="submit" name="" value="Logout" />
-                    </p>
-                </form>
-            </div>
-            <ul id = "navmenu">
-                <li><a href="index.jsp">MESSAGE CONTROL</a></li>
-                <li><a href="registration.jsp">USER CONTROL</a></li>		
-                <li><a href="goals.jsp">GOAL CONTROL</a></li>
-                <li><a href="groups.jsp">GROUP CONTROL  <span style="color: red; background: #000;"></span></a></li>
-            </ul>
-            <div id="search">
-                <form action="/SystemsCoursework/SearchServe" method="post">
-                    <p>
-                    Google
-                    <input type="radio" name="searchType" checked="checked" value="google" />
-                    This site
-                    <input type="radio" name="searchType"  value="thisSite" />
-                    <input type="text"placeholder="Search..." name="theSearch"  size="30" />
-                    <input type="submit" value="Submit" />
-                    </p>
-                </form>
-            </div>
-        </div>
-        <div id ="maindiv">
-            <br /><br />
-            <div>
-                <h1>Hello <%= memberBean.getFirstName()%>! (ADMIN)</h1>
-                
-                <p style="text-align: justify; padding-left:10px; padding-right:10px;">
-                    Groups!
-                </p>
-
-                <p style="text-align: justify; padding-left:20px; padding-right:100px;">
-                    Edit and remove groups or their members.
-                </p>
-                
-                <div style="clear:both;"></div>  
-                <br />
-
-            </div>
-            <br />
-        </div>
-        <div id = "footer">
-            <br />
-            <br />   
-            <table id = "footerTable">
-                <tr>
-                    <td><a href="index.jsp">BENEFITS</a></td>
-                    <td><a href="testimonials.jsp">TESTIMONIALS</a></td>	
-                    <td><a href="aboutUs.jsp">ABOUT US</a></td>
-                    <td><a href="messages.jsp">MESSAGES</a></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>	
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>		
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-
-            <br />
-            <p>Designed and created by Ian, Ash, Liam and Warren</p>
-
-        </div>
-                 <%
-    }else if (memberBean.getAccessType().equals("user"))
-    {
-        //Logged in as a regular user
-        //newMessages = messageBean.getAllNewMessages(userBean.getUsername());
         String message = (String) session.getAttribute("msg");
         if (message != null)
         {
 %>
-            <script>showMsg('<%= message%>');</script>
+            <script type="text/javascript">showMsg('<%= message%>');</script>
+<%
+            session.removeAttribute("msg");
+        }
+    }else if (memberBean.getAccessType().equals("user"))
+    {
+        //Logged in as a regular user
+        
+        if(request.getAttribute("groupmemberlist") == null)
+        {
+            request.getRequestDispatcher("GroupServlet").forward(request, response);
+        }
+        
+        ArrayList<beans.GroupDetailsBean> groupMemberList 
+                = (ArrayList<beans.GroupDetailsBean>) 
+                request.getAttribute("groupmemberlist");
+        
+        ArrayList<beans.GroupDetailsBean> groupNonMemberList 
+                = (ArrayList<beans.GroupDetailsBean>) 
+                request.getAttribute("groupnonmemberlist");
+        
+        String message = (String) session.getAttribute("msg");
+        if (message != null)
+        {
+%>
+<script type="text/javascript">showMsg('<%= message%>');</script>
 <%
             session.removeAttribute("msg");
         }
 %>
         <div id ="header">
-            <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
+            <a href="index.jsp" id="homelink"><img src="Images/logo.jpg" alt="home"></img></a>
             <div id ="loginBox">
                 Welcome back User <%= memberBean.getUserName()%>.
                 <form method="get" action="/SWE_GroupProject/LogInServlet">
@@ -267,21 +119,55 @@
             <br /><br />
             <div>
                 <h1>Hello <%= memberBean.getFirstName()%>, welcome back!</h1>
-
-                <p style="text-align: justify; padding-left:10px; padding-right:10px;">
-                    Groups!
-                </p>
-
-                <p style="text-align: justify; padding-left:20px; padding-right:100px;">
-                    Create a group! This could be a group of friends, people who
-                    share the same goals as you or anyone you enjoy interacting with.
-                    
-                    Enhance your experience!
-                </p>
-                
-                <div style="clear:both;"></div>  
                 <br />
-
+                <h3>
+                    Groups you are a member of:
+                </h3>
+                
+                <table id="messageDisplay">
+<%
+            for(beans.GroupDetailsBean gdb : groupMemberList)
+            {
+%>
+                    <tr>
+                        <td> <%= gdb.getGroupName() %> </td>
+                        <td> <%= gdb.getGroupDescription() %> </td>
+                        <td>
+                            <form method="post" action="/SWE_GroupProject/GroupServlet">
+                                <input type="hidden" name="viewgroupname" value="<%= gdb.getGroupName() %>" />
+                                <input type="submit" value="View" />
+                            </form>
+                        </td>
+                    </tr>
+<%
+            }
+%>
+                </table>
+                
+                <br />
+                <h3>
+                    Groups you are a not member of:
+                </h3>
+                
+                <table id="messageDisplay">
+<%
+            for(beans.GroupDetailsBean gtdb : groupNonMemberList)
+            {
+%>
+                    <tr>
+                        <td> <%= gtdb.getGroupName() %> </td>
+                        <td> <%= gtdb.getGroupDescription() %> </td>
+                        <td>
+                            <form method="post" action="/SWE_GroupProject/GroupServlet">
+                                <input type="hidden" name="joingroupname" value="<%= gtdb.getGroupName() %>" />
+                                <input type="submit" value="Join" />
+                            </form>
+                        </td>
+                    </tr>
+<%
+            }
+%>
+                </table>
             </div>
             <br />
         </div>

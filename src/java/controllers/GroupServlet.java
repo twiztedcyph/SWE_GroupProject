@@ -8,11 +8,10 @@ package controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +21,11 @@ import javax.servlet.http.HttpSession;
  *
  * @author Twiz
  */
-public class FoodServlet extends HttpServlet
+@WebServlet(name = "GroupServlet", urlPatterns =
+{
+    "/GroupServlet"
+})
+public class GroupServlet extends HttpServlet
 {
 
     /**
@@ -40,44 +43,31 @@ public class FoodServlet extends HttpServlet
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter())
         {
-            HttpSession session = request.getSession();
-            beans.MemberBean memberBean = (beans.MemberBean) session.getAttribute("userdetails");
-            String s = request.getParameter("lifestyle_submit");
-            String viewFoodRequest = request.getParameter("view_food_history");
-            if(s != null && s.equals("Submit"))
+            String viewGroup = request.getParameter("viewgroupname");
+            String joinGroup = request.getParameter("joingroupname");
+            if(viewGroup != null)
             {
-                String foodName = request.getParameter("foodname");
-                Date dateEaten = Date.valueOf(request.getParameter("dateeaten"));
-                Time timeEaten = Time.valueOf(request.getParameter("timeeaten") + ":00");
-                double protein = Double.parseDouble(request.getParameter("protein"));
-                double carbs = Double.parseDouble(request.getParameter("carbs"));
-                double unsatFat = Double.parseDouble(request.getParameter("unsatfat"));
-                double satFat = Double.parseDouble(request.getParameter("satfat"));
-                double sugar = Double.parseDouble(request.getParameter("sugar"));
-                double salt = Double.parseDouble(request.getParameter("salt"));
-                double kCal = Double.parseDouble(request.getParameter("kcal"));
-                int member_id = memberBean.getId();
-                System.out.println(foodName);
-                beans.FoodBean foodBean = new beans.FoodBean(member_id, 
-                        foodName, dateEaten, timeEaten, protein, carbs, 
-                        unsatFat, satFat, kCal, sugar, salt);
-                foodBean.persist();
-                session.setAttribute("msg", "Your meal was added.");
-                request.getRequestDispatcher("food.jsp").forward(request, response);
-            }else if(viewFoodRequest != null && viewFoodRequest.equals("View food history"))
+                System.out.println(viewGroup);
+                System.out.println(" VIEW CORRECT!!");
+                
+            } else if(joinGroup != null)
             {
-                beans.FoodBean foodBean = new beans.FoodBean();
-                ArrayList<beans.FoodBean> foodList = foodBean.getFood(memberBean.getId());
-                session.setAttribute("foodlist", foodList);
-                response.sendRedirect("viewfood.jsp");
-            }else
+                System.out.println(joinGroup);
+                System.out.println("JOIN CORRECT!!");
+            } else
             {
-                beans.FoodBean foodBean = (beans.FoodBean) session.getAttribute("foodlist");
+                HttpSession session = request.getSession();
+                beans.MemberBean memberBean = (beans.MemberBean) session.getAttribute("userdetails");
+                beans.GroupDetailsBean gdb = new beans.GroupDetailsBean();
+                ArrayList<beans.GroupDetailsBean> groupMemberList = gdb.getMemberGroups(memberBean.getId());
+                ArrayList<beans.GroupDetailsBean> groupNonMemberList = gdb.getNonMemberGroups(memberBean.getId());
+                request.setAttribute("groupmemberlist", groupMemberList);
+                request.setAttribute("groupnonmemberlist", groupNonMemberList);
+                request.getRequestDispatcher("groups.jsp").forward(request, response);
             }
-        }catch (SQLException sqle)
+        }catch(SQLException e)
         {
-            System.out.println("EXCEPTION HERE!!!");
-            sqle.printStackTrace();
+            e.printStackTrace();
         }
     }
 

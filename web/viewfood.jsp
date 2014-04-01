@@ -47,15 +47,13 @@
         ArrayList<beans.FoodBean> foodList = (ArrayList<beans.FoodBean>) session.getAttribute("foodlist");
         if(foodList == null)
         {
-            System.out.println("Before request");
             request.getRequestDispatcher("FoodServlet").forward(request, response);
-            System.out.println("After request");
         }
         String message = (String) session.getAttribute("msg");
         if (message != null)
         {
 %>
-            <script>showMsg('<%= message%>');</script>
+            <script>showMsg('<%= message %>');</script>
 <%
             session.removeAttribute("msg");
             
@@ -111,14 +109,12 @@
             for(beans.FoodBean food : foodList)
             {
 %>  
-
                     <tr>
                         <td> <%= food.getFoodName() %> </td>
                         <td> <%= food.getDateEaten() %> </td>
                         <td> <%= food.getTimeEaten().toString().replace(":00", "") %> </td>
                         <td>
-                            <input type="hidden" name="fname" value=" <%= food.getFoodName() %> " />
-                            <input type="submit" value="Submit" /> 
+                            <input type="button" value="More details" onclick="showMsg('<%= food %>')" /> 
                         </td>
                     </tr>
 <%
