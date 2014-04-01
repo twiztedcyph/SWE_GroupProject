@@ -73,7 +73,7 @@ public class ListGoalServlet extends HttpServlet
                         {
                             inProgressGoals.add(tempGoal); 
                         }
-                     }
+                    }
                 }
                 
                 
