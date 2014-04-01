@@ -1,8 +1,10 @@
 
 package controllers;
 
+import beans.GoalBean;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -73,6 +75,9 @@ public class LogInServlet extends HttpServlet {
                                 session.setAttribute("userdetails", mb);
                                 System.out.println(session.getMaxInactiveInterval());
                                 logCount = 0;
+                                ArrayList<GoalBean> indexGoals = mb.getGoalsInProgress();
+                                session.setAttribute("indexGoals", indexGoals);
+ 
                             }else
                             {
                                 

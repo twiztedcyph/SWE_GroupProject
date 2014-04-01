@@ -8,11 +8,14 @@ package controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -40,18 +43,31 @@ public class GroupServlet extends HttpServlet
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter())
         {
-            /*
-             * TODO output your page here. You may use following sample code.
-             */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet GroupServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet GroupServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            String viewGroup = request.getParameter("viewgroupname");
+            String joinGroup = request.getParameter("joingroupname");
+            if(viewGroup != null)
+            {
+                System.out.println(viewGroup);
+                System.out.println(" VIEW CORRECT!!");
+                
+            } else if(joinGroup != null)
+            {
+                System.out.println(joinGroup);
+                System.out.println("JOIN CORRECT!!");
+            } else
+            {
+                HttpSession session = request.getSession();
+                beans.MemberBean memberBean = (beans.MemberBean) session.getAttribute("userdetails");
+                beans.GroupDetailsBean gdb = new beans.GroupDetailsBean();
+                ArrayList<beans.GroupDetailsBean> groupMemberList = gdb.getMemberGroups(memberBean.getId());
+                ArrayList<beans.GroupDetailsBean> groupNonMemberList = gdb.getNonMemberGroups(memberBean.getId());
+                request.setAttribute("groupmemberlist", groupMemberList);
+                request.setAttribute("groupnonmemberlist", groupNonMemberList);
+                request.getRequestDispatcher("groups.jsp").forward(request, response);
+            }
+        }catch(SQLException e)
+        {
+            e.printStackTrace();
         }
     }
 

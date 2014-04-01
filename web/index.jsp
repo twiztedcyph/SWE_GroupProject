@@ -1,4 +1,10 @@
 
+<%@page import="java.sql.Date"%>
+<%@page import="java.util.GregorianCalendar"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="beans.GoalBean"%>
 <!--<%@page contentType="text/html" pageEncoding="UTF-8"%>-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -67,14 +73,12 @@
                     </div>
                 </form>
             </div>
-             <nav>
-            <ul>
+            <ul id = "navmenu">
                 <li><a href="index.jsp">HOME</a></li>
                 <li><a href="benefits.jsp">BENEFITS</a></li>	
                 <li><a href="testimonials.jsp">TESTIMONIALS</a></li>
-                <li><a href="aboutUs.jsp">ABOUT US</a> </li>
+                <li><a href="aboutUs.jsp">ABOUT US</a></li>
             </ul>
-             </nav>
             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="get">
                     <p>
@@ -164,7 +168,7 @@
             is an excellent way to keep you in check and on track."
             </p>
             <p>Gavin Crawley (SpaceCowboy)</p>
-            <br /><br /><br /><br />
+            <br /><br /><br /><br /><br /><br />
             <span id="randomBanner2">
 
                     <%
@@ -185,10 +189,7 @@
         </div>
         <div id = "footer">
             <br />
-            <br />   
-            <table id = "footerTable">
-            <br />
-            <br />   
+            <br />     
             <table id = "footerTable">
                 <tr>
                     <td><a href="index.jsp">HOME</a></td>
@@ -232,14 +233,12 @@
                     </p>
                 </form>
             </div>
-            <nav>
-            <ul>
+            <ul id = "navmenu">
                 <li><a href="index.jsp">MESSAGE CONTROL</a></li>
                 <li><a href="accountAdmin.jsp">USER CONTROL</a></li>		
                 <li><a href="festivalControl.jsp">GOAL CONTROL</a></li>
                 <li><a href="messages.jsp">MESSAGES  <span style="color: red; background: #000;"></span></a></li>
             </ul>
-            </nav>
             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="post">
                     <p>
@@ -293,9 +292,10 @@
             <p>Designed and created by Ian, Ash, Liam and Warren</p>
 
         </div>
-                 <%
-    }else if (memberBean.getAccessType().equals("user"))
-    {
+ <% }  else if( memberBean.getAccessType().equals("user")) { 
+
+        session.getAttribute("indexGoals");
+                 
         String message = (String) session.getAttribute("msg");
         if (message != null)
         {
@@ -304,10 +304,8 @@
 <%
             session.removeAttribute("msg");
         }
-
-        //Logged in as a regular user
-        //newMessages = messageBean.getAllNewMessages(userBean.getUsername());
 %>
+        <jsp:useBean id="indexGoals" type="ArrayList<GoalBean>" scope="session" />
         <div id ="header">
             <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
@@ -319,26 +317,14 @@
                     </p>
                 </form>
             </div>
-            <nav>
-            <ul>
-                <li><a href="index.jsp">Home</a></li>
-                <li><a href="profile.jsp"><%= memberBean.getFirstName() %></a>
-                    <ul>
-                        <li><a href="profile.jsp">My Profile</a></li>
-                        <li><a href="goal.jsp">My Goals</a></li>
-                        <li><a href="groups.jsp">My Groups</a></li>
-                    </ul>
-                </li>		
-                <li><a href="goal.jsp">Lifestyle</a>
-                    <ul>
-                        <li><a href="foods.jsp">Foods</a></li>
-                        <li><a href="exercises.jsp">Exercises</a></li>
-                        
-                    </ul>
-                </li>
-                <li><a href="food.jsp">Other?</a></li>
+            <ul id = "navmenu">
+                <li><a href="index.jsp">HOME</a></li>
+                <li><a href="profile.jsp">PROFILE</a></li>		
+                <li><a href="goal.jsp">GOALS</a></li>
+                <li><a href="food.jsp">FOODS</a></li>
+                <li><a href="exercise.jsp">EXERCISES</a></li>
+                <li><a href="groups.jsp">GROUPS<span style="color: red; background: #000;"></span></a></li>
             </ul>
-            </nav>
             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="post">
                     <p>
@@ -361,8 +347,37 @@
                 <h2>Latest News</h2>
                 <p>We have some new.....</p>
                 <br /><br /><br />
-
-            
+                <h2>Your Current Goals</h2>
+                <p>Here are your current goals, and the progress you are making towards completing them! Keep it up!</p>
+                
+                <table id="adminTableOne">
+                    <tr><td><h3>Goal Number</h3></td><td><h3>Goal Description</h3></td><td><h3>Time Left</h3></td><td><h3>Progress</h3></td></tr>
+                <%
+                
+                Calendar calLocal = new GregorianCalendar();
+                SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+                String localDateFormatted = dateFormatter.format(calLocal.getTime());
+                java.sql.Date localDate = java.sql.Date.valueOf(localDateFormatted);
+                final long DAY_IN_MILLIS = 1000 * 60 * 60 * 24;
+                
+                for(int i = 0; i < indexGoals.size(); i++)
+                { 
+                    GoalBean tempGoal = new GoalBean(); 
+                    tempGoal = indexGoals.get(i);
+                    Date startDate = localDate;
+                    Date endDate =  tempGoal.getGoalEndDate();
+                    int days = (int)((endDate.getTime() - startDate.getTime())/ DAY_IN_MILLIS);
+                %>
+                   <tr id="goalInProgress">
+                        <td><%=i+1 %></td>
+                        <td>Your goal is to <%=tempGoal.getCategory() %> <%=tempGoal.getAim() %> kg of <%=tempGoal.getType() %>.</td>
+                        <td>You have <%=days  %> days left!</td>
+                        <td>Your current progress is <%=tempGoal.getGoalProgress() %>%</td>
+                    </tr> 
+                <%
+                }
+                %>
+                </table>
 
         </div>
         <div id = "footer">
@@ -375,7 +390,7 @@
                     <td><a href="goal.jsp">GOALS</a></td>
                     <td><a href="food.jsp">FOODS</a></td>
                     <td><a href="exercise.jsp">EXERCISES</a></td>
-                    <td><a href="messages.jsp">GROUPS<span style="color: red; background: #000;"></span></a></td>
+                    <td><a href="groups.jsp">GROUPS<span style="color: red; background: #000;"></span></a></td>
                 </tr>
                 <tr>
                     <td></td>
