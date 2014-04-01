@@ -105,7 +105,7 @@
                         <th>Exercise Type</th>
                         <th>Date </th>
                         <th>Time </th>
-                        <th>View</th>
+                        <th>Duration</th>
                     </tr>
 <%
             for(beans.ExerciseBean exercise : exerciseList)
@@ -116,10 +116,7 @@
                         <td> <%= exercise.getExerciseType() %> </td>
                         <td> <%= exercise.getExerciseDate() %> </td>
                         <td> <%= exercise.getExerciseTime().toString().replace(":00", "") %> </td>
-                        <td>
-                            <input type="hidden" name="fname" value=" <%= exercise.getExerciseType() %> " />
-                            <input type="submit" value="Submit" /> 
-                        </td>
+                        <td> <%= exercise.getExerciseDuration() %></td>
                     </tr>
 <%
             }

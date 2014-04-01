@@ -67,12 +67,14 @@
                     </div>
                 </form>
             </div>
-            <ul id = "navmenu">
+             <nav>
+            <ul>
                 <li><a href="index.jsp">HOME</a></li>
                 <li><a href="benefits.jsp">BENEFITS</a></li>	
                 <li><a href="testimonials.jsp">TESTIMONIALS</a></li>
-                <li><a href="aboutUs.jsp">ABOUT US</a></li>
+                <li><a href="aboutUs.jsp">ABOUT US</a> </li>
             </ul>
+             </nav>
             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="get">
                     <p>
@@ -230,12 +232,14 @@
                     </p>
                 </form>
             </div>
-            <ul id = "navmenu">
+            <nav>
+            <ul>
                 <li><a href="index.jsp">MESSAGE CONTROL</a></li>
                 <li><a href="accountAdmin.jsp">USER CONTROL</a></li>		
                 <li><a href="festivalControl.jsp">GOAL CONTROL</a></li>
                 <li><a href="messages.jsp">MESSAGES  <span style="color: red; background: #000;"></span></a></li>
             </ul>
+            </nav>
             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="post">
                     <p>
@@ -315,14 +319,26 @@
                     </p>
                 </form>
             </div>
-            <ul id = "navmenu">
-                <li><a href="index.jsp">HOME</a></li>
-                <li><a href="profile.jsp">PROFILE</a></li>		
-                <li><a href="goal.jsp">GOALS</a></li>
-                <li><a href="food.jsp">FOODS</a></li>
-                <li><a href="exercises.jsp">EXERCISES</a></li>
-                <li><a href="messages.jsp">GROUPS<span style="color: red; background: #000;"></span></a></li>
+            <nav>
+            <ul>
+                <li><a href="index.jsp">Home</a></li>
+                <li><a href="profile.jsp"><%= memberBean.getFirstName() %></a>
+                    <ul>
+                        <li><a href="profile.jsp">My Profile</a></li>
+                        <li><a href="goal.jsp">My Goals</a></li>
+                        <li><a href="groups.jsp">My Groups</a></li>
+                    </ul>
+                </li>		
+                <li><a href="goal.jsp">Lifestyle</a>
+                    <ul>
+                        <li><a href="foods.jsp">Foods</a></li>
+                        <li><a href="exercises.jsp">Exercises</a></li>
+                        
+                    </ul>
+                </li>
+                <li><a href="food.jsp">Other?</a></li>
             </ul>
+            </nav>
             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="post">
                     <p>
