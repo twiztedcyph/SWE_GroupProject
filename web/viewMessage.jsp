@@ -112,15 +112,15 @@
  <jsp:useBean id="messageToView" type="MessageDetailsBean" scope="request" />
             <br /><br />
                                                           
-                <p id ="p2">Edit Goal</p>
+                <p id ="p2">Viewing Message</p>
                 
                     <table id ="adminTableOne">
                         
                         <tr>
-                            <td>Message Sent At:</td> <td><%= messageToView.getSendDate() %> <%=messageToView.getSendTime() %> </td>
+                            <td>Message Sent At:</td><td><%= messageToView.getSendDate() %> <%=messageToView.getSendTime() %> </td>
                         </tr>
                         <tr>
-                            <td>Message Sent By:</td> <td> <%=messageToView.getSenderID() %></td>
+                            <td>Message Sent By:</td><td><%=messageToView.getSenderID() %></td>
                         </tr>
                         <tr>
                             <td>Subject:</td><td><%= messageToView.getSubject() %></td>
