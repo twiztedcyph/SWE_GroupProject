@@ -20,6 +20,7 @@
         <link rel="stylesheet" type="text/css" href="ashCSS.css" />
         <title>Health Tracker</title>
         <script type="text/javascript">
+        
             function redirect()
             {
                 window.location = "useRegister.jsp";
@@ -48,6 +49,8 @@
                 }
             }
         </script>
+                        
+
     </head>
     <body>
         <div id="backImageLeft"></div>
@@ -165,12 +168,26 @@
                     </p>
                 </form>
             </div>
-            <ul id = "navmenu">
-                <li><a href="index.jsp">HOME</a></li>
-                <li><a href="profile.jsp">MY PROFILE</a></li>		
-                <li><a href="goal.jsp">GOALS</a></li>
-                <li><a href="index.html">GROUPS</a></li>
+            <nav>
+            <ul>
+                <li><a href="index.jsp">Home</a></li>
+                <li><a href="profile.jsp"><%= memberBean.getFirstName() %></a>
+                    <ul>
+                        <li><a href="profile.jsp">My Profile</a></li>
+                        <li><a href="goal.jsp">My Goals</a></li>
+                        <li><a href="groups.jsp">My Groups</a></li>
+                    </ul>
+                </li>		
+                <li><a href="goal.jsp">Lifestyle</a>
+                    <ul>
+                        <li><a href="foods.jsp">Foods</a></li>
+                        <li><a href="exercises.jsp">Exercises</a></li>
+                        
+                    </ul>
+                </li>
+                <li><a href="food.jsp">Other?</a></li>
             </ul>
+            </nav>
             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="post">
                     <p>
@@ -285,8 +302,11 @@
                         </td>
                     </tr>
                 <% } %>
+
                 </table>
                 <br />
+              
+                
                 <br />
                 <% } if(completeGoals.size() != 0)
                 {

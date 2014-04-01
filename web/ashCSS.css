@@ -93,54 +93,88 @@ input:out-of-range
     background-color: #ffffff;
 }
 
-ul#navmenu
-{
-    position:absolute;
-    bottom:0;
-    right:-1%;
-    width: 101%;
-}
-ul#navmenu, ul.sub1
-{
-    list-style-type: none;
-    margin: 0px;
-    margin-left:-4px;
-    padding: 0px;
-}
-
-ul#navmenu a
-{
-    text-decoration: none;
-    display: block;
-    height:33px;
-    line-height: 33px;
-    background-color:#FFFFFF;;
-    border: 3px solid;
-    border-color: ghostwhite;
-    color:#000;
-}
-
-ul#navmenu li
-{
-    margin-right: 0px;
-    width: 24.78%;
-    text-align: center;
-    position: relative;
-    float: left;
-}
 
 
-ul#navmenu li:hover > a 
-{
-    background-color: #8942D6;
+/* START NAV MENU */
+nav {
+ 
+  height:40px;
+  position:absolute;
+  bottom:0;
+  margin-left:-5px;
+  width:100.1%;
 }
-
-ul#navmenu li:hover a:hover
-{
-    background-color: #000;
-    color:#FFFFFF;
+ 
+ 
+nav ul {
+  font-family: Arial, Verdana;
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
-
+ 
+nav ul li {
+  display: block;
+  position: relative;
+  float: left;
+  width:25%;
+}
+ 
+nav li ul { 
+  display: none; 
+}
+ 
+nav ul li a {
+  display: block;
+  text-decoration: none;
+  padding: 7px 15px 3px 15px;
+  background-color: #FFFFFF;
+  color: #000; 
+  margin-left: 1px;
+  height:30px; /* Width and height of top-level nav items */
+  text-align:center;
+  
+}
+ 
+nav ul li a:hover { 
+  background-color: #000;
+  color:#FFFFFF;
+}
+ 
+nav li:hover ul {
+  display: block;
+  position: absolute;
+  height:30px;
+  width:100%;
+  
+}
+ 
+nav li:hover li {
+  float: none;
+  font-size: 18px;
+  background-color:#FFFFFF;
+  color:#000;
+  width:100%;
+ 
+}
+ 
+nav li:hover a { 
+  background: #000; 
+  color:#ffffff;
+  height:30px; /* Height of lower-level nav items is shorter than main level */
+  
+}
+ 
+nav li:hover li a:hover { 
+  background: #95A9B1; 
+}
+ 
+nav ul li ul li a {
+    text-align:left; /* Top-level items are centered, but nested list items are left-aligned */
+}
+ 
+/* END NAV MENU */
 
 #maindiv
 {
@@ -156,6 +190,17 @@ ul#navmenu li:hover a:hover
     position:relative;
     padding-bottom: 10px;
     font-family:"Courier New", Courier, monospace; 
+}
+
+#maindiv input [type = button]
+{
+    position:relative;
+    width:20%;
+    font-family:"Courier New", Courier, monospace; 
+    font-weight:bold;
+    border-radius: 8px;
+    background-color: #ffffff;
+    margin-right:5px;
 }
 
 #footer
