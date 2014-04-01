@@ -301,7 +301,10 @@
                         <input type="hidden" value="send" name="formType" />
                     </td>
                         <td><input type="submit" value="Send Message"/></td>
-                </tr>       
+                </tr> 
+                 <tr>
+                     <td>Subject<input type="text" name="subject" value="Subject...."</td>   
+                 </tr>
                 </form> 
                 </table> 
                 <textarea rows="1" cols="100" name="recipients" form="sendMessage"></textarea> 
@@ -319,6 +322,11 @@
             <% if (unReadMessages.size() != 0)
             {
                 %><table id="adminTableOne">
+                    <tr>
+                        <td>Date Sent</td>
+                        <td>Subject</td>
+                        <td>Sender</td>
+                    </tr>
                     <%
                 for(int i = 0; i < unReadMessages.size(); i++)
                 { 
@@ -326,22 +334,26 @@
                     tempMessage = unReadMessages.get(i);
                     %>
                     <tr id="goalInProgress">
-                        <td><%= tempMessage.getSendDate() %></td>
-                        <td><%= tempMessage.getSendTime() %></td>
-                        <td><%= tempMessage.getSenderID() %></td>
-                        <td><%= tempMessage.getText() %>
-                        <td>
-                            <form action="CreateGoalServlet" method="post">
-                                <input type="hidden" value="<%=tempMessage.getSenderID() %>" name="messageID" />
-                                <input type="hidden" value="delete" name="formType" />
-                                <input type="submit" value="Delete Message" />
+                        <td><%= tempMessage.getSendDate() %> <%= tempMessage.getSendTime() %></td>
+                        <td><%= tempMessage.getSubject() %>
+                            <td><%= tempMessage.getSenderID() %></td>
+                            <td>
+                            <form action="MessageServlet" method="post">
+                                <input type="hidden" value="<%=tempMessage.getMessageID()%>" name="messageID" />
+                                <input type="hidden" value="view" name="formType" />
+                                <input type="submit" value="View Message" />
                             </form>   
-                        </td>
-                         <td>
-                            <form action="CreateGoalServlet" method="post">
+                                
+                            <form action="MessageServlet" method="post">
+                                <input type="hidden" value="<%=tempMessage.getMessageID()%>" name="messageID" />
+                                <input type="hidden" value="Read" name="formType" />
+                                <input type="submit" value="Mark Read" />
+                            </form>   
+ 
+                            <form action="MessageServlet" method="post">
                                 <input type="hidden" value="<%=tempMessage.getSenderID() %>" name="goalID" />
-                                <input type="hidden" value="read" name="formType" />
-                                <input type="submit" value="Mark as Read" />
+                                <input type="hidden" value="delete" name="formType" />
+                                <input type="submit" value="Delete" />
                             </form>   
                         </td>
                     </tr>
@@ -352,10 +364,15 @@
                 <% } %>
                 <br />
                 <br />
-                <h1>Your have <%=readMessages.size() %> unread messages!</h1>
+                <h1>You have <%=readMessages.size() %> read messages!</h1>
             <% if (readMessages.size() != 0)
             {
                 %><table id="adminTableOne">
+                    <tr>
+                        <td>Date Sent</td>
+                        <td>Subject</td>
+                        <td>Sender</td>
+                    </tr>
                     <%
                 for(int i = 0; i < readMessages.size(); i++)
                 { 
@@ -365,19 +382,24 @@
                     <tr id="goalFailed">
                         <td><%= tempMessage.getSendDate() %> <%= tempMessage.getSendTime() %></td>
                         <td><%= tempMessage.getSenderID() %></td>
-                        <td><%= tempMessage.getText() %>
+                        <td><%= tempMessage.getSubject() %></td>
                         <td>
-                            <form action="CreateGoalServlet" method="post">
-                                <input type="hidden" value="<%=tempMessage.getSenderID() %>" name="messageID" />
-                                <input type="hidden" value="delete" name="formType" />
-                                <input type="submit" value="Delete Message" />
+                            <form action="MessageServlet" method="post">
+                                <input type="hidden" value="<%=tempMessage.getMessageID()%>" name="messageID" />
+                                <input type="hidden" value="view" name="formType" />
+                                <input type="submit" value="View Message" />
                             </form>   
-                        </td>
-                         <td>
-                            <form action="CreateGoalServlet" method="post">
+                                
+                            <form action="MessageServlet" method="post">
+                                <input type="hidden" value="<%=tempMessage.getMessageID()%>" name="messageID" />
+                                <input type="hidden" value="unread" name="formType" />
+                                <input type="submit" value="Mark Unread" />
+                            </form>   
+ 
+                            <form action="MessageServlet" method="post">
                                 <input type="hidden" value="<%=tempMessage.getSenderID() %>" name="goalID" />
-                                <input type="hidden" value="read" name="formType" />
-                                <input type="submit" value="Mark as unread" />
+                                <input type="hidden" value="delete" name="formType" />
+                                <input type="submit" value="Delete" />
                             </form>   
                         </td>
                     </tr>

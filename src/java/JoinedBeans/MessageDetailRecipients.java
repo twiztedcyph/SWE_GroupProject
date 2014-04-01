@@ -23,10 +23,11 @@ import misc.DbConnect;
 public class MessageDetailRecipients implements Serializable
 {
     private int senderID;
-    private String text;
+    private String text, subject;
     private Date sendDate;
     private Time sendTime;
-    private boolean read, sent, isGroup;
+    private boolean read, sent, group;
+    int messageID;
     
     public MessageDetailRecipients()
     {
@@ -35,14 +36,15 @@ public class MessageDetailRecipients implements Serializable
     
     public MessageDetailRecipients(ResultSet rs) throws SQLException
     {
-
             this.senderID = rs.getInt("senderid");
             this.text = rs.getString("text");
             this.sendDate = rs.getDate("send_date");
             this.sendTime = rs.getTime("send_time");
             this.read = rs.getBoolean("read");
             this.sent = rs.getBoolean("sent");
-            this.isGroup = rs.getBoolean("isgroup");
+            this.group = rs.getBoolean("isgroup");
+            this.subject = rs.getString("subject");
+            this.messageID = rs.getInt("messageid");
     }
     
     public static ArrayList getMyRead(int userID, boolean read)
@@ -84,19 +86,9 @@ public class MessageDetailRecipients implements Serializable
         return senderID;
     }
 
-    public void setSenderID(int senderID)
-    {
-        this.senderID = senderID;
-    }
-
     public String getText()
     {
         return text;
-    }
-
-    public void setText(String text)
-    {
-        this.text = text;
     }
 
     public Date getSendDate()
@@ -104,29 +96,15 @@ public class MessageDetailRecipients implements Serializable
         return sendDate;
     }
 
-    public void setSendDate(Date sendDate)
-    {
-        this.sendDate = sendDate;
-    }
-
     public Time getSendTime()
     {
         return sendTime;
     }
 
-    public void setSendTime(Time sendTime)
-    {
-        this.sendTime = sendTime;
-    }
 
     public boolean isRead()
     {
         return read;
-    }
-
-    public void setRead(boolean read)
-    {
-        this.read = read;
     }
 
     public boolean isSent()
@@ -134,18 +112,18 @@ public class MessageDetailRecipients implements Serializable
         return sent;
     }
 
-    public void setSent(boolean sent)
+    public boolean isGroup()
     {
-        this.sent = sent;
+        return group;
     }
 
-    public boolean isIsGroup()
+    public String getSubject()
     {
-        return isGroup;
+        return subject;
     }
 
-    public void setIsGroup(boolean isGroup)
+    public int getMessageID()
     {
-        this.isGroup = isGroup;
+        return messageID;
     }
 }

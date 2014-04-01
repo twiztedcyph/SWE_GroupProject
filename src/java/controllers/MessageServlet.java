@@ -16,6 +16,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.HashSet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -55,7 +56,7 @@ public class MessageServlet extends HttpServlet
             MemberBean memberBean = (MemberBean)session.getAttribute("userdetails");
             String formType = request.getParameter("formType");
             
-             if(request.getParameter("formType ") == null || formType == null)
+             if(request.getParameter("formType") == null || formType == null)
              {
                  ArrayList<MessageDetailRecipients> readMessages = MessageDetailRecipients.getMyRead(memberBean.getId(), true);
                  ArrayList<MessageDetailRecipients> unReadMessages = MessageDetailRecipients.getMyRead(memberBean.getId(), false);
@@ -66,7 +67,8 @@ public class MessageServlet extends HttpServlet
                  request.getRequestDispatcher("messages.jsp").forward(request, response);
                  return;
              }
-            else if(formType.equals("send"))
+             
+            if(formType.equals("send"))
             {
                 boolean isGroupMessage  = Boolean.parseBoolean(request.getParameter("messageFor"));
                 if(!isGroupMessage)
@@ -82,8 +84,8 @@ public class MessageServlet extends HttpServlet
                     String [] recipients = request.getParameter("recipients").split(",");
                     int sender = Integer.parseInt(request.getParameter("sender"));
 
-
-                    MessageDetailsBean messageDetails = new MessageDetailsBean(sender, messageDetail);
+                    String subject = request.getParameter("subject");
+                    MessageDetailsBean messageDetails = new MessageDetailsBean(sender, messageDetail, subject);
 
                     for(String recipient: recipients)
                     {
@@ -107,7 +109,9 @@ public class MessageServlet extends HttpServlet
                         messageRecipients.persist();
                     }
 
-                    request.getRequestDispatcher("testimonials.jsp").forward(request, response);       
+                    session.setAttribute("msg", "Message Sent!");
+                    response.sendRedirect("messages.jsp");
+                    return;    
                   }
                 else
                 {
@@ -116,6 +120,14 @@ public class MessageServlet extends HttpServlet
                     return;
                 }
            }
+           else if(formType.equals("view"))
+            {
+                int messageID = Integer.parseInt(request.getParameter("messageID"));
+                MessageDetailsBean messageToView =  MessageDetailsBean.findByID(messageID);
+                request.setAttribute("messageToView", messageToView);
+                request.getRequestDispatcher("viewMessage.jsp").forward(request, response);
+            }
+              
            
         }
         catch(Exception e)
