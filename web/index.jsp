@@ -1,4 +1,5 @@
 
+<%@page import="JoinedBeans.MessageDetailRecipients"%>
 <%@page import="java.sql.Date"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -233,7 +234,7 @@
         <div id ="header">
             <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
-                Welcome back administrator <%= memberBean.getUserName()%>.
+                Welcome back <%= memberBean.getUserName()%> (ADMIN)
                 <form method="get" action="/SWE_GroupProject/LogInServlet">
                     <p>
                         <input type="hidden" name="logout" value="logout" />
@@ -247,7 +248,7 @@
                     <li><a href="profile.jsp">ADMINISTRATION</a>
                         <ul>
                             <li><a href="profile.jsp">USERS</a></li>	
-                            <li><a href="goals.jsp">GOALS</a></li>
+                            <li><a href="goal.jsp">GOALS</a></li>
                             <li><a href="groups.jsp">GROUPS</a></li>
                             <li><a href="messages.jsp">MESSAGES</a></li>
                         </ul>
@@ -258,7 +259,7 @@
                             <li><a href="food.jsp">EDIT FOODS</a></li>
                         </ul>
                     </li>
-                    <li><a href="food.jsp">EXERCISES<span style="color: red; background: #000;"></span></a>
+                    <li><a href="exercises.jsp">EXERCISES<span style="color: red; background: #000;"></span></a>
                         <ul>
                             <li><a href="exercises.jsp">ADD EXERCISES</a></li>	
                             <li><a href="exercises.jsp">EDIT EXERCISES</a></li>
@@ -317,8 +318,10 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td></td>	
-                    <td></td>
+                    <td><a href="index.jsp">HOME</a></td>
+                    <td><a href="benefits.jsp">BENEFITS</a></td>
+                    <td><a href="testimonials.jsp">TESTIMONIALS</a></td>	
+                    <td><a href="aboutUs.jsp">ABOUT US</a></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -346,16 +349,18 @@
             }
         %>
         <jsp:useBean id="indexGoals" type="ArrayList<GoalBean>" scope="session" />
+        <jsp:useBean id="unRead" type="ArrayList<MessageDetailRecipients>" scope="session" />
         <div id ="header">
             <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
-                Welcome back User <%= memberBean.getUserName()%>.
+                Welcome back <%= memberBean.getUserName()%>!
                 <form method="get" action="/SWE_GroupProject/LogInServlet">
                     <p>
                         <input type="hidden" name="logout" value="logout" />
                         <input type="submit" name="" value="Logout" />
                     </p>
                 </form>
+                <h2 id="messagesH2"><a href="MessageServlet"><%=unRead.size()%> New Messages</a></h2>
             </div>
             <nav>
                 <ul>
@@ -440,17 +445,17 @@
             <table id = "footerTable">
                 <tr>
                     <td><a href="index.jsp">HOME</a></td>
+                    <td><a href="benefits.jsp">BENEFITS</a></td>
+                    <td><a href="testimonials.jsp">TESTIMONIALS</a></td>	
+                    <td><a href="aboutUs.jsp">ABOUT US</a></td>
+                    <td><a href="messages.jsp">MESSAGES</a></td>
+                </tr>
+                <tr>
                     <td><a href="profile.jsp">PROFILE</a></td>		
                     <td><a href="goal.jsp">GOALS</a></td>
                     <td><a href="food.jsp">FOODS</a></td>
                     <td><a href="exercises.jsp">EXERCISES</a></td>
                     <td><a href="groups.jsp">GROUPS</a></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>	
-                    <td></td>
-                    <td></td>
                 </tr>
                 <tr>
                     <td></td>

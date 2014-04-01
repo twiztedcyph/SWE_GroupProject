@@ -4,6 +4,8 @@
     Author     : Warren
 --%>
 
+<%@page import="JoinedBeans.MessageDetailRecipients"%>
+<%@page import="java.util.ArrayList"%>
 <!--<%@page contentType="text/html" pageEncoding="UTF-8"%>-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -11,21 +13,23 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="ashCSS.css" />
-        <title>Registration Page</title>
+        <title>Error Page</title>
     </head>
     <body>
         <div id ="backImageLeft"></div>
         <div id ="backImageRight"></div>
         
-        
+        <jsp:useBean id="unRead" type="ArrayList<MessageDetailRecipients>" scope="session" />
         <div id ="header">
             <a href="index.jsp" id="homelink"></a>
-            <ul id = "navmenu">
+            <nav>
+            <ul>
                 <li><a href="index.jsp">HOME</a></li>
                 <li><a href="benefits.jsp">BENEFITS</a></li>		
                 <li><a href="defaultFestival.jsp">TESTIMONIALS</a></li>
                 <li><a href="aboutUs.html">ABOUT US</a></li>
             </ul>
+            </nav>
             <div id ="loginBox">
                 <form method="post" action="/SWE_GroupProject/LogInServlet" onsubmit="return checkForm();">
                     <div>
@@ -35,6 +39,7 @@
                         <input type="button" name="complete1" onclick="redirect('useRegister.jsp');" value="Register" />
                     </div>
                 </form>
+                <h2 id="messagesH2"><a href="MessageServlet"><%=unRead.size()%> New Messages</a></h2>
             </div>
             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="get">
@@ -76,7 +81,7 @@
                     <td><a href="aboutUs.html">ABOUT US</a></td>
                 </tr>
                 <tr>
-                    <td><a href="useRegister.jsp">USER REGISTRATION</a></td>
+                    <td></td>
                     <td></td>	
                     <td></td>
                     <td></td>

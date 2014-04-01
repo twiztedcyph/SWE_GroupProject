@@ -1,4 +1,6 @@
 
+<%@page import="JoinedBeans.MessageDetailRecipients"%>
+<%@page import="java.util.ArrayList"%>
 <!--<%@page contentType="text/html" pageEncoding="UTF-8"%>-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -163,13 +165,13 @@
 
         <%
         } else if (memberBean.getAccessType().equals("admin")) {
-       //Logged in as admin
+            //Logged in as admin
             //newMessages = messageBean.getAllNewMessages(userBean.getUsername());
 %>
         <div id ="header">
             <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
-                Welcome back administrator <%= memberBean.getUserName()%>.
+                Welcome back <%= memberBean.getUserName()%> (ADMIN)
                 <form method="get" action="/SWE_GroupProject/LogInServlet">
                     <p>
                         <input type="hidden" name="logout" value="logout" />
@@ -179,10 +181,27 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.jsp">MESSAGE CONTROL</a></li>
-                    <li><a href="registration.jsp">USER CONTROL</a></li>		
-                    <li><a href="goals.jsp">GOAL CONTROL</a></li>
-                    <li><a href="groups.jsp">GROUP CONTROL  <span style="color: red; background: #000;"></span></a></li>
+                    <li><a href="index.jsp">HOME</a></li>
+                    <li><a href="profile.jsp">ADMINISTRATION</a>
+                        <ul>
+                            <li><a href="profile.jsp">USERS</a></li>	
+                            <li><a href="goal.jsp">GOALS</a></li>
+                            <li><a href="groups.jsp">GROUPS</a></li>
+                            <li><a href="messages.jsp">MESSAGES</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="food.jsp">FOODS<span style="color: red; background: #000;"></span></a>
+                        <ul>
+                            <li><a href="food.jsp">ADD FOODS</a></li>	
+                            <li><a href="food.jsp">EDIT FOODS</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="exercises.jsp">EXERCISES<span style="color: red; background: #000;"></span></a>
+                        <ul>
+                            <li><a href="exercises.jsp">ADD EXERCISES</a></li>	
+                            <li><a href="exercises.jsp">EDIT EXERCISES</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
             <div id="search">
@@ -201,24 +220,12 @@
         <div id ="maindiv">
             <br /><br />
             <div>
-                <h1>Hello <%= memberBean.getFirstName()%>! (ADMIN)</h1>
-
-                <p style="text-align: justify; padding-left:10px; padding-right:10px;">
-                    Benefits!
-                </p>
-
-                <p style="text-align: justify; padding-left:20px; padding-right:100px;">
-                    In case you're wondering if it's worth joining us, here are
-                    some reasons why we think it's a no-brainer!
-
-                    1. Becoming a member is completely FREE!
-                    2. We will never bother you with emails!
-                    3. We have genuine <a href="testimonials.jsp"> TESTIMONIALS!</a>
-                </p>
-
-                <div style="clear:both;"></div>  
-                <br />
-
+                <h1>Benefits (ADMIN)</h1>
+                <div id ="testimonialsDiv">
+                    <p>
+                        There is nothing to do here!
+                    </p>
+                </div>
             </div>
             <br />
         </div>
@@ -227,15 +234,19 @@
             <br />   
             <table id = "footerTable">
                 <tr>
-                    <td><a href="index.jsp">BENEFITS</a></td>
-                    <td><a href="testimonials.jsp">TESTIMONIALS</a></td>	
-                    <td><a href="aboutUs.jsp">ABOUT US</a></td>
-                    <td><a href="messages.jsp">MESSAGES</a></td>
+                    <td><a href="profile.jsp">USERS</a></td>
+                    <td><a href="goal.jsp">GOALS</a></td>
+                    <td><a href="groups.jsp">GROUPS</a></td>
+                    <td><a href="messages.jsp">MESSAGES</a></td>	
+                    <td><a href="food.jsp">FOODS</a></td>
+                    <td><a href="exercises.jsp">EXERCISES</a></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td></td>	
-                    <td></td>
+                    <td><a href="index.jsp">HOME</a></td>
+                    <td><a href="benefits.jsp">BENEFITS</a></td>
+                    <td><a href="testimonials.jsp">TESTIMONIALS</a></td>	
+                    <td><a href="aboutUs.jsp">ABOUT US</a></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -252,26 +263,40 @@
         </div>
         <%
         } else if (memberBean.getAccessType().equals("user")) {
-//Logged in as a regular user
+            //Logged in as a regular user
             //newMessages = messageBean.getAllNewMessages(userBean.getUsername());
 %>
+        <jsp:useBean id="unRead" type="ArrayList<MessageDetailRecipients>" scope="session" />
         <div id ="header">
             <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
-                Welcome back User <%= memberBean.getUserName()%>.
+                Welcome back <%= memberBean.getUserName()%>!
                 <form method="get" action="/SWE_GroupProject/LogInServlet">
                     <p>
                         <input type="hidden" name="logout" value="logout" />
                         <input type="submit" name="" value="Logout" />
                     </p>
                 </form>
+                <h2 id="messagesH2"><a href="MessageServlet"><%=unRead.size()%> New Messages</a></h2>
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.jsp">HOME</a></li>
-                    <li><a href="profile.jsp">PROFILE</a></li>		
-                    <li><a href="goal.jsp">GOALS</a></li>
-                    <li><a href="groups.jsp">GROUPS<span style="color: red; background: #000;"></span></a></li>
+                    <li id="nav ul li2"><a href="index.jsp">HOME</a></li>
+                    <li><a href="profile.jsp"><%= memberBean.getFirstName().toUpperCase()%></a>
+                        <ul>
+                            <li><a href="profile.jsp">PROFILE</a></li>
+                            <li><a href="goal.jsp">GOALS</a></li>
+                            <li><a href="groups.jsp">GROUPS</a></li>
+                        </ul>
+                    </li>		
+                    <li><a href="goal.jsp">LIFESTYLE</a>
+                        <ul>
+                            <li><a href="food.jsp">FOODS</a></li>
+                            <li><a href="exercises.jsp">EXERCISES</a></li>
+
+                        </ul>
+                    </li>
+                    <li><a href="messages.jsp">MESSAGES</a></li>
                 </ul>
             </nav>
             <div id="search">
@@ -290,20 +315,40 @@
         <div id ="maindiv">
             <br /><br />
             <div>
-                <h1>Hello <%= memberBean.getFirstName()%>, welcome back!</h1>
-
-                <p style="text-align: justify; padding-left:10px; padding-right:10px;">
-                    Benefits!
+                <h1>You're already a member!</h1>
+                <div id ="testimonialsDiv">
+                    <p>
+                        We decided to leave this page here for you. Just in case you need to
+                        convince someone else to join!
+                    </p>
+                </div>
+                <div id ="benefitsDiv">
+                    <table>
+                        <tr><h3>- Medical studies have shown that keeping &nbsp a food journal
+                                can help DOUBLE your &nbsp&nbspweight loss, or increase muscle gain!</h3></tr>
+                        <tr><h3>- Keep track of your nutritional intake!</h3></tr>	
+                        <tr><h3>- Keep track of your exercise regime!</h3></tr>
+                        <tr><h3>- It's quick and easy!</h3></tr>
+                        <tr><h3>- We will never bother you with emails!</h3></tr>
+                        <tr><h3>- We have genuine <a href="testimonials.jsp"> TESTIMONIALS!</a></h3></tr>
+                        <tr><h3>- Do it all completely FREE!</h3></tr>
+                    </table>
+                </div>
+                <p>
+                    All you need to do is become a member, why not <a href="registration.jsp"> REGISTER NOW!?</a>
                 </p>
+                <h2>Stay fit and healthy the easy way!</h2>
+                <div id ="testimonialsDiv">
+                    <p>
+                        We have created a free website that makes calorie counting, food tracking
+                        and exercise logging easier that ever! There are no gimmicks or fad diets
+                        that give you healthy, concrete results. Keeping track of the foods you
+                        eat and the exercise you do is the only way to really see what works for
+                        you. Let us help you achieve your goals and feel great doing it!
 
-                <p style="text-align: justify; padding-left:20px; padding-right:100px;">
-                    In case you're wondering if it's worth joining us, here are
-                    some reasons why we think it's a no-brainer!
-
-                    1. Becoming a member is completely FREE!
-                    2. We will never bother you with emails!
-                    3. We have genuine <a href="testimonials.jsp"> TESTIMONIALS!</a>
-                </p>
+                        After all, our goal is simply health.
+                    </p>
+                </div>
 
                 <div style="clear:both;"></div>  
                 <br />
@@ -316,7 +361,7 @@
             <br />   
             <table id = "footerTable">
                 <tr>
-                    <td><a href="index.jsp">BENEFITS</a></td>
+                    <td><a href="benefits.jsp">BENEFITS</a></td>
                     <td><a href="testimonials.jsp">TESTIMONIALS</a></td>	
                     <td><a href="aboutUs.jsp">ABOUT US</a></td>
                     <td><a href="messages.jsp">MESSAGES</a></td>

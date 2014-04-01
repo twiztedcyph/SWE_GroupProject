@@ -22,26 +22,24 @@
             {
                 window.alert(msgVar);
             }
-            </script>
+        </script>
     </head>
     <body>
         <%
-    beans.MemberBean memberBean = (beans.MemberBean) session.getAttribute("userdetails");
-    if (memberBean == null)
-    {
-        //not logged in..
-        String message = (String) session.getAttribute("msg");
-        if (message != null)
-        {
-%>
-            <script>showMsg('<%= message%>');</script>
-<%
-            session.removeAttribute("msg");
-        }
-%>
+            beans.MemberBean memberBean = (beans.MemberBean) session.getAttribute("userdetails");
+            if (memberBean == null) {
+                //not logged in..
+                String message = (String) session.getAttribute("msg");
+                if (message != null) {
+        %>
+        <script>showMsg('<%= message%>');</script>
+        <%
+                session.removeAttribute("msg");
+            }
+        %>
         <div id ="backImageLeft"></div>
         <div id ="backImageRight"></div>
-        
+
         <div id ="header">
             <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
@@ -53,19 +51,21 @@
                     </div>
                 </form>
             </div>
-            <ul id = "navmenu">
-                <li><a href="index.jsp">HOME</a></li>
-                <li><a href="benefits.jsp">BENEFITS</a></li>		
-                <li><a href="testimonials.jsp">TESTIMONIALS</a></li>
-                <li><a href="aboutUs.jsp">ABOUT US</a></li>
-            </ul>
+            <nav>
+                <ul>
+                    <li><a href="index.jsp">HOME</a></li>
+                    <li><a href="benefits.jsp">BENEFITS</a></li>		
+                    <li><a href="testimonials.jsp">TESTIMONIALS</a></li>
+                    <li><a href="aboutUs.jsp">ABOUT US</a></li>
+                </ul>
+            </nav>
             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="get">
                     <p>
-                    Google
-                    <input type="radio" name="searchType" checked="checked" value="google" />
-                    This site
-                    <input type="radio" name="searchType"  value="thisSite" />
+                        Google
+                        <input type="radio" name="searchType" checked="checked" value="google" />
+                        This site
+                        <input type="radio" name="searchType"  value="thisSite" />
                     </p>
                     <input type="text"placeholder="Search..." name="theSearch"  size="30" />
                     <input type="submit" value="Submit" />
@@ -79,10 +79,10 @@
 
                 <p> Registration Form</p>
                 <br /><br /><br />
-                
+
                 <form id ="regForm" method="post" action="/SWE_GroupProject/RegistrationServlet" tag="Create Logon">
-                    
-                        
+
+
                     <label>Username :</label><input type="text" name="username" pattern =".{5,20}[A-Za-z-0-9]+" required title="Uppercase, Lowercase and Numbers Only!"/><br />
                     <label>Password :</label><input type="password" name="passwordOne" 
                                                     pattern =".{5,20}[A-Za-z-0-9]+" 
@@ -94,11 +94,11 @@
                     <label>Surname :</label><input type="text" name="surname" pattern ="[A-Za-z]+" required Title="No Special Charecters" /><br />
                     <label>Date of Birth :</label><input type="date" name="dob" required/><br />
                     <label>Email :</label><input type="email" name="email" required/><br />
- 
+
                     <br /><br />    
                     <input type="submit" value="Submit" />
                     <input type="reset" value="Clear" id="reset_button"/>     
-                   
+
                 </form>
 
 
@@ -108,79 +108,9 @@
             </div>
             <br />
         </div>
-                        <%
-    } else if(memberBean.getAccessType().equals("admin"))
-    {
-        %>
-        
-        <div id ="backImageLeft"></div>
-        <div id ="backImageRight"></div>
-        
-        <div id ="header">
-            <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
-            <ul id = "navmenu">
-                <li><a href="index.jsp">MESSAGE CONTROL</a></li>
-                <li><a href="registration.jsp">USER CONTROL</a></li>		
-                <li><a href="goals.jsp">GOAL CONTROL</a></li>
-                <li><a href="groups.jsp">GROUP CONTROL  <span style="color: red; background: #000;"></span></a></li>
-            </ul>
-            <div id="search">
-                <form action="/SystemsCoursework/SearchServe" method="get">
-                    <p>
-                    Google
-                    <input type="radio" name="searchType" checked="checked" value="google" />
-                    This site
-                    <input type="radio" name="searchType"  value="thisSite" />
-                    </p>
-                    <input type="text"placeholder="Search..." name="theSearch"  size="30" />
-                    <input type="submit" value="Submit" />
-                </form>
-            </div>
-        </div>
-        <div id ="maindiv">
-            <br /><br />
-            <div>
-                <p style="text-align: justify;padding-left:10px;padding-right:10px;">
-                    Register Now!
-                </p>
-
-                <p> Registration Form</p>
-                
-                <form method="post" action="/SWE_GroupProject/RegistrationServlet" tag="Create Logon">
-                    <div align="center">
-                        <div align="right" style="width: 35%">
-			Username *          : <input type="text" name="username" /><br />
-			Password *          : <input type="password" name="passwordOne" /><br />
-                        Confirm Password *  : <input type="password" name="passwordTwo" /><br />
-                        Forename *          : <input type="text" name="forename" /><br />
-			Surname *           : <input type="text" name="surname" /><br />
-			Date of Birth *     : <input type="date" name="dob" /><br />
-			Email *             : <input type="text" name="email" /><br />
-                        User Type *         : <select name="userType"><option 
-                                value="user">Standard User</option><option value="admin">
-                                    Administrator</option></select><br />
- 
-                        <div align="right" style="width: 35%">
-                            <input type="submit" value="Submit" />
-                        </div>
-                        </div>
-                    </div>
-                </form>
-
-
-                <div style="clear:both;"></div>  
-                <br />
-
-            </div>
-            <br />
-        </div>
-        
-                                <%
-    }
-        %>
         <div id = "footer">
             <br />
-            <br />   
+            <br />     
             <table id = "footerTable">
                 <tr>
                     <td><a href="index.jsp">HOME</a></td>
@@ -203,9 +133,137 @@
             </table>
 
             <br />
-            <p>Designed and created by Warren Dewhurst</p>
+            <p>Designed and created by Ian, Ash, Liam and Warren</p>
 
         </div>
+        <%
+        } else if (memberBean.getAccessType().equals("admin")) {
+        %>
+
+        <div id ="backImageLeft"></div>
+        <div id ="backImageRight"></div>
+
+        <div id ="header">
+            <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
+            <div id ="loginBox">
+                Welcome back <%= memberBean.getUserName()%> (ADMIN)
+                <form method="get" action="/SWE_GroupProject/LogInServlet">
+                    <p>
+                        <input type="hidden" name="logout" value="logout" />
+                        <input type="submit" name="" value="Logout" />
+                    </p>
+                </form>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.jsp">HOME</a></li>
+                    <li><a href="profile.jsp">ADMINISTRATION</a>
+                        <ul>
+                            <li><a href="profile.jsp">USERS</a></li>	
+                            <li><a href="goal.jsp">GOALS</a></li>
+                            <li><a href="groups.jsp">GROUPS</a></li>
+                            <li><a href="messages.jsp">MESSAGES</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="food.jsp">FOODS<span style="color: red; background: #000;"></span></a>
+                        <ul>
+                            <li><a href="food.jsp">ADD FOODS</a></li>	
+                            <li><a href="food.jsp">EDIT FOODS</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="exercises.jsp">EXERCISES<span style="color: red; background: #000;"></span></a>
+                        <ul>
+                            <li><a href="exercises.jsp">ADD EXERCISES</a></li>	
+                            <li><a href="exercises.jsp">EDIT EXERCISES</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div id="search">
+                <form action="/SystemsCoursework/SearchServe" method="post">
+                    <p>
+                        Google
+                        <input type="radio" name="searchType" checked="checked" value="google" />
+                        This site
+                        <input type="radio" name="searchType"  value="thisSite" />
+                        <input type="text"placeholder="Search..." name="theSearch"  size="30" />
+                        <input type="submit" value="Submit" />
+                    </p>
+                </form>
+            </div>
+        </div>
+        <div id ="maindiv">
+            <br /><br />
+            <div>
+                <p style="text-align: justify;padding-left:10px;padding-right:10px;">
+                    Register Now!
+                </p>
+
+                <p> Registration Form</p>
+
+                <form method="post" action="/SWE_GroupProject/RegistrationServlet" tag="Create Logon">
+                    <div align="center">
+                        <div align="right" style="width: 35%">
+                            Username *          : <input type="text" name="username" /><br />
+                            Password *          : <input type="password" name="passwordOne" /><br />
+                            Confirm Password *  : <input type="password" name="passwordTwo" /><br />
+                            Forename *          : <input type="text" name="forename" /><br />
+                            Surname *           : <input type="text" name="surname" /><br />
+                            Date of Birth *     : <input type="date" name="dob" /><br />
+                            Email *             : <input type="text" name="email" /><br />
+                            User Type *         : <select name="userType"><option 
+                                    value="user">Standard User</option><option value="admin">
+                                    Administrator</option></select><br />
+
+                            <div align="right" style="width: 35%">
+                                <input type="submit" value="Submit" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
+                <div style="clear:both;"></div>  
+                <br />
+
+            </div>
+            <br />
+        </div>
+        <div id = "footer">
+            <br />
+            <br />   
+            <table id = "footerTable">
+                <tr>
+                    <td><a href="profile.jsp">USERS</a></td>
+                    <td><a href="goal.jsp">GOALS</a></td>
+                    <td><a href="groups.jsp">GROUPS</a></td>
+                    <td><a href="messages.jsp">MESSAGES</a></td>	
+                    <td><a href="food.jsp">FOODS</a></td>
+                    <td><a href="exercises.jsp">EXERCISES</a></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><a href="index.jsp">HOME</a></td>
+                    <td><a href="benefits.jsp">BENEFITS</a></td>
+                    <td><a href="testimonials.jsp">TESTIMONIALS</a></td>	
+                    <td><a href="aboutUs.jsp">ABOUT US</a></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>		
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <br />
+            <p>Designed and created by Ian, Ash, Liam and Warren</p>
+
+        </div>
+        <%
+            }
+        %>
     </body>
 
 </html>

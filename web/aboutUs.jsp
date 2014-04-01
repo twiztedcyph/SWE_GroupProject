@@ -1,4 +1,6 @@
 
+<%@page import="JoinedBeans.MessageDetailRecipients"%>
+<%@page import="java.util.ArrayList"%>
 <!--<%@page contentType="text/html" pageEncoding="UTF-8"%>-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -151,11 +153,11 @@
         } else if (memberBean.getAccessType().equals("admin")) {
             //Logged in as admin
             //newMessages = messageBean.getAllNewMessages(userBean.getUsername());
-        %>
+%>
         <div id ="header">
             <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
-                Welcome back administrator <%= memberBean.getUserName()%>.
+                Welcome back <%= memberBean.getUserName()%> (ADMIN)
                 <form method="get" action="/SWE_GroupProject/LogInServlet">
                     <p>
                         <input type="hidden" name="logout" value="logout" />
@@ -165,10 +167,27 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.jsp">MESSAGE CONTROL</a></li>
-                    <li><a href="registration.jsp">USER CONTROL</a></li>		
-                    <li><a href="goals.jsp">GOAL CONTROL</a></li>
-                    <li><a href="groups.jsp">GROUP CONTROL  <span style="color: red; background: #000;"></span></a></li>
+                    <li><a href="index.jsp">HOME</a></li>
+                    <li><a href="profile.jsp">ADMINISTRATION</a>
+                        <ul>
+                            <li><a href="profile.jsp">USERS</a></li>	
+                            <li><a href="goal.jsp">GOALS</a></li>
+                            <li><a href="groups.jsp">GROUPS</a></li>
+                            <li><a href="messages.jsp">MESSAGES</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="food.jsp">FOODS<span style="color: red; background: #000;"></span></a>
+                        <ul>
+                            <li><a href="food.jsp">ADD FOODS</a></li>	
+                            <li><a href="food.jsp">EDIT FOODS</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="exercises.jsp">EXERCISES<span style="color: red; background: #000;"></span></a>
+                        <ul>
+                            <li><a href="exercises.jsp">ADD EXERCISES</a></li>	
+                            <li><a href="exercises.jsp">EDIT EXERCISES</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
             <div id="search">
@@ -186,39 +205,36 @@
         </div>
         <div id ="maindiv">
             <br /><br />
-            <div>
-                <h1>Hello <%= memberBean.getFirstName()%>! (ADMIN)</h1>
 
-                <p style="text-align: justify; padding-left:10px; padding-right:10px;">
-                    About Us!
+            <h1>About SimplyHealth! (ADMIN)</h1>
+            <div id ="testimonialsDiv">
+                <p>
+                    There is nothing to do here!
                 </p>
+            </div> 
 
-                <p style="text-align: justify; padding-left:20px; padding-right:100px;">
-                    Our goal is to provide a free and easily accessible way for
-                    our members to tailor and monitor every aspect of their diet and
-                    exercise regime.
-                </p>
-
-                <div style="clear:both;"></div>  
-                <br />
-
-            </div>
             <br />
+            <br />
+        </div>
         </div>
         <div id = "footer">
             <br />
             <br />   
             <table id = "footerTable">
                 <tr>
-                    <td><a href="index.jsp">BENEFITS</a></td>
-                    <td><a href="testimonials.jsp">TESTIMONIALS</a></td>	
-                    <td><a href="aboutUs.jsp">ABOUT US</a></td>
-                    <td><a href="messages.jsp">MESSAGES</a></td>
+                    <td><a href="profile.jsp">USERS</a></td>
+                    <td><a href="goal.jsp">GOALS</a></td>
+                    <td><a href="groups.jsp">GROUPS</a></td>
+                    <td><a href="messages.jsp">MESSAGES</a></td>	
+                    <td><a href="food.jsp">FOODS</a></td>
+                    <td><a href="exercises.jsp">EXERCISES</a></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td></td>	
-                    <td></td>
+                    <td><a href="index.jsp">HOME</a></td>
+                    <td><a href="benefits.jsp">BENEFITS</a></td>
+                    <td><a href="testimonials.jsp">TESTIMONIALS</a></td>	
+                    <td><a href="aboutUs.jsp">ABOUT US</a></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -235,26 +251,40 @@
         </div>
         <%
         } else if (memberBean.getAccessType().equals("user")) {
-//Logged in as a regular user
+            //Logged in as a regular user
             //newMessages = messageBean.getAllNewMessages(userBean.getUsername());
-        %>
+%>
+        <jsp:useBean id="unRead" type="ArrayList<MessageDetailRecipients>" scope="session" />
         <div id ="header">
             <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
-                Welcome back User <%= memberBean.getUserName()%>.
+                Welcome back <%= memberBean.getUserName()%>!
                 <form method="get" action="/SWE_GroupProject/LogInServlet">
                     <p>
                         <input type="hidden" name="logout" value="logout" />
                         <input type="submit" name="" value="Logout" />
                     </p>
                 </form>
+                <h2 id="messagesH2"><a href="MessageServlet"><%=unRead.size()%> New Messages</a></h2>
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.jsp">HOME</a></li>
-                    <li><a href="profile.jsp">PROFILE</a></li>		
-                    <li><a href="goal.jsp">GOALS</a></li>
-                    <li><a href="groups.jsp">GROUPS<span style="color: red; background: #000;"></span></a></li>
+                    <li id="nav ul li2"><a href="index.jsp">HOME</a></li>
+                    <li><a href="profile.jsp"><%= memberBean.getFirstName().toUpperCase()%></a>
+                        <ul>
+                            <li><a href="profile.jsp">PROFILE</a></li>
+                            <li><a href="goal.jsp">GOALS</a></li>
+                            <li><a href="groups.jsp">GROUPS</a></li>
+                        </ul>
+                    </li>		
+                    <li><a href="goal.jsp">LIFESTYLE</a>
+                        <ul>
+                            <li><a href="food.jsp">FOODS</a></li>
+                            <li><a href="exercises.jsp">EXERCISES</a></li>
+
+                        </ul>
+                    </li>
+                    <li><a href="messages.jsp">MESSAGES</a></li>
                 </ul>
             </nav>
             <div id="search">
@@ -272,31 +302,40 @@
         </div>
         <div id ="maindiv">
             <br /><br />
-            <div>
-                <h1>Hello <%= memberBean.getFirstName()%>, welcome back!</h1>
 
-                <p style="text-align: justify; padding-left:10px; padding-right:10px;">
-                    About Us!
-                </p>
+            <h1>About SimplyHealth!</h1>
 
-                <p style="text-align: justify; padding-left:20px; padding-right:100px;">
+            <h2>Our Vision</h2>
+            <div id ="testimonialsDiv">
+                <p>
                     Our goal is to provide a free and easily accessible way for
                     our members to tailor and monitor every aspect of their diet and
                     exercise regime.
                 </p>
+            </div>   
+            <h2>What is SimplyHealth?</h2>
+            <div id ="testimonialsDiv">
+                <p>
+                    We have created a free website that makes calorie counting, food tracking
+                    and exercise logging easier that ever! There are no gimmicks or fad diets
+                    that give you healthy, concrete results. Keeping track of the foods you
+                    eat and the exercise you do is the only way to really see what works for
+                    you. Let us help you achieve your goals and feel great doing it!
 
+                    After all, our goal is simply health.
+                </p>
                 <div style="clear:both;"></div>  
-                <br />
 
+                <br />
+                <br />
             </div>
-            <br />
         </div>
         <div id = "footer">
             <br />
             <br />   
             <table id = "footerTable">
                 <tr>
-                    <td><a href="index.jsp">BENEFITS</a></td>
+                    <td><a href="benefits.jsp">BENEFITS</a></td>
                     <td><a href="testimonials.jsp">TESTIMONIALS</a></td>	
                     <td><a href="aboutUs.jsp">ABOUT US</a></td>
                     <td><a href="messages.jsp">MESSAGES</a></td>
@@ -323,6 +362,6 @@
             }
 //Logged in as admin
             //newMessages = messageBean.getAllNewMessages(userBean.getUsername());
-        %>
+%>
     </body>
 </html>
