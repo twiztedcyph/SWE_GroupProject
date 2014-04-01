@@ -53,16 +53,25 @@ public class LogInServlet extends HttpServlet {
                     System.out.println(logCount);
                     String userName, plainPassword;
                     userName = request.getParameter("username");
+                    if(userName == null)
+                    {
+                        userName = (String)request.getAttribute("username");
+                    }
+                    
                     plainPassword = request.getParameter("password");
-                    //misc.MakeSha makeSha = new misc.MakeSha();
-                    //misc.EncyptDecrypt encDec = new misc.EncyptDecrypt();
-                    //misc.KeyMaker km = new misc.KeyMaker();
-                    //byte[] keyByte = km.makeKeyDriver("testingtestingonetwothree");
-                    //SecretKeySpec sks = new SecretKeySpec(keyByte, "AES");
-                    //String encPass = encDec.encrypt(plainPassword, sks);
-                    //String strongPass = makeSha.makeHash(encPass);
+                    if(plainPassword == null)
+                    {
+                        plainPassword = (String)request.getAttribute("password");
+                    }
+                    misc.MakeSha makeSha = new misc.MakeSha();
+                    misc.EncyptDecrypt encDec = new misc.EncyptDecrypt();
+                     misc.KeyMaker km = new misc.KeyMaker();
+                    byte[] keyByte = km.makeKeyDriver("testingtestingonetwothree");
+                    SecretKeySpec sks = new SecretKeySpec(keyByte, "AES");
+                    String encPass = encDec.encrypt(plainPassword, sks);
+                    String strongPass = makeSha.makeHash(encPass);
                     //System.out.println(strongPass);
-                    response.sendRedirect(referer);
+                    response.sendRedirect("index.jsp");
                     //
                     try
                     {
@@ -70,10 +79,17 @@ public class LogInServlet extends HttpServlet {
                         mb = mb.retrieveOne(userName);
                         if(mb != null)
                         {
-                            if(plainPassword.equals(mb.getPassword()))
+                            if(strongPass.equals(mb.getPassword()))
                             {
+                                String decFName = encDec.decrypt(mb.getFirstName(), sks);
+                                String decSName = encDec.decrypt(mb.getLastName(), sks);
+                                String decEmail = encDec.decrypt(mb.getEmailAddress(), sks);
+                                String decAT = encDec.decrypt(mb.getAccessType(), sks);
+                                
+                                beans.MemberBean decryptedMember = new beans.MemberBean(userName, strongPass, decFName, decSName, decEmail, decAT, mb.getDateOfBirth());
+                                decryptedMember.setID(mb.getId());
                                 System.out.println("Logged in");
-                                session.setAttribute("userdetails", mb);
+                                session.setAttribute("userdetails", decryptedMember);
                                 System.out.println(session.getMaxInactiveInterval());
                                 logCount = 0;
                                 ArrayList<GoalBean> indexGoals = mb.getGoalsInProgress();

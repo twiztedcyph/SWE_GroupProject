@@ -6,6 +6,7 @@
 
 package JoinedBeans;
 
+import beans.MemberBean;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.Date;
@@ -125,5 +126,11 @@ public class MessageDetailRecipients implements Serializable
     public int getMessageID()
     {
         return messageID;
+    }
+    
+    public String getSenderName() throws SQLException
+    {
+        return MemberBean.nameFromID(senderID);
+        
     }
 }

@@ -86,7 +86,31 @@ public class MemberBean implements Serializable {
             return new MemberBean(ps.executeQuery());
         }
     }
+    
+    public static String nameFromID(int ID) throws SQLException
+    {
+        misc.DbConnect dbConnect = new misc.DbConnect();
+        Connection con = dbConnect.getCon();
+        PreparedStatement ps = con.prepareStatement("select user_name from member where id = ?;");
+        ps.setInt(1, ID);
+        
+        ResultSet rs = ps.executeQuery();
+        
+        rs.next();
+        
+        String userName = rs.getString("user_name");
+        
+        con.close();
+        
+        return userName;
+                
+    }
 
+    public void setID(int givenID)
+    {
+       this.id = givenID;
+    }
+    
     public int getId() {
         return id;
     }
