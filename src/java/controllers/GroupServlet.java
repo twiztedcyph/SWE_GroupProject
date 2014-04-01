@@ -59,22 +59,24 @@ public class GroupServlet extends HttpServlet
                 System.out.println("JOIN CORRECT!!");
             } else if(makeGroup != null)
             {
+                
                 String groupName = request.getParameter("groupname");
                 String groupDesc = request.getParameter("groupdescription");
                 beans.GroupDetailsBean gdb = new beans.GroupDetailsBean(groupName, groupDesc, memberBean.getId());
                 gdb.persist();
-                
+                ArrayList<beans.GroupDetailsBean> groupMemberList = gdb.getMemberGroups(memberBean.getId());
+                session.setAttribute("groupmemberlist", groupMemberList);
             }else
             {
                 
                 beans.GroupDetailsBean gdb = new beans.GroupDetailsBean();
                 ArrayList<beans.GroupDetailsBean> groupMemberList = gdb.getMemberGroups(memberBean.getId());
                 ArrayList<beans.GroupDetailsBean> fullGroupList = gdb.getAllGroups();
-                request.setAttribute("groupmemberlist", groupMemberList);
-                request.setAttribute("fullgrouplist", fullGroupList);
+                session.setAttribute("groupmemberlist", groupMemberList);
+                
                 
             }
-            request.getRequestDispatcher("groups.jsp").forward(request, response);
+            response.sendRedirect("groups.jsp");
         }catch(SQLException e)
         {
             e.printStackTrace();

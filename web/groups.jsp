@@ -63,19 +63,15 @@
     {
         //Logged in as a regular user
         
-        if(request.getAttribute("groupmemberlist") == null)
+        if(session.getAttribute("groupmemberlist") == null)
         {
             request.getRequestDispatcher("GroupServlet").forward(request, response);
         }
         
         ArrayList<beans.GroupDetailsBean> groupMemberList 
                 = (ArrayList<beans.GroupDetailsBean>) 
-                request.getAttribute("groupmemberlist");
-        
-        ArrayList<beans.GroupDetailsBean> fullGroupList 
-                = (ArrayList<beans.GroupDetailsBean>) 
-                request.getAttribute("groupnonmemberlist");
-        
+                session.getAttribute("groupmemberlist");
+               
         String message = (String) session.getAttribute("msg");
         if (message != null)
         {
@@ -197,7 +193,7 @@
             <p>Designed and created by Ian, Ash, Liam and Warren</p>
 
         </div>
-                 <%
+<%
     } 
         //Logged in as admin
         //newMessages = messageBean.getAllNewMessages(userBean.getUsername());

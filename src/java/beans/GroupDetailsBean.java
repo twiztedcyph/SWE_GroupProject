@@ -131,21 +131,21 @@ public class GroupDetailsBean implements Serializable
     public void persist() throws SQLException
     {
         misc.DbConnect dbConnect = new misc.DbConnect();
-
+        ResultSet rs;
         try (Connection myCon = dbConnect.getCon())
         {
-            PreparedStatement ps = myCon.prepareStatement("Insert into group_details (group_name, group_description, group_owner) values (?, ?, ?)");
+            PreparedStatement ps = myCon.prepareStatement("Insert into group_details (group_name, group_description, group_owner) values (?, ?, ?) returning group_id");
             ps.setString(1, this.groupName);
             ps.setString(2, this.groupDescription);
             ps.setInt(3, this.groupOwner);
-            ps.executeUpdate();
+            rs = ps.executeQuery();
         }
         
         try(Connection myCon = dbConnect.getCon())
         {
-            GroupDetailsBean gdb = this.getOne(this.groupName);
+            rs.next();
             PreparedStatement psOne = myCon.prepareStatement("Insert into group_member_list (group_id, member_id) values (?, ?)");
-            psOne.setInt(1, gdb.groupId);
+            psOne.setInt(1, rs.getInt("group_id"));
             psOne.setInt(2, this.groupOwner);
             psOne.executeUpdate();
         }
