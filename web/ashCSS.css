@@ -419,6 +419,30 @@ ul#gallery li img:hover
     margin-right: auto;
 }
 
+#adminRegTable tr td
+{
+    text-align: left;
+    padding: 5px;
+}
+
+#adminRegTable tr td input
+{
+    text-align: left;
+    width: 100%;
+}
+
+#adminRegTable tr td #submit1
+{
+    text-align: center;
+    width: 100%;
+}
+
+#adminRegTable tr td td #submit1
+{
+    text-align: center;
+    width: 100%;
+}
+
 #adminRegFormReset
 {
     text-align: left;
@@ -450,20 +474,25 @@ ul#gallery li img:hover
     height: auto;
 }
 
-
 h2 a { 
     color: gainsboro;
-    text-decoration:none; 
+    text-decoration:none;
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 h2 a:visited { 
     color: gainsboro;
     text-decoration: none; 
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 h2 a:hover { 
     color: white;
-    text-decoration: underline; 
+    text-decoration: underline;
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 h2 a:active { 

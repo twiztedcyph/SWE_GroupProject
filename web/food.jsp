@@ -50,7 +50,7 @@
                 session.removeAttribute("msg");
             }
             // Logged in
-%>
+        %>
         <jsp:useBean id="unRead" type="ArrayList<MessageDetailRecipients>" scope="session" />
         <div id ="header">
             <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
@@ -74,7 +74,7 @@
                             <li><a href="groups.jsp">GROUPS</a></li>
                         </ul>
                     </li>		
-                    <li><a href="goal.jsp">LIFESTYLE</a>
+                    <li><a href="food.jsp">LIFESTYLE</a>
                         <ul>
                             <li><a href="food.jsp">FOODS</a></li>
                             <li><a href="exercises.jsp">EXERCISES</a></li>
@@ -101,47 +101,47 @@
         <div id ="maindiv">
             <br />
             <br />
-            <h1>Lifestyle details.</h1>
+            <h1>Add or Edit Foods!</h1>
             <br />
-            <h2></h2>
-            <p></p>
-            <form method="post" action="/SWE_GroupProject/FoodServlet">
-                <table id="adminRegTable">
-                    <tr>
-                        <td>Food name</td><td></td><td><input type="text" name="foodname" required="" /></td>
-                    </tr>
-                    <tr>
-                        <td>Date eaten</td><td></td><td><input type="date" name="dateeaten" required="" /></td>
-                    </tr>
-                    <tr>
-                        <td>Time eaten</td><td></td><td><input type="time" name="timeeaten" required="" /></td>
-                    </tr>
-                    <tr>
-                        <td>Protein / 100g</td><td></td><td><input type="text" name="protein" required="" /></td>
-                    </tr>
-                    <tr>
-                        <td>Carbs / 100g</td><td></td><td><input type="text" name="carbs" required="" /></td>
-                    </tr>
-                    <tr>
-                        <td>Fats<br />Unsaturated</td><td></td><td><input type="text" name="unsatfat" required="" /></td>
-                    </tr>
-                    <tr>
-                        <td>Fats<br />Saturated</td><td></td><td><input type="text" name="satfat" required="" /></td>
-                    </tr>
-                    <tr>
-                        <td>Sugar / 100g</td><td></td><td><input type="text" name="sugar" required=""/></td>
-                    </tr>
-                    <tr>
-                        <td>Salt / 100g</td><td></td><td><input type="text" name="salt" required="" /></td>
-                    </tr>
-                    <tr>
-                        <td>KiloCalories  / 100g</td><td></td><td><input type="text" name="kcal" required="" /></td>
-                    </tr> 
-                    <tr>
-                        <td></td><td><input type="submit" name="lifestyle_submit" value="Submit"/></td><td></td>
-                    </tr>
-                </table>
-            </form>
+            <div id ="testimonialsDiv">
+                <form method="post" action="/SWE_GroupProject/FoodServlet">
+                    <table id="adminRegTable">
+                        <tr>
+                            <td>Food name</td><td></td><td><input type="text" name="foodname" required="" /></td>
+                        </tr>
+                        <tr>
+                            <td>Date eaten</td><td></td><td><input type="date" name="dateeaten" required="" /></td>
+                        </tr>
+                        <tr>
+                            <td>Time eaten</td><td></td><td><input type="time" name="timeeaten" required="" /></td>
+                        </tr>
+                        <tr>
+                            <td>Protein / 100g</td><td></td><td><input type="text" name="protein" required="" /></td>
+                        </tr>
+                        <tr>
+                            <td>Carbs / 100g</td><td></td><td><input type="text" name="carbs" required="" /></td>
+                        </tr>
+                        <tr>
+                            <td>Fats<br />Unsaturated</td><td></td><td><input type="text" name="unsatfat" required="" /></td>
+                        </tr>
+                        <tr>
+                            <td>Fats<br />Saturated</td><td></td><td><input type="text" name="satfat" required="" /></td>
+                        </tr>
+                        <tr>
+                            <td>Sugar / 100g</td><td></td><td><input type="text" name="sugar" required=""/></td>
+                        </tr>
+                        <tr>
+                            <td>Salt / 100g</td><td></td><td><input type="text" name="salt" required="" /></td>
+                        </tr>
+                        <tr>
+                            <td>KiloCalories  / 100g</td><td></td><td><input type="text" name="kcal" required="" /></td>
+                        </tr> 
+                        <tr>
+                            <td></td><td></td><td><input id="submit1" type="submit" name="lifestyle_submit" value="Submit"/></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
             <br />
             <form method="post" action="/SWE_GroupProject/FoodServlet">
                 <input type="submit" name="view_food_history" value="View food history" />
@@ -158,12 +158,14 @@
                     <td><a href="benefits.jsp">BENEFITS</a></td>
                     <td><a href="testimonials.jsp">TESTIMONIALS</a></td>	
                     <td><a href="aboutUs.jsp">ABOUT US</a></td>
+                    <td><a href="messages.jsp">MESSAGES</a></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>	
-                    <td></td>
-                    <td></td>
+                    <td><a href="profile.jsp">PROFILE</a></td>		
+                    <td><a href="goal.jsp">GOALS</a></td>
+                    <td><a href="food.jsp">FOODS</a></td>
+                    <td><a href="exercises.jsp">EXERCISES</a></td>
+                    <td><a href="groups.jsp">GROUPS</a></td>
                 </tr>
                 <tr>
                     <td></td>

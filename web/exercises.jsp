@@ -272,7 +272,7 @@
                             <li><a href="groups.jsp">GROUPS</a></li>
                         </ul>
                     </li>		
-                    <li><a href="goal.jsp">LIFESTYLE</a>
+                    <li><a href="food.jsp">LIFESTYLE</a>
                         <ul>
                             <li><a href="food.jsp">FOODS</a></li>
                             <li><a href="exercises.jsp">EXERCISES</a></li>
@@ -303,9 +303,10 @@
                     <table id="adminRegTable">
                         <tr>
                             <td>Exercise Type</td>
-                            <td></td><td>
+                            <td></td>
+                            <td>
                                 <select name="type">
-                                    <option value ="cardio">Cardio</option>
+                                    <option value ="cardio">Cardiovascular</option>
                                     <option value ="weights">Weights</option>
                                 </select>
                             </td>
@@ -318,12 +319,12 @@
                         </tr>
                         <tr>
                             <td>Intensity</td>
-                            <td></td><td>
+                            <td></td>
+                            <td>
                                 <select name="intensity">
                                     <option value ="low">Low</option>
                                     <option value ="medium">Medium</option>
                                     <option value ="high">High</option>
-                                    <option value ="beast">Beeaasssttt</option>
                                 </select>
                             </td>
                         </tr>
@@ -331,20 +332,20 @@
                             <td>Duration(minutes)</td><td></td><td><input type="text" name="duration" required="" /></td>
                         </tr>
                         <tr>
-                            <td></td><td><input type="submit" name="exercise_submit" value="Submit"/></td><td></td>
+                            <td></td><td></td><td><input type="submit" name="exercise_submit" value="Submit"/></td>
                         </tr>
 
                     </table>
                 </form>
                 <form method="post" action="/SWE_GroupProject/ExerciseServlet">
-                    <input type="submit" name="view_exercise_history" value="Veiw Exercise history" />
+                    <input id="submit1" type="submit" name="view_exercise_history" value="Veiw Exercise History" />
                 </form>
                 <br />
                 <br />
                 <br />    
-                <p style="text-align: justify; padding-left:20px; padding-right:100px;">
-                    Below is your history of all the exercises you have undertaken
-                </p>
+                <h3>
+                    Below is your history of all the exercises you have undertaken.
+                </h3>
 
                 <div style="clear:both;"></div>  
                 <br />
@@ -357,16 +358,18 @@
             <br />   
             <table id = "footerTable">
                 <tr>
+                    <td><a href="index.jsp">HOME</a></td>
                     <td><a href="benefits.jsp">BENEFITS</a></td>
                     <td><a href="testimonials.jsp">TESTIMONIALS</a></td>	
                     <td><a href="aboutUs.jsp">ABOUT US</a></td>
                     <td><a href="messages.jsp">MESSAGES</a></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>	
-                    <td></td>
-                    <td></td>
+                    <td><a href="profile.jsp">PROFILE</a></td>		
+                    <td><a href="goal.jsp">GOALS</a></td>
+                    <td><a href="food.jsp">FOODS</a></td>
+                    <td><a href="exercises.jsp">EXERCISES</a></td>
+                    <td><a href="groups.jsp">GROUPS</a></td>
                 </tr>
                 <tr>
                     <td></td>

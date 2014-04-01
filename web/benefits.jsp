@@ -289,7 +289,7 @@
                             <li><a href="groups.jsp">GROUPS</a></li>
                         </ul>
                     </li>		
-                    <li><a href="goal.jsp">LIFESTYLE</a>
+                    <li><a href="food.jsp">LIFESTYLE</a>
                         <ul>
                             <li><a href="food.jsp">FOODS</a></li>
                             <li><a href="exercises.jsp">EXERCISES</a></li>
@@ -361,16 +361,18 @@
             <br />   
             <table id = "footerTable">
                 <tr>
+                    <td><a href="index.jsp">HOME</a></td>
                     <td><a href="benefits.jsp">BENEFITS</a></td>
                     <td><a href="testimonials.jsp">TESTIMONIALS</a></td>	
                     <td><a href="aboutUs.jsp">ABOUT US</a></td>
                     <td><a href="messages.jsp">MESSAGES</a></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>	
-                    <td></td>
-                    <td></td>
+                    <td><a href="profile.jsp">PROFILE</a></td>		
+                    <td><a href="goal.jsp">GOALS</a></td>
+                    <td><a href="food.jsp">FOODS</a></td>
+                    <td><a href="exercises.jsp">EXERCISES</a></td>
+                    <td><a href="groups.jsp">GROUPS</a></td>
                 </tr>
                 <tr>
                     <td></td>

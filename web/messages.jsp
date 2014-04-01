@@ -142,7 +142,7 @@
         } else if (memberBean.getAccessType().equals("admin")) {
             //Logged in as admin
             //newMessages = messageBean.getAllNewMessages(userBean.getUsername());
-        %>
+%>
         <div id ="header">
             <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
@@ -289,7 +289,7 @@
                             <li><a href="groups.jsp">GROUPS</a></li>
                         </ul>
                     </li>		
-                    <li><a href="goal.jsp">LIFESTYLE</a>
+                    <li><a href="food.jsp">LIFESTYLE</a>
                         <ul>
                             <li><a href="food.jsp">FOODS</a></li>
                             <li><a href="exercises.jsp">EXERCISES</a></li>
@@ -315,14 +315,14 @@
         <div id ="maindiv">
             <br /><br />
             <div>
-                <h1>Send messages to other users!</h1>
+                <h1>Send or Read Messages!</h1>
                 <form name="sendMessage" action="MessageServlet" method="post" id="sendMessage">
                     <p>Are you sending this message to an individual or a group?</p>
                     <p><input type="radio" name="messageFor" value="false" checked />Individual
                         <input type="radio" name="messageFor" value="true" />Group</p>
 
 
-                    <p>Recipient(s) Comma Separated </p>
+                    <p>Add Recipient(s) (Comma Separated) </p>
                     <p><textarea rows="1" cols="100" name="recipients" form="sendMessage"></textarea></p>
                     <p>Subject</p>
                     <p><textarea rows="1" cols="100" name="subject" form="sendMessage"></textarea></p>
@@ -331,15 +331,10 @@
                     <p><textarea rows="10" cols="100" name="messageDetail" form="sendMessage"></textarea></p>
                     <p><input type="submit" value="Send Message"/></p>
                 </form> 
-
-
-                <p style="text-align: justify; padding-left:10px; padding-right:10px;">
-                    Messages!
-                </p>
                 <div style="clear:both;"></div>  
                 <br />
                 <br />
-                <h1>You have <%=unReadMessages.size()%> unread messages!</h1>
+                <h3>You have <%=unReadMessages.size()%> unread messages!</h3>
                 <% if (unReadMessages.size() != 0) {
                 %><table id="adminTableOne">
                     <tr>
@@ -383,7 +378,7 @@
                 <% }%>
                 <br />
                 <br />
-                <h1>You have <%=readMessages.size()%> read messages!</h1>
+                <h3>You have <%=readMessages.size()%> read messages!</h3>
                 <% if (readMessages.size() != 0) {
                 %><table id="adminTableOne">
                     <tr>
@@ -434,16 +429,18 @@
             <br />   
             <table id = "footerTable">
                 <tr>
+                    <td><a href="index.jsp">HOME</a></td>
                     <td><a href="benefits.jsp">BENEFITS</a></td>
                     <td><a href="testimonials.jsp">TESTIMONIALS</a></td>	
                     <td><a href="aboutUs.jsp">ABOUT US</a></td>
                     <td><a href="messages.jsp">MESSAGES</a></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>	
-                    <td></td>
-                    <td></td>
+                    <td><a href="profile.jsp">PROFILE</a></td>		
+                    <td><a href="goal.jsp">GOALS</a></td>
+                    <td><a href="food.jsp">FOODS</a></td>
+                    <td><a href="exercises.jsp">EXERCISES</a></td>
+                    <td><a href="groups.jsp">GROUPS</a></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -461,6 +458,6 @@
             }
 //Logged in as admin
             //newMessages = messageBean.getAllNewMessages(userBean.getUsername());
-        %>
+%>
     </body>
 </html>

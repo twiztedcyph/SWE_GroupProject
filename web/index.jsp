@@ -372,7 +372,7 @@
                             <li><a href="groups.jsp">GROUPS</a></li>
                         </ul>
                     </li>		
-                    <li><a href="goal.jsp">LIFESTYLE</a>
+                    <li><a href="food.jsp">LIFESTYLE</a>
                         <ul>
                             <li><a href="food.jsp">FOODS</a></li>
                             <li><a href="exercises.jsp">EXERCISES</a></li>

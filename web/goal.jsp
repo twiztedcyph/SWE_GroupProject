@@ -57,7 +57,7 @@
         <div id="backImageLeft"></div>
         <div id="backImageRight"></div>
         <%
-    //Beans.MessageBean messageBean = new Beans.MessageBean();
+            //Beans.MessageBean messageBean = new Beans.MessageBean();
             //ArrayList<Beans.MessageBean> newMessages = new ArrayList();
             beans.MemberBean memberBean = (beans.MemberBean) session.getAttribute("userdetails");
             if (memberBean == null) {
@@ -156,7 +156,7 @@
         <jsp:useBean id="failedGoals" type="ArrayList<GoalBean>" scope="request" />
         <jsp:useBean id="inProgressGoals" type="ArrayList<GoalBean>" scope="request" />
         <jsp:useBean id="unRead" type="ArrayList<MessageDetailRecipients>" scope="session" />
-                <div id ="header">
+        <div id ="header">
             <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
                 Welcome back <%= memberBean.getUserName()%>!
@@ -178,7 +178,7 @@
                             <li><a href="groups.jsp">GROUPS</a></li>
                         </ul>
                     </li>		
-                    <li><a href="goal.jsp">LIFESTYLE</a>
+                    <li><a href="food.jsp">LIFESTYLE</a>
                         <ul>
                             <li><a href="food.jsp">FOODS</a></li>
                             <li><a href="exercises.jsp">EXERCISES</a></li>
@@ -205,7 +205,7 @@
         <div id ="maindiv">
             <br />
             <br />
-            <h1>Create A New Goal</h1>
+            <h1>Create or Edit Goals!</h1>
             <form method="post" name="GoalServlet" action="CreateGoalServlet" >
                 <table id="adminTableOne">
                     <tr>
@@ -375,16 +375,18 @@
             <br />   
             <table id = "footerTable">
                 <tr>
+                    <td><a href="index.jsp">HOME</a></td>
                     <td><a href="benefits.jsp">BENEFITS</a></td>
                     <td><a href="testimonials.jsp">TESTIMONIALS</a></td>	
                     <td><a href="aboutUs.jsp">ABOUT US</a></td>
                     <td><a href="messages.jsp">MESSAGES</a></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>	
-                    <td></td>
-                    <td></td>
+                    <td><a href="profile.jsp">PROFILE</a></td>		
+                    <td><a href="goal.jsp">GOALS</a></td>
+                    <td><a href="food.jsp">FOODS</a></td>
+                    <td><a href="exercises.jsp">EXERCISES</a></td>
+                    <td><a href="groups.jsp">GROUPS</a></td>
                 </tr>
                 <tr>
                     <td></td>
