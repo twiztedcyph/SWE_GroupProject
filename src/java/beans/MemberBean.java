@@ -106,6 +106,11 @@ public class MemberBean implements Serializable {
                 
     }
 
+    public void setID(int givenID)
+    {
+       this.id = givenID;
+    }
+    
     public int getId() {
         return id;
     }

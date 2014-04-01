@@ -1,5 +1,7 @@
 package controllers;
 
+import JoinedBeans.MessageDetailRecipients;
+import beans.GoalBean;
 import beans.MemberBean;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -7,6 +9,7 @@ import static java.lang.System.out;
 import java.util.Calendar;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -88,36 +91,47 @@ public class RegistrationServlet extends HttpServlet {
                 if(passwordOne.equals(passwordTwo))
                 {
                     //encryption settings.
-//                    misc.MakeSha makeSha = new misc.MakeSha();
-//                    misc.EncyptDecrypt encDec = new misc.EncyptDecrypt();
-//                    misc.KeyMaker km = new misc.KeyMaker();
-//                    byte[] keyByte = km.makeKeyDriver("testingtestingonetwothree");
-//                    SecretKeySpec sks = new SecretKeySpec(keyByte, "AES");
-//                    String encPass = encDec.encrypt(passwordOne, sks);
-//                    String strongPass = makeSha.makeHash(encPass);
+                    misc.MakeSha makeSha = new misc.MakeSha();
+                    misc.EncyptDecrypt encDec = new misc.EncyptDecrypt();
+                    misc.KeyMaker km = new misc.KeyMaker();
+                    byte[] keyByte = km.makeKeyDriver("testingtestingonetwothree");
+                    SecretKeySpec sks = new SecretKeySpec(keyByte, "AES");
+                    String encPass = encDec.encrypt(passwordOne, sks);
+                    String strongPass = makeSha.makeHash(encPass);
                     try
                     {
                         //Persist the information
-                        memberBean = new beans.MemberBean(username, passwordTwo, firstname, lastname, email, accessType, dateOfBirth);
-
+                        String encFName = encDec.encrypt(firstname, sks);
+                        String encSName = encDec.encrypt(lastname, sks);
+                        String encEmail = encDec.encrypt(email, sks);
+                        String encAT = encDec.encrypt(accessType, sks);
+                        
+                        memberBean = new beans.MemberBean(username, strongPass, encFName, encSName, encEmail, encAT, dateOfBirth);
                         memberBean.persist();
-
-                        if(memberBean.getAccessType().equals("user"))
+                        
+             
+                        if(accessType.equals("user"))
                         {
                             System.out.println("Persist success.");
                             session.setAttribute("msg", "Thank you for registering!");
-                            session.setAttribute("userdetails", memberBean);
-                            response.sendRedirect("index.jsp");
+                            request.setAttribute("username", username);
+                            request.setAttribute("password", passwordOne);
+  
+                            request.getRequestDispatcher("LogInServlet").forward(request,response);
+                            return;
                             
                         }else
                         {
                             System.out.println("Persist fail.");
+                            System.out.println(accessType);
                             response.sendRedirect("index.jsp");
+                            return;
                         }
                         //Exception handling
-                    } catch (SQLException ex)
+                    } catch (Exception ex)
                     {
                         //Send error message
+                        ex.printStackTrace();
                         session.setAttribute("msg", "There was an error entering your details. Please try again.");
                         response.sendRedirect(referer);
                     }
