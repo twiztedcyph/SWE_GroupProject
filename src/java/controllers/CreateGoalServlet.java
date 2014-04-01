@@ -89,7 +89,8 @@ public class CreateGoalServlet extends HttpServlet
 
                     //Then send to the view
                     session.removeAttribute("indexGoals");
-                    
+                    ArrayList<GoalBean> indexGoals = memberBean.getGoalsInProgress();
+                    session.setAttribute("indexGoals", indexGoals);
                     
                     request.getRequestDispatcher("ListGoalServlet").forward(request, response);
                 }
