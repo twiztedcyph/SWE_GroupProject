@@ -62,4 +62,39 @@ public class MessageRecipientsBean implements Serializable
             
             con.close();
     }
+  
+  public static void deleteMessage(int messageID, int userID) throws SQLException
+  {
+        DbConnect databaseConnection = new DbConnect();
+        Connection con = databaseConnection.getCon();
+           
+        PreparedStatement recipientsPS = con.prepareStatement("DELETE from message_recipients WHERE recipientid=?"
+                    + " AND messageid=?;");
+            
+            
+        recipientsPS.setInt(1, userID);
+        recipientsPS.setInt(2, messageID);
+            
+        recipientsPS.executeUpdate();
+
+         con.close();
+  }
+  
+  public static void readUnread(int messageID, int userID, boolean status) throws SQLException
+  {
+      DbConnect databaseConnection = new DbConnect();
+      Connection con = databaseConnection.getCon();
+           
+      PreparedStatement recipientsPS = con.prepareStatement("UPDATE message_recipients SET read =? WHERE recipientid=?"
+                    + " AND messageid=?;");
+            
+            recipientsPS.setBoolean(1, status);
+            recipientsPS.setInt(2, userID);
+            recipientsPS.setInt(3, messageID);
+               
+            
+      recipientsPS.executeUpdate();
+
+      con.close();
+  }
 }

@@ -123,10 +123,40 @@ public class MessageServlet extends HttpServlet
            else if(formType.equals("view"))
             {
                 int messageID = Integer.parseInt(request.getParameter("messageID"));
+                int userID = memberBean.getId();
+                MessageRecipientsBean.readUnread(messageID, userID, true);
                 MessageDetailsBean messageToView =  MessageDetailsBean.findByID(messageID);
                 request.setAttribute("messageToView", messageToView);
                 request.getRequestDispatcher("viewMessage.jsp").forward(request, response);
             }
+           else if(formType.equals("delete"))
+           {
+               int messageID = Integer.parseInt(request.getParameter("messageID"));
+               int userID = memberBean.getId();
+               MessageRecipientsBean.deleteMessage(messageID, userID);
+               session.setAttribute("msg", "Message Deleted.");
+               response.sendRedirect("messages.jsp");
+               return;
+           }
+           else if(formType.equals("read"))
+           {
+               int messageID = Integer.parseInt(request.getParameter("messageID"));
+               int userID = memberBean.getId();
+               MessageRecipientsBean.readUnread(messageID, userID, true);
+               response.sendRedirect("messages.jsp");
+               return;
+           }
+            else if(formType.equals("unread"))
+           {
+               int messageID = Integer.parseInt(request.getParameter("messageID"));
+               int userID = memberBean.getId();
+               MessageRecipientsBean.readUnread(messageID, userID, false);
+               session.removeAttribute("unRead");
+               ArrayList<MessageDetailRecipients> unRead = MessageDetailRecipients.getMyRead(memberBean.getId(), false);
+               session.setAttribute("unRead", unRead);
+               response.sendRedirect("messages.jsp");
+               return;
+           }
               
            
         }

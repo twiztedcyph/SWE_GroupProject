@@ -1,6 +1,7 @@
 
 package controllers;
 
+import JoinedBeans.MessageDetailRecipients;
 import beans.GoalBean;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -76,7 +77,9 @@ public class LogInServlet extends HttpServlet {
                                 System.out.println(session.getMaxInactiveInterval());
                                 logCount = 0;
                                 ArrayList<GoalBean> indexGoals = mb.getGoalsInProgress();
+                                ArrayList<MessageDetailRecipients> unRead = MessageDetailRecipients.getMyRead(mb.getId(), false);
                                 session.setAttribute("indexGoals", indexGoals);
+                                session.setAttribute("unRead", unRead);
  
                             }else
                             {

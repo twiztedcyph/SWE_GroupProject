@@ -305,11 +305,11 @@
                  <tr>
                      <td>Subject<input type="text" name="subject" value="Subject...."</td>   
                  </tr>
-                </form> 
+              
                 </table> 
                 <textarea rows="1" cols="100" name="recipients" form="sendMessage"></textarea> 
                 <textarea rows="25" cols="100" name="messageDetail" form="sendMessage"></textarea>
-                
+                 </form> 
                 
             
                 <p style="text-align: justify; padding-left:10px; padding-right:10px;">
@@ -346,12 +346,12 @@
                                 
                             <form action="MessageServlet" method="post">
                                 <input type="hidden" value="<%=tempMessage.getMessageID()%>" name="messageID" />
-                                <input type="hidden" value="Read" name="formType" />
+                                <input type="hidden" value="read" name="formType" />
                                 <input type="submit" value="Mark Read" />
                             </form>   
  
                             <form action="MessageServlet" method="post">
-                                <input type="hidden" value="<%=tempMessage.getSenderID() %>" name="goalID" />
+                                <input type="hidden" value="<%=tempMessage.getMessageID()%>" name="messageID" />
                                 <input type="hidden" value="delete" name="formType" />
                                 <input type="submit" value="Delete" />
                             </form>   
@@ -397,7 +397,7 @@
                             </form>   
  
                             <form action="MessageServlet" method="post">
-                                <input type="hidden" value="<%=tempMessage.getSenderID() %>" name="goalID" />
+                                <input type="hidden" value="<%=tempMessage.getMessageID()%>" name="messageID" />
                                 <input type="hidden" value="delete" name="formType" />
                                 <input type="submit" value="Delete" />
                             </form>   

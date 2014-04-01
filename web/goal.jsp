@@ -4,6 +4,7 @@
     Author     : Liam
 --%>
 
+<%@page import="JoinedBeans.MessageDetailRecipients"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="beans.GoalBean"%>
@@ -157,6 +158,7 @@
  <jsp:useBean id="completeGoals" type="ArrayList<GoalBean>" scope="request" />
  <jsp:useBean id="failedGoals" type="ArrayList<GoalBean>" scope="request" />
  <jsp:useBean id="inProgressGoals" type="ArrayList<GoalBean>" scope="request" />
+ <jsp:useBean id="unRead" type="ArrayList<MessageDetailRecipients>" scope="session" />
  <div id ="header">
             <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
@@ -167,6 +169,7 @@
                         <input type="submit" name="" value="Logout" />
                     </p>
                 </form>
+                <h2><a href="MessageServlet"><%=unRead.size()%> New Messages</a></h2>
             </div>
             <nav>
             <ul>
