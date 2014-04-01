@@ -76,20 +76,7 @@ public class MessageDetailRecipientsTest
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of setSenderID method, of class MessageDetailRecipients.
-     */
-    @Test
-    public void testSetSenderID()
-    {
-        System.out.println("setSenderID");
-        int senderID = 0;
-        MessageDetailRecipients instance = new MessageDetailRecipients();
-        instance.setSenderID(senderID);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
+    
     /**
      * Test of getText method, of class MessageDetailRecipients.
      */
@@ -105,20 +92,7 @@ public class MessageDetailRecipientsTest
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of setText method, of class MessageDetailRecipients.
-     */
-    @Test
-    public void testSetText()
-    {
-        System.out.println("setText");
-        String text = "";
-        MessageDetailRecipients instance = new MessageDetailRecipients();
-        instance.setText(text);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
+    
     /**
      * Test of getSendDate method, of class MessageDetailRecipients.
      */
@@ -130,20 +104,6 @@ public class MessageDetailRecipientsTest
         Date expResult = null;
         Date result = instance.getSendDate();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setSendDate method, of class MessageDetailRecipients.
-     */
-    @Test
-    public void testSetSendDate()
-    {
-        System.out.println("setSendDate");
-        Date sendDate = null;
-        MessageDetailRecipients instance = new MessageDetailRecipients();
-        instance.setSendDate(sendDate);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -164,20 +124,6 @@ public class MessageDetailRecipientsTest
     }
 
     /**
-     * Test of setSendTime method, of class MessageDetailRecipients.
-     */
-    @Test
-    public void testSetSendTime()
-    {
-        System.out.println("setSendTime");
-        Time sendTime = null;
-        MessageDetailRecipients instance = new MessageDetailRecipients();
-        instance.setSendTime(sendTime);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of isRead method, of class MessageDetailRecipients.
      */
     @Test
@@ -188,20 +134,6 @@ public class MessageDetailRecipientsTest
         boolean expResult = false;
         boolean result = instance.isRead();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setRead method, of class MessageDetailRecipients.
-     */
-    @Test
-    public void testSetRead()
-    {
-        System.out.println("setRead");
-        boolean read = false;
-        MessageDetailRecipients instance = new MessageDetailRecipients();
-        instance.setRead(read);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -220,48 +152,4 @@ public class MessageDetailRecipientsTest
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
-    /**
-     * Test of setSent method, of class MessageDetailRecipients.
-     */
-    @Test
-    public void testSetSent()
-    {
-        System.out.println("setSent");
-        boolean sent = false;
-        MessageDetailRecipients instance = new MessageDetailRecipients();
-        instance.setSent(sent);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of isIsGroup method, of class MessageDetailRecipients.
-     */
-    @Test
-    public void testIsIsGroup()
-    {
-        System.out.println("isIsGroup");
-        MessageDetailRecipients instance = new MessageDetailRecipients();
-        boolean expResult = false;
-        boolean result = instance.isIsGroup();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setIsGroup method, of class MessageDetailRecipients.
-     */
-    @Test
-    public void testSetIsGroup()
-    {
-        System.out.println("setIsGroup");
-        boolean isGroup = false;
-        MessageDetailRecipients instance = new MessageDetailRecipients();
-        instance.setIsGroup(isGroup);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
 }
