@@ -52,14 +52,13 @@ public class EncyptDecryptTest
     public void testEncrypt()
     {
         System.out.println("encrypt");
-        String input = "";
-        SecretKeySpec sks = null;
+        String input = "Hello how are you?";
+        KeyMaker km = new KeyMaker();
+        SecretKeySpec sks = new SecretKeySpec(km.makeKeyDriver("myPassword"), "AES");
         EncyptDecrypt instance = new EncyptDecrypt();
-        String expResult = "";
+        String expResult = "0fqylTncsgycZJQ+J5pS7v6/fj8M/fz4bavB/SnIBOQ=";
         String result = instance.encrypt(input, sks);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -69,14 +68,13 @@ public class EncyptDecryptTest
     public void testDecrypt()
     {
         System.out.println("decrypt");
-        String input = "";
-        SecretKeySpec sks = null;
+        String input = "0fqylTncsgycZJQ+J5pS7v6/fj8M/fz4bavB/SnIBOQ=";
+        KeyMaker km = new KeyMaker();
+        SecretKeySpec sks = new SecretKeySpec(km.makeKeyDriver("myPassword"), "AES");
         EncyptDecrypt instance = new EncyptDecrypt();
-        String expResult = "";
+        String expResult = "Hello how are you?";
         String result = instance.decrypt(input, sks);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

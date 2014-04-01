@@ -12,7 +12,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.servlet.ServletException;
 import misc.DbConnect;
 
 /**
@@ -60,22 +59,21 @@ public class GoalBean implements Serializable
     public static GoalBean findByID(int goalID) throws SQLException
     {
         DbConnect databaseConnection = new DbConnect();
-            Connection con = databaseConnection.getCon();
-
-        PreparedStatement ps = con.prepareStatement("Select * from goal where id = ?");
-        ps.setInt(1, goalID);
-
-        ResultSet rs = ps.executeQuery();
-  
-        rs.next();
-        GoalBean returnGoal = new GoalBean(rs);
-        
-        con.close();
+        GoalBean returnGoal;
+        try (Connection con = databaseConnection.getCon())
+        {
+            PreparedStatement ps = con.prepareStatement("Select * from goal where id = ?");
+            ps.setInt(1, goalID);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            returnGoal = new GoalBean(rs);
+        }
         
         return returnGoal;
         
     }
     
+    @Override
     public String toString()
     {
         String goalString = String.format("Submitted by: %s\n"

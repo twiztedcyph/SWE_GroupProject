@@ -47,34 +47,6 @@ public class MemberBeanTest
     }
 
     /**
-     * Test of persist method, of class MemberBean.
-     */
-    @Test
-    public void testPersist() throws Exception
-    {
-        System.out.println("persist");
-        MemberBean instance = new MemberBean();
-        instance.persist();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of retrieveOne method, of class MemberBean.
-     */
-    @Test
-    public void testRetrieveOne() throws Exception
-    {
-        System.out.println("retrieveOne");
-        String username = "";
-        MemberBean expResult = null;
-        MemberBean result = MemberBean.retrieveOne(username);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of getId method, of class MemberBean.
      */
     @Test
@@ -85,8 +57,6 @@ public class MemberBeanTest
         int expResult = 0;
         int result = instance.getId();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**

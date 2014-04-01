@@ -9,6 +9,7 @@ package misc;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -47,70 +48,53 @@ public class DbConnectTest
     {
     }
 
-    /**
-     * Test of runUpdate method, of class DbConnect.
-     */
-    @Test
-    public void testRunUpdate_String()
-    {
-        System.out.println("runUpdate");
-        String update = "";
-        DbConnect instance = new DbConnect();
-        boolean expResult = false;
-        boolean result = instance.runUpdate(update);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+//    /**
+//     * Test of runUpdate method, of class DbConnect.
+//     */
+//    @Test
+//    public void testRunUpdate_String()
+//    {
+//        System.out.println("runUpdate");
+//        String update = "";
+//        DbConnect instance = new DbConnect();
+//        boolean expResult = false;
+//        boolean result = instance.runUpdate(update);
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
 
-    /**
-     * Test of runUpdate method, of class DbConnect.
-     */
-    @Test
-    public void testRunUpdate_String_byteArr()
-    {
-        System.out.println("runUpdate");
-        String update = "";
-        byte[] image = null;
-        DbConnect instance = new DbConnect();
-        boolean expResult = false;
-        boolean result = instance.runUpdate(update, image);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+//    /**
+//     * Test of runQuery method, of class DbConnect.
+//     */
+//    @Test
+//    public void testRunQuery()
+//    {
+//        System.out.println("runQuery");
+//        String query = "";
+//        DbConnect instance = new DbConnect();
+//        ResultSet expResult = null;
+//        ResultSet result = instance.runQuery(query);
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
 
-    /**
-     * Test of runQuery method, of class DbConnect.
-     */
-    @Test
-    public void testRunQuery()
-    {
-        System.out.println("runQuery");
-        String query = "";
-        DbConnect instance = new DbConnect();
-        ResultSet expResult = null;
-        ResultSet result = instance.runQuery(query);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of runSecQuery method, of class DbConnect.
-     */
-    @Test
-    public void testRunSecQuery()
-    {
-        System.out.println("runSecQuery");
-        PreparedStatement updateStatement = null;
-        DbConnect instance = new DbConnect();
-        ResultSet expResult = null;
-        ResultSet result = instance.runSecQuery(updateStatement);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+//    /**
+//     * Test of runSecQuery method, of class DbConnect.
+//     */
+//    @Test
+//    public void testRunSecQuery()
+//    {
+//        System.out.println("runSecQuery");
+//        PreparedStatement updateStatement = null;
+//        DbConnect instance = new DbConnect();
+//        ResultSet expResult = null;
+//        ResultSet result = instance.runSecQuery(updateStatement);
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
 
     /**
      * Test of getCon method, of class DbConnect.
@@ -122,25 +106,29 @@ public class DbConnectTest
         DbConnect instance = new DbConnect();
         Connection expResult = null;
         Connection result = instance.getCon();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        try
+        {
+            assertTrue(result.isValid(0));
+        } catch (SQLException ex)
+        {
+            fail("An exception was thrown.");
+        }
     }
 
-    /**
-     * Test of runSecUpdate method, of class DbConnect.
-     */
-    @Test
-    public void testRunSecUpdate()
-    {
-        System.out.println("runSecUpdate");
-        String update = "";
-        DbConnect instance = new DbConnect();
-        boolean expResult = false;
-        boolean result = instance.runSecUpdate(update);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+//    /**
+//     * Test of runSecUpdate method, of class DbConnect.
+//     */
+//    @Test
+//    public void testRunSecUpdate()
+//    {
+//        System.out.println("runSecUpdate");
+//        String update = "";
+//        DbConnect instance = new DbConnect();
+//        boolean expResult = false;
+//        boolean result = instance.runSecUpdate(update);
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
     
 }

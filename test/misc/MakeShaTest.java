@@ -51,13 +51,12 @@ public class MakeShaTest
     public void testMakeHash()
     {
         System.out.println("makeHash");
-        String password = "";
+        String password = "myPassword";
         MakeSha instance = new MakeSha();
-        String expResult = "";
+        String expResult = "nHC0YIoHkMLAtRTGOIps6OGOhiATDMd7+/FO+nGNt/Gq3AAv2+dt3ldoTghCW7CQ1T4rpm/3wtuTpdXuz0wAMw==";
         String result = instance.makeHash(password);
+        System.out.println(result);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

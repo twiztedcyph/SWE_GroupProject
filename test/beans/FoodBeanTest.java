@@ -7,6 +7,7 @@
 package beans;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
 import org.junit.After;
@@ -325,12 +326,12 @@ public class FoodBeanTest
     public void testGetSaltPerHundredGrams()
     {
         System.out.println("getSaltPerHundredGrams");
-        FoodBean instance = new FoodBean();
-        double expResult = 0.0;
+        FoodBean instance = new FoodBean(5, "Beans on toast", 
+                Date.valueOf("2014-04-01"), Time.valueOf("10:00:00"), 
+                100, 120, 5, 7, 500, 0, 3);
+        double expResult = 3.0;
         double result = instance.getSaltPerHundredGrams();
         assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -340,11 +341,12 @@ public class FoodBeanTest
     public void testSetSaltPerHundredGrams()
     {
         System.out.println("setSaltPerHundredGrams");
-        double saltPerHundredGrams = 0.0;
-        FoodBean instance = new FoodBean();
+        double saltPerHundredGrams = 3.56;
+        FoodBean instance = new FoodBean(5, "Beans on toast", 
+                Date.valueOf("2014-04-01"), Time.valueOf("10:00:00"), 
+                100, 120, 5, 7, 500, 0, 3);
         instance.setSaltPerHundredGrams(saltPerHundredGrams);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(saltPerHundredGrams, instance.getSaltPerHundredGrams(), 0.0);
     }
 
     /**
@@ -354,12 +356,12 @@ public class FoodBeanTest
     public void testGetMemberId()
     {
         System.out.println("getMemberId");
-        FoodBean instance = new FoodBean();
-        int expResult = 0;
+        FoodBean instance = new FoodBean(5, "Beans on toast", 
+                Date.valueOf("2014-04-01"), Time.valueOf("10:00:00"), 
+                100, 120, 5, 7, 500, 0, 3);
+        int expResult = 5;
         int result = instance.getMemberId();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -369,11 +371,10 @@ public class FoodBeanTest
     public void testSetMemberId()
     {
         System.out.println("setMemberId");
-        int memberId = 0;
+        int memberId = 8;
         FoodBean instance = new FoodBean();
         instance.setMemberId(memberId);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(memberId, instance.getMemberId());
     }
     
     /**
@@ -382,11 +383,19 @@ public class FoodBeanTest
     @Test
     public void testPersist() throws Exception
     {
+        try
+        {
         System.out.println("persist");
-        FoodBean instance = new FoodBean();
+        FoodBean instance = new FoodBean(5, "Beans on toast", 
+                Date.valueOf("2014-04-01"), Time.valueOf("10:00:00"), 
+                100, 120, 5, 7, 500, 0, 3);
         instance.persist();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        }catch(SQLException e)
+        {
+            System.out.println(e);
+            fail("An exception was thrown.");
+        }
+        assertTrue(true);
     }
 
     /**
@@ -396,13 +405,11 @@ public class FoodBeanTest
     public void testGetFood() throws Exception
     {
         System.out.println("getFood");
-        int memberId = 0;
+        int memberId = 5;
         FoodBean instance = new FoodBean();
-        ArrayList<FoodBean> expResult = null;
         ArrayList<FoodBean> result = instance.getFood(memberId);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotNull(result);
+        assertTrue(!result.isEmpty());
     }
     
 }

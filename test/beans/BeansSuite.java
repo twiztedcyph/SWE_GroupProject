@@ -20,7 +20,17 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses(
 {
-    beans.GroupDetailsBeanTest.class, beans.MemberBeanTest.class, beans.GoalBeanTest.class, beans.LifeStyleBeanTest.class, beans.MessageDetailsBeanTest.class, beans.HealthyNormBeanTest.class, beans.MembersListBeanTest.class, beans.FoodBeanTest.class, beans.MessageRecipientsBeanTest.class, beans.HealthProfileBeanTest.class, beans.ExerciseBeanTest.class
+    beans.GroupDetailsBeanTest.class, 
+    beans.MemberBeanTest.class, 
+    beans.GoalBeanTest.class, 
+    beans.LifeStyleBeanTest.class, 
+    beans.MessageDetailsBeanTest.class, 
+    beans.HealthyNormBeanTest.class, 
+    beans.MembersListBeanTest.class, 
+    beans.FoodBeanTest.class, 
+    beans.MessageRecipientsBeanTest.class, 
+    beans.HealthProfileBeanTest.class, 
+    beans.ExerciseBeanTest.class
 })
 public class BeansSuite
 {

@@ -51,13 +51,10 @@ public class KeyMakerTest
     public void testMakeKeyDriver()
     {
         System.out.println("makeKeyDriver");
-        String key = "";
+        String key = "testing123";
         KeyMaker instance = new KeyMaker();
-        byte[] expResult = null;
+        byte[] expResult = {116,101,115,116,105,110,103,49,50,51,102,108,121,105,110,103};
         byte[] result = instance.makeKeyDriver(key);
         assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-    
 }

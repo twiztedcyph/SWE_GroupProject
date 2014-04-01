@@ -34,6 +34,15 @@ public class LifeStyleBean implements Serializable
         }
     }
 
+    public LifeStyleBean(String userOccupation, String[] userHobbies, int memberId)
+    {
+        this.userOccupation = userOccupation;
+        this.userHobbies = userHobbies;
+        this.memberId = memberId;
+    }
+
+    
+    
     public String getUserOccupation()
     {
         return userOccupation;

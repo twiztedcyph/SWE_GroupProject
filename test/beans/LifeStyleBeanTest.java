@@ -8,6 +8,7 @@ package beans;
 
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -51,12 +52,13 @@ public class LifeStyleBeanTest
     public void testGetUserOccupation()
     {
         System.out.println("getUserOccupation");
-        LifeStyleBean instance = new LifeStyleBean();
-        String expResult = "";
+        String occupation = "Doctor";
+        String[] hobbies = {"Reading", "Cooking"};
+        int id = 5;
+        LifeStyleBean instance = new LifeStyleBean(occupation, hobbies, id);
+        String expResult = "Doctor";
         String result = instance.getUserOccupation();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -66,11 +68,13 @@ public class LifeStyleBeanTest
     public void testSetUserOccupation()
     {
         System.out.println("setUserOccupation");
-        String userOccupation = "";
-        LifeStyleBean instance = new LifeStyleBean();
+        String userOccupation = "Nurse";
+        String occupation = "Doctor";
+        String[] hobbies = {"Reading", "Cooking"};
+        int id = 5;
+        LifeStyleBean instance = new LifeStyleBean(occupation, hobbies, id);
         instance.setUserOccupation(userOccupation);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(userOccupation, instance.getUserOccupation());
     }
 
     /**
@@ -80,12 +84,13 @@ public class LifeStyleBeanTest
     public void testGetUserHobbies()
     {
         System.out.println("getUserHobbies");
-        LifeStyleBean instance = new LifeStyleBean();
-        String[] expResult = null;
+        String occupation = "Doctor";
+        String[] hobbies = {"Reading", "Cooking"};
+        int id = 5;
+        LifeStyleBean instance = new LifeStyleBean(occupation, hobbies, id);
+        String[] expResult = {"Reading", "Cooking"};
         String[] result = instance.getUserHobbies();
         assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -95,11 +100,13 @@ public class LifeStyleBeanTest
     public void testSetUserHobbies()
     {
         System.out.println("setUserHobbies");
-        String[] userHobbies = null;
-        LifeStyleBean instance = new LifeStyleBean();
+        String[] userHobbies = {"Football", "Rugby"};
+        String occupation = "Doctor";
+        String[] hobbies = {"Reading", "Cooking"};
+        int id = 5;
+        LifeStyleBean instance = new LifeStyleBean(occupation, hobbies, id);
         instance.setUserHobbies(userHobbies);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Assert.assertArrayEquals(userHobbies, instance.getUserHobbies());
     }
 
     /**
@@ -109,7 +116,10 @@ public class LifeStyleBeanTest
     public void testGetMemberId()
     {
         System.out.println("getMemberId");
-        LifeStyleBean instance = new LifeStyleBean();
+        String occupation = "Doctor";
+        String[] hobbies = {"Reading", "Cooking"};
+        int id = 5;
+        LifeStyleBean instance = new LifeStyleBean(occupation, hobbies, id);
         int expResult = 0;
         int result = instance.getMemberId();
         assertEquals(expResult, result);
@@ -125,7 +135,10 @@ public class LifeStyleBeanTest
     {
         System.out.println("setMemberId");
         int memberId = 0;
-        LifeStyleBean instance = new LifeStyleBean();
+        String occupation = "Doctor";
+        String[] hobbies = {"Reading", "Cooking"};
+        int id = 5;
+        LifeStyleBean instance = new LifeStyleBean(occupation, hobbies, id);
         instance.setMemberId(memberId);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -139,7 +152,10 @@ public class LifeStyleBeanTest
     {
         System.out.println("getLifeStyle");
         int memberId = 0;
-        LifeStyleBean instance = new LifeStyleBean();
+        String occupation = "Doctor";
+        String[] hobbies = {"Reading", "Cooking"};
+        int id = 5;
+        LifeStyleBean instance = new LifeStyleBean(occupation, hobbies, id);
         LifeStyleBean expResult = null;
         LifeStyleBean result = instance.getLifeStyle(memberId);
         assertEquals(expResult, result);
@@ -154,7 +170,10 @@ public class LifeStyleBeanTest
     public void testPersist() throws Exception
     {
         System.out.println("persist");
-        LifeStyleBean instance = new LifeStyleBean();
+        String occupation = "Doctor";
+        String[] hobbies = {"Reading", "Cooking"};
+        int id = 5;
+        LifeStyleBean instance = new LifeStyleBean(occupation, hobbies, id);
         instance.persist();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
