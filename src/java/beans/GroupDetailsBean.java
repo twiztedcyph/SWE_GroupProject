@@ -22,6 +22,7 @@ public class GroupDetailsBean implements Serializable
     private String groupName;
     private String groupDescription;
     private int groupOwner;
+    private int groupId;
     
     public GroupDetailsBean(){}
 
@@ -35,6 +36,7 @@ public class GroupDetailsBean implements Serializable
     
     public GroupDetailsBean(ResultSet rs) throws SQLException
     {
+        this.groupId = rs.getInt("group_id");
         this.groupName = rs.getString("group_name");
         this.groupDescription = rs.getString("group_description");
         this.groupOwner = rs.getInt("group_owner");
@@ -78,10 +80,8 @@ public class GroupDetailsBean implements Serializable
         misc.DbConnect dbConnect = new misc.DbConnect();
         try (Connection myCon = dbConnect.getCon())
         {
-            PreparedStatement ps = myCon.prepareStatement("select "
-                    + "group_details.group_name, "
-                    + "group_details.group_description, "
-                    + "group_details.group_owner from group_details "
+            PreparedStatement ps = myCon.prepareStatement("select * from "
+                    + "group_details "
                     + "join group_member_list "
                     + "on group_details.group_id = group_member_list.group_id "
                     + "and group_member_list.member_id = ?;");
@@ -97,20 +97,13 @@ public class GroupDetailsBean implements Serializable
         return result;
     }
     
-    public ArrayList<GroupDetailsBean> getNonMemberGroups(int memberId) throws SQLException
+    public ArrayList<GroupDetailsBean> getAllGroups() throws SQLException
     {
         ArrayList<GroupDetailsBean> result = new ArrayList<>();
         misc.DbConnect dbConnect = new misc.DbConnect();
         try (Connection myCon = dbConnect.getCon())
         {
-            PreparedStatement ps = myCon.prepareStatement("select "
-                    + "group_details.group_name, "
-                    + "group_details.group_description, "
-                    + "group_details.group_owner from group_details "
-                    + "join group_member_list "
-                    + "on group_details.group_id = group_member_list.group_id "
-                    + "and group_member_list.member_id != ?;");
-            ps.setInt(1, memberId);
+            PreparedStatement ps = myCon.prepareStatement("Select * from group_details");
             
             ResultSet rs = ps.executeQuery();
             
@@ -120,5 +113,19 @@ public class GroupDetailsBean implements Serializable
             }
         }
         return result;
+    }
+    
+    public void persist() throws SQLException
+    {
+        misc.DbConnect dbConnect = new misc.DbConnect();
+
+        try (Connection myCon = dbConnect.getCon())
+        {
+            PreparedStatement ps = myCon.prepareStatement("Insert into group_details (group_name, group_description, group_owner) values (?, ?, ?)");
+            ps.setString(1, this.groupName);
+            ps.setString(2, this.groupDescription);
+            ps.setInt(3, this.groupOwner);
+            ps.executeUpdate();
+        }
     }
 }

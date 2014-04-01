@@ -72,7 +72,7 @@
                 = (ArrayList<beans.GroupDetailsBean>) 
                 request.getAttribute("groupmemberlist");
         
-        ArrayList<beans.GroupDetailsBean> groupNonMemberList 
+        ArrayList<beans.GroupDetailsBean> fullGroupList 
                 = (ArrayList<beans.GroupDetailsBean>) 
                 request.getAttribute("groupnonmemberlist");
         
@@ -120,14 +120,18 @@
             <div>
                 <h1>Hello <%= memberBean.getFirstName()%>, welcome back!</h1>
                 <br />
+<%
+            if(!groupMemberList.isEmpty())
+            {
+%>
                 <h3>
                     Groups you are a member of:
                 </h3>
                 
                 <table id="messageDisplay">
 <%
-            for(beans.GroupDetailsBean gdb : groupMemberList)
-            {
+                for(beans.GroupDetailsBean gdb : groupMemberList)
+                {
 %>
                     <tr>
                         <td> <%= gdb.getGroupName() %> </td>
@@ -140,34 +144,28 @@
                         </td>
                     </tr>
 <%
-            }
+                }
 %>
                 </table>
-                
-                <br />
-                <h3>
-                    Groups you are a not member of:
-                </h3>
-                
-                <table id="messageDisplay">
 <%
-            for(beans.GroupDetailsBean gtdb : groupNonMemberList)
+            }else
             {
 %>
-                    <tr>
-                        <td> <%= gtdb.getGroupName() %> </td>
-                        <td> <%= gtdb.getGroupDescription() %> </td>
-                        <td>
-                            <form method="post" action="/SWE_GroupProject/GroupServlet">
-                                <input type="hidden" name="joingroupname" value="<%= gtdb.getGroupName() %>" />
-                                <input type="submit" value="Join" />
-                            </form>
-                        </td>
-                    </tr>
+                You are not a member of any groups.
+                <br />
+                You can join or create a group below.
 <%
             }
 %>
-                </table>
+                <form method="post" action="/SWE_GroupProject/GroupServlet" id="newgroupform">
+                    <input type="hidden" name="creategroup" value="creategroup" />
+                    <br />Group name:
+                    <br /><input type="text" name="groupname" required />
+                    <br />Description:
+                    <br>
+                    <textarea rows="4" cols="50" name="groupdescription" form="newgroupform" required="">Enter text here...</textarea>
+                    <br /><input type="submit" value="Create a group" />
+                </form>
             </div>
             <br />
         </div>
