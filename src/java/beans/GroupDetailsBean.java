@@ -115,6 +115,19 @@ public class GroupDetailsBean implements Serializable
         return result;
     }
     
+    public GroupDetailsBean getOne(String groupName) throws SQLException
+    {
+        misc.DbConnect dbConnect = new misc.DbConnect();
+        try (Connection myCon = dbConnect.getCon())
+        {
+            PreparedStatement ps = myCon.prepareStatement("Select * from group_details");
+            
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return new GroupDetailsBean(rs);
+        }
+    }
+    
     public void persist() throws SQLException
     {
         misc.DbConnect dbConnect = new misc.DbConnect();
@@ -126,6 +139,15 @@ public class GroupDetailsBean implements Serializable
             ps.setString(2, this.groupDescription);
             ps.setInt(3, this.groupOwner);
             ps.executeUpdate();
+        }
+        
+        try(Connection myCon = dbConnect.getCon())
+        {
+            GroupDetailsBean gdb = this.getOne(this.groupName);
+            PreparedStatement psOne = myCon.prepareStatement("Insert into group_member_list (group_id, member_id) values (?, ?)");
+            psOne.setInt(1, gdb.groupId);
+            psOne.setInt(2, this.groupOwner);
+            psOne.executeUpdate();
         }
     }
 }

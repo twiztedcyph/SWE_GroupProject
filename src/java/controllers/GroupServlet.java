@@ -62,7 +62,7 @@ public class GroupServlet extends HttpServlet
                 String groupName = request.getParameter("groupname");
                 String groupDesc = request.getParameter("groupdescription");
                 beans.GroupDetailsBean gdb = new beans.GroupDetailsBean(groupName, groupDesc, memberBean.getId());
-                
+                gdb.persist();
                 
             }else
             {
@@ -72,8 +72,9 @@ public class GroupServlet extends HttpServlet
                 ArrayList<beans.GroupDetailsBean> fullGroupList = gdb.getAllGroups();
                 request.setAttribute("groupmemberlist", groupMemberList);
                 request.setAttribute("fullgrouplist", fullGroupList);
-                request.getRequestDispatcher("groups.jsp").forward(request, response);
+                
             }
+            request.getRequestDispatcher("groups.jsp").forward(request, response);
         }catch(SQLException e)
         {
             e.printStackTrace();
