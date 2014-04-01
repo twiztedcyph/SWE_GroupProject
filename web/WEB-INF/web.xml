@@ -16,6 +16,10 @@
         <servlet-name>foodServlet</servlet-name>
         <servlet-class>controllers.FoodServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MessageServlet</servlet-name>
+        <servlet-class>controllers.MessageServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProfileServlet</servlet-name>
         <url-pattern>/ProfileServlet</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>foodServlet</servlet-name>
         <url-pattern>/FoodServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MessageServlet</servlet-name>
+        <url-pattern>/MessageServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
