@@ -75,7 +75,8 @@ public class MemberBean implements Serializable {
         myCon.close();
     }
 
-    public MemberBean retrieveOne(String username) throws SQLException {
+    public static MemberBean retrieveOne(String username) throws SQLException
+    {
         misc.DbConnect dbConnect = new misc.DbConnect();
 
         PreparedStatement ps;

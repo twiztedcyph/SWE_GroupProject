@@ -9,6 +9,7 @@ package controllers;
 import beans.GoalBean;
 import java.io.IOException;
 import java.sql.Date;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -87,6 +88,10 @@ public class CreateGoalServlet extends HttpServlet
                     //Which is then persisted to the database
 
                     //Then send to the view
+                    session.removeAttribute("indexGoals");
+                    ArrayList<GoalBean> indexGoals = memberBean.getGoalsInProgress();
+                    session.setAttribute("indexGoals", indexGoals);
+                    
                     request.getRequestDispatcher("ListGoalServlet").forward(request, response);
                 }
             }

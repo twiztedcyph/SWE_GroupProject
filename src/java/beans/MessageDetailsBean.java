@@ -7,8 +7,13 @@
 package beans;
 
 import java.io.Serializable;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Time;
+import misc.DbConnect;
 
 /**
  *
@@ -16,70 +21,97 @@ import java.sql.Time;
  */
 public class MessageDetailsBean implements Serializable
 {
-    private String messageText, messageType;
-    private Date messageSendDate;
-    private Time messageSendTime;
-    private int messageSenderID, messageRecipientID;
+    private String text;
+    private Date sendDate;
+    private Time sendTime;
+    private int senderID;
+    int id;
     
     public MessageDetailsBean(){}
-
-    public String getMessageText()
+    
+    public MessageDetailsBean(int sender, String messageDetail)
     {
-        return messageText;
+        text = messageDetail;
+        senderID = sender;
     }
 
-    public void setMessageText(String messageText)
+    public MessageDetailsBean(ResultSet rs) throws SQLException
     {
-        this.messageText = messageText;
+      this.id = rs.getInt("id");
+      this.text = rs.getString("text");
+      this.sendDate = rs.getDate("send_date");
+      this.sendTime = rs.getTime("send_time");
+      this.senderID = rs.getInt("senderid");
     }
 
-    public String getMessageType()
+     public int persist() throws SQLException
     {
-        return messageType;
+       
+            DbConnect databaseConnection = new DbConnect();
+            Connection con = databaseConnection.getCon();
+       
+            PreparedStatement ps = con.prepareStatement("INSERT INTO message_details"
+                                   + "(text, senderid) VALUES(?,?) RETURNING id"); 
+            
+            ps.setString(1, text);
+            ps.setInt(2, senderID);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            
+            int newMessageID = rs.getInt("id");
+            
+            con.close();
+            
+            return newMessageID;
+    }
+    
+    public String getText()
+    {
+        return text;
     }
 
-    public void setMessageType(String messageType)
+    public void setText(String text)
     {
-        this.messageType = messageType;
+        this.text = text;
     }
 
-    public Date getMessageSendDate()
+    public Date getSendDate()
     {
-        return messageSendDate;
+        return sendDate;
     }
 
-    public void setMessageSendDate(Date messageSendDate)
+    public void setSendDate(Date sendDate)
     {
-        this.messageSendDate = messageSendDate;
+        this.sendDate = sendDate;
     }
 
-    public Time getMessageSendTime()
+    public Time getSendTime()
     {
-        return messageSendTime;
+        return sendTime;
     }
 
-    public void setMessageSendTime(Time messageSendTime)
+    public void setSendTime(Time sendTime)
     {
-        this.messageSendTime = messageSendTime;
+        this.sendTime = sendTime;
     }
 
-    public int getMessageSenderID()
+    public int getSenderID()
     {
-        return messageSenderID;
+        return senderID;
     }
 
-    public void setMessageSenderID(int messageSenderID)
+    public void setSenderID(int senderID)
     {
-        this.messageSenderID = messageSenderID;
+        this.senderID = senderID;
     }
 
-    public int getMessageRecipientID()
+    public int getId()
     {
-        return messageRecipientID;
+        return id;
     }
 
-    public void setMessageRecipientID(int messageRecipientID)
+    public void setId(int id)
     {
-        this.messageRecipientID = messageRecipientID;
+        this.id = id;
     }
 }

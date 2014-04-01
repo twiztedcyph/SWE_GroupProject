@@ -1,4 +1,6 @@
 
+<%@page import="JoinedBeans.MessageDetailRecipients"%>
+<%@page import="java.util.ArrayList"%>
 <!--<%@page contentType="text/html" pageEncoding="UTF-8"%>-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -177,11 +179,11 @@
             <div>
                 <h1>Hello <%= memberBean.getFirstName()%>! (ADMIN)</h1>
                 
-                <p style="text-align: justify; padding-left:10px; padding-right:10px;">
+                <p>
                     Messages!
                 </p>
 
-                <p style="text-align: justify; padding-left:20px; padding-right:100px;">
+                <p>
                     Send messages to other users.
                     
                     Manage other users messages.
@@ -224,6 +226,16 @@
                  <%
     }else if (memberBean.getAccessType().equals("user"))
     {
+        if(request.getAttribute("unReadMessages") == null) 
+              {
+                  System.out.println("Message lists are null");
+                  System.out.println("Redirecting.............");
+                  request.getRequestDispatcher("MessageServlet").forward(request, response);
+              }
+        else
+        {
+            System.out.println("Messages are not null.");
+        }
         //Logged in as a regular user
         //newMessages = messageBean.getAllNewMessages(userBean.getUsername());
         String message = (String) session.getAttribute("msg");
@@ -235,6 +247,8 @@
             session.removeAttribute("msg");
         }
 %>
+        <jsp:useBean id="unReadMessages" type="ArrayList<MessageDetailRecipients>" scope="request" />
+        <jsp:useBean id="readMessages" type="ArrayList<MessageDetailRecipients>" scope="request" />
         <div id ="header">
             <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
@@ -268,19 +282,110 @@
         <div id ="maindiv">
             <br /><br />
             <div>
-                <h1>Hello <%= memberBean.getFirstName()%>, welcome back!</h1>
+                <h1>Send messages to other users!</h1>
+                <table>
+                <form name="sendMessage" action="MessageServlet" method="post" id="sendMessage">
+                    <tr>
+                        <p>Are you sending this message to an individual or a group?</p>
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                             <input type="radio" name="messageFor" value="false" checked />Individual
+                             <input type="radio" name="messageFor" value="true" />Group
+                        </td>
+                </tr>
+                <tr>
+                    <td>Recipient(s) Comma Separated
+                        <input type="hidden" name="sender" value="<%= memberBean.getId()%>" />
+                        <input type="hidden" value="send" name="formType" />
+                    </td>
+                        <td><input type="submit" value="Send Message"/></td>
+                </tr>       
+                </form> 
+                </table> 
+                <textarea rows="1" cols="100" name="recipients" form="sendMessage"></textarea> 
+                <textarea rows="25" cols="100" name="messageDetail" form="sendMessage"></textarea>
                 
+                
+            
                 <p style="text-align: justify; padding-left:10px; padding-right:10px;">
                     Messages!
                 </p>
-
-                <p style="text-align: justify; padding-left:20px; padding-right:100px;">
-                    Send messages to other users!
-                </p>
-                
                 <div style="clear:both;"></div>  
                 <br />
-
+                <br />
+                <h1>You have <%=unReadMessages.size() %> unread messages!</h1>
+            <% if (unReadMessages.size() != 0)
+            {
+                %><table id="adminTableOne">
+                    <%
+                for(int i = 0; i < unReadMessages.size(); i++)
+                { 
+                    MessageDetailRecipients tempMessage = new MessageDetailRecipients(); 
+                    tempMessage = unReadMessages.get(i);
+                    %>
+                    <tr id="goalInProgress">
+                        <td><%= tempMessage.getSendDate() %></td>
+                        <td><%= tempMessage.getSendTime() %></td>
+                        <td><%= tempMessage.getSenderID() %></td>
+                        <td><%= tempMessage.getText() %>
+                        <td>
+                            <form action="CreateGoalServlet" method="post">
+                                <input type="hidden" value="<%=tempMessage.getSenderID() %>" name="messageID" />
+                                <input type="hidden" value="delete" name="formType" />
+                                <input type="submit" value="Delete Message" />
+                            </form>   
+                        </td>
+                         <td>
+                            <form action="CreateGoalServlet" method="post">
+                                <input type="hidden" value="<%=tempMessage.getSenderID() %>" name="goalID" />
+                                <input type="hidden" value="read" name="formType" />
+                                <input type="submit" value="Mark as Read" />
+                            </form>   
+                        </td>
+                    </tr>
+                <% } %>
+                </table>
+                <br />
+                <br />
+                <% } %>
+                <br />
+                <br />
+                <h1>Your have <%=readMessages.size() %> unread messages!</h1>
+            <% if (readMessages.size() != 0)
+            {
+                %><table id="adminTableOne">
+                    <%
+                for(int i = 0; i < readMessages.size(); i++)
+                { 
+                    MessageDetailRecipients tempMessage = new MessageDetailRecipients(); 
+                    tempMessage = readMessages.get(i);
+                    %>
+                    <tr id="goalFailed">
+                        <td><%= tempMessage.getSendDate() %> <%= tempMessage.getSendTime() %></td>
+                        <td><%= tempMessage.getSenderID() %></td>
+                        <td><%= tempMessage.getText() %>
+                        <td>
+                            <form action="CreateGoalServlet" method="post">
+                                <input type="hidden" value="<%=tempMessage.getSenderID() %>" name="messageID" />
+                                <input type="hidden" value="delete" name="formType" />
+                                <input type="submit" value="Delete Message" />
+                            </form>   
+                        </td>
+                         <td>
+                            <form action="CreateGoalServlet" method="post">
+                                <input type="hidden" value="<%=tempMessage.getSenderID() %>" name="goalID" />
+                                <input type="hidden" value="read" name="formType" />
+                                <input type="submit" value="Mark as unread" />
+                            </form>   
+                        </td>
+                    </tr>
+                <% } %>
+                </table>
+                <br />
+                <br />
+                <% } %>
             </div>
             <br />
         </div>
