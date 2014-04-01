@@ -54,12 +54,12 @@ public class FoodBeanTest
     public void testGetFoodName()
     {
         System.out.println("getFoodName");
-        FoodBean instance = new FoodBean();
-        String expResult = "";
+        FoodBean instance = new FoodBean(5, "Beans on toast", 
+                Date.valueOf("2014-04-01"), Time.valueOf("10:00:00"), 
+                100, 120, 5, 7, 500, 0, 3);
+        String expResult = "Beans on toast";
         String result = instance.getFoodName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -69,11 +69,12 @@ public class FoodBeanTest
     public void testSetFoodName()
     {
         System.out.println("setFoodName");
-        String foodName = "";
-        FoodBean instance = new FoodBean();
+        String foodName = "Mac and cheese";
+        FoodBean instance = new FoodBean(5, "Beans on toast", 
+                Date.valueOf("2014-04-01"), Time.valueOf("10:00:00"), 
+                100, 120, 5, 7, 500, 0, 3);
         instance.setFoodName(foodName);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(foodName, instance.getFoodName());
     }
 
     /**
@@ -83,12 +84,13 @@ public class FoodBeanTest
     public void testGetDateEaten()
     {
         System.out.println("getDateEaten");
-        FoodBean instance = new FoodBean();
-        Date expResult = null;
+        FoodBean instance = new FoodBean(5, "Beans on toast", 
+                Date.valueOf("2014-04-01"), Time.valueOf("10:00:00"), 
+                100, 120, 5, 7, 500, 0, 3);
+        Date expResult = Date.valueOf("2014-04-01");
         Date result = instance.getDateEaten();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -98,11 +100,12 @@ public class FoodBeanTest
     public void testSetDateEaten()
     {
         System.out.println("setDateEaten");
-        Date dateEaten = null;
-        FoodBean instance = new FoodBean();
+        Date dateEaten = Date.valueOf("1982-04-08");
+        FoodBean instance = new FoodBean(5, "Beans on toast", 
+                Date.valueOf("2014-04-01"), Time.valueOf("10:00:00"), 
+                100, 120, 5, 7, 500, 0, 3);
         instance.setDateEaten(dateEaten);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(dateEaten, instance.getDateEaten());
     }
 
     /**
@@ -112,12 +115,12 @@ public class FoodBeanTest
     public void testGetTimeEaten()
     {
         System.out.println("getTimeEaten");
-        FoodBean instance = new FoodBean();
-        Time expResult = null;
+        FoodBean instance = new FoodBean(5, "Beans on toast", 
+                Date.valueOf("2014-04-01"), Time.valueOf("10:00:00"), 
+                100, 120, 5, 7, 500, 0, 3);
+        Time expResult = Time.valueOf("10:00:00");
         Time result = instance.getTimeEaten();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -127,11 +130,12 @@ public class FoodBeanTest
     public void testSetTimeEaten()
     {
         System.out.println("setTimeEaten");
-        Time timeEaten = null;
-        FoodBean instance = new FoodBean();
+        Time timeEaten = Time.valueOf("12:34:56");
+        FoodBean instance = new FoodBean(5, "Beans on toast", 
+                Date.valueOf("2014-04-01"), Time.valueOf("10:00:00"), 
+                100, 120, 5, 7, 500, 0, 3);
         instance.setTimeEaten(timeEaten);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(timeEaten, instance.getTimeEaten());
     }
 
     /**
@@ -141,12 +145,12 @@ public class FoodBeanTest
     public void testGetProteinPerHundredGrams()
     {
         System.out.println("getProteinPerHundredGrams");
-        FoodBean instance = new FoodBean();
-        double expResult = 0.0;
+        FoodBean instance = new FoodBean(5, "Beans on toast", 
+                Date.valueOf("2014-04-01"), Time.valueOf("10:00:00"), 
+                100, 120, 5, 7, 500, 0, 3);
+        double expResult = 100;
         double result = instance.getProteinPerHundredGrams();
         assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -156,11 +160,12 @@ public class FoodBeanTest
     public void testSetProteinPerHundredGrams()
     {
         System.out.println("setProteinPerHundredGrams");
-        double proteinPerHundredGrams = 0.0;
-        FoodBean instance = new FoodBean();
+        double proteinPerHundredGrams = 123.0;
+        FoodBean instance = new FoodBean(5, "Beans on toast", 
+                Date.valueOf("2014-04-01"), Time.valueOf("10:00:00"), 
+                100, 120, 5, 7, 500, 0, 3);
         instance.setProteinPerHundredGrams(proteinPerHundredGrams);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(proteinPerHundredGrams, instance.getProteinPerHundredGrams(), 0.0);
     }
 
     /**
@@ -170,12 +175,12 @@ public class FoodBeanTest
     public void testGetCarbsPerHundredGrams()
     {
         System.out.println("getCarbsPerHundredGrams");
-        FoodBean instance = new FoodBean();
-        double expResult = 0.0;
+        FoodBean instance = new FoodBean(5, "Beans on toast", 
+                Date.valueOf("2014-04-01"), Time.valueOf("10:00:00"), 
+                100, 120, 5, 7, 500, 0, 3);
+        double expResult = 120.0;
         double result = instance.getCarbsPerHundredGrams();
         assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -185,11 +190,12 @@ public class FoodBeanTest
     public void testSetCarbsPerHundredGrams()
     {
         System.out.println("setCarbsPerHundredGrams");
-        double carbsPerHundredGrams = 0.0;
-        FoodBean instance = new FoodBean();
+        double carbsPerHundredGrams = 1256.0;
+        FoodBean instance = new FoodBean(5, "Beans on toast", 
+                Date.valueOf("2014-04-01"), Time.valueOf("10:00:00"), 
+                100, 120, 5, 7, 500, 0, 3);
         instance.setCarbsPerHundredGrams(carbsPerHundredGrams);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(carbsPerHundredGrams, instance.getCarbsPerHundredGrams(), 0.0);
     }
 
     /**
@@ -199,12 +205,12 @@ public class FoodBeanTest
     public void testGetNonSatFatPerHundredGrams()
     {
         System.out.println("getNonSatFatPerHundredGrams");
-        FoodBean instance = new FoodBean();
-        double expResult = 0.0;
+        FoodBean instance = new FoodBean(5, "Beans on toast", 
+                Date.valueOf("2014-04-01"), Time.valueOf("10:00:00"), 
+                100, 120, 5, 7, 500, 0, 3);
+        double expResult = 5.0;
         double result = instance.getNonSatFatPerHundredGrams();
         assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -214,11 +220,12 @@ public class FoodBeanTest
     public void testSetNonSatFatPerHundredGrams()
     {
         System.out.println("setNonSatFatPerHundredGrams");
-        double NonSatFatPerHundredGrams = 0.0;
-        FoodBean instance = new FoodBean();
-        instance.setNonSatFatPerHundredGrams(NonSatFatPerHundredGrams);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        double nonSatFatPerHundredGrams = 12.0;
+        FoodBean instance = new FoodBean(5, "Beans on toast", 
+                Date.valueOf("2014-04-01"), Time.valueOf("10:00:00"), 
+                100, 120, 5, 7, 500, 0, 3);
+        instance.setNonSatFatPerHundredGrams(nonSatFatPerHundredGrams);
+        assertEquals(nonSatFatPerHundredGrams, instance.getNonSatFatPerHundredGrams(), 0.0);
     }
 
     /**
@@ -228,12 +235,12 @@ public class FoodBeanTest
     public void testGetSatFatPerHundredGrams()
     {
         System.out.println("getSatFatPerHundredGrams");
-        FoodBean instance = new FoodBean();
-        double expResult = 0.0;
+        FoodBean instance = new FoodBean(5, "Beans on toast", 
+                Date.valueOf("2014-04-01"), Time.valueOf("10:00:00"), 
+                100, 120, 5, 7, 500, 0, 3);
+        double expResult = 7.0;
         double result = instance.getSatFatPerHundredGrams();
         assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -243,11 +250,12 @@ public class FoodBeanTest
     public void testSetSatFatPerHundredGrams()
     {
         System.out.println("setSatFatPerHundredGrams");
-        double satFatPerHundredGrams = 0.0;
-        FoodBean instance = new FoodBean();
+        double satFatPerHundredGrams = 3.2;
+        FoodBean instance = new FoodBean(5, "Beans on toast", 
+                Date.valueOf("2014-04-01"), Time.valueOf("10:00:00"), 
+                100, 120, 5, 7, 500, 0, 3);
         instance.setSatFatPerHundredGrams(satFatPerHundredGrams);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(satFatPerHundredGrams, instance.getSatFatPerHundredGrams(), 0.0);
     }
 
     /**
@@ -257,12 +265,12 @@ public class FoodBeanTest
     public void testGetKiloCalPerHundredGrams()
     {
         System.out.println("getKiloCalPerHundredGrams");
-        FoodBean instance = new FoodBean();
-        double expResult = 0.0;
+        FoodBean instance = new FoodBean(5, "Beans on toast", 
+                Date.valueOf("2014-04-01"), Time.valueOf("10:00:00"), 
+                100, 120, 5, 7, 500, 0, 3);
+        double expResult = 500.0;
         double result = instance.getKiloCalPerHundredGrams();
         assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -272,11 +280,12 @@ public class FoodBeanTest
     public void testSetKiloCalPerHundredGrams()
     {
         System.out.println("setKiloCalPerHundredGrams");
-        double kiloCalPerHundredGrams = 0.0;
-        FoodBean instance = new FoodBean();
+        double kiloCalPerHundredGrams = 432.0;
+        FoodBean instance = new FoodBean(5, "Beans on toast", 
+                Date.valueOf("2014-04-01"), Time.valueOf("10:00:00"), 
+                100, 120, 5, 7, 500, 0, 3);
         instance.setKiloCalPerHundredGrams(kiloCalPerHundredGrams);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(kiloCalPerHundredGrams, instance.getKiloCalPerHundredGrams(), 0.0);
     }
 
     /**
@@ -286,12 +295,12 @@ public class FoodBeanTest
     public void testGetSugarPerHundredGrams()
     {
         System.out.println("getSugarPerHundredGrams");
-        FoodBean instance = new FoodBean();
+        FoodBean instance = new FoodBean(5, "Beans on toast", 
+                Date.valueOf("2014-04-01"), Time.valueOf("10:00:00"), 
+                100, 120, 5, 7, 500, 0, 3);
         double expResult = 0.0;
         double result = instance.getSugarPerHundredGrams();
         assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -301,11 +310,12 @@ public class FoodBeanTest
     public void testSetSugarPerHundredGrams()
     {
         System.out.println("setSugarPerHundredGrams");
-        double sugarPerHundredGrams = 0.0;
-        FoodBean instance = new FoodBean();
+        double sugarPerHundredGrams = 2.3;
+        FoodBean instance = new FoodBean(5, "Beans on toast", 
+                Date.valueOf("2014-04-01"), Time.valueOf("10:00:00"), 
+                100, 120, 5, 7, 500, 0, 3);
         instance.setSugarPerHundredGrams(sugarPerHundredGrams);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(sugarPerHundredGrams, instance.getSugarPerHundredGrams(), 0.0);
     }
 
     /**
@@ -365,22 +375,7 @@ public class FoodBeanTest
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
-    /**
-     * Test of toString method, of class FoodBean.
-     */
-    @Test
-    public void testToString()
-    {
-        System.out.println("toString");
-        FoodBean instance = new FoodBean();
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
+    
     /**
      * Test of persist method, of class FoodBean.
      */

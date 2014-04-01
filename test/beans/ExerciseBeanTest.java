@@ -206,21 +206,7 @@ public class ExerciseBeanTest
         double exerciseDuration = 234;
         ExerciseBean instance = new ExerciseBean("Pushups", "low", Date.valueOf("2014-04-01"), Time.valueOf("10:00:00"), 10, 5);
         instance.setExerciseDuration(exerciseDuration);
-        assertEquals(exerciseDuration, instance.getExerciseDuration(), 0.001);
-    }
-
-    /**
-     * Test of deleteExercise method, of class ExerciseBean.
-     */
-    @Test
-    public void testDeleteExercise() throws Exception
-    {
-        System.out.println("deleteExercise");
-        int exerciseID = 0;
-        int userID = 0;
-        ExerciseBean.deleteExercise(exerciseID, userID);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(exerciseDuration, instance.getExerciseDuration(), 0.0);
     }
 
     /**
@@ -230,11 +216,11 @@ public class ExerciseBeanTest
     public void testGetExercise() throws Exception
     {
         System.out.println("getExercise");
-        int memberId = 0;
+        int memberId = 5;
         ExerciseBean instance = new ExerciseBean();
         ArrayList<ExerciseBean> result = instance.getExercise(memberId);
         assertNotNull(result);
-        //assertTrue(result.size() > 0);
+        assertTrue(result.size() > 0);
     }
     
 }

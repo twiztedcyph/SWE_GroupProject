@@ -26,7 +26,7 @@ public class FoodBean implements Serializable
     private Date dateEaten;
     private Time timeEaten;
     private double proteinPerHundredGrams, carbsPerHundredGrams, 
-            NonSatFatPerHundredGrams, satFatPerHundredGrams, 
+            nonSatFatPerHundredGrams, satFatPerHundredGrams, 
             kiloCalPerHundredGrams, sugarPerHundredGrams, 
             saltPerHundredGrams;
     
@@ -44,7 +44,7 @@ public class FoodBean implements Serializable
         this.timeEaten = timeEaten;
         this.proteinPerHundredGrams = proteinPerHundredGrams;
         this.carbsPerHundredGrams = carbsPerHundredGrams;
-        this.NonSatFatPerHundredGrams = NonSatFatPerHundredGrams;
+        this.nonSatFatPerHundredGrams = NonSatFatPerHundredGrams;
         this.satFatPerHundredGrams = satFatPerHundredGrams;
         this.kiloCalPerHundredGrams = kiloCalPerHundredGrams;
         this.sugarPerHundredGrams = sugarPerHundredGrams;
@@ -59,7 +59,7 @@ public class FoodBean implements Serializable
         this.timeEaten = rs.getTime("timeeaten");
         this.proteinPerHundredGrams = rs.getDouble("protein");
         this.carbsPerHundredGrams = rs.getDouble("carbohydrate");
-        this.NonSatFatPerHundredGrams = rs.getDouble("unsatfat");
+        this.nonSatFatPerHundredGrams = rs.getDouble("unsatfat");
         this.satFatPerHundredGrams = rs.getDouble("satfat");
         this.kiloCalPerHundredGrams = rs.getDouble("sugar");
         this.sugarPerHundredGrams = rs.getDouble("salt");
@@ -119,12 +119,12 @@ public class FoodBean implements Serializable
     
     public double getNonSatFatPerHundredGrams()
     {
-        return NonSatFatPerHundredGrams;
+        return nonSatFatPerHundredGrams;
     }
     
     public void setNonSatFatPerHundredGrams(double NonSatFatPerHundredGrams)
     {
-        this.NonSatFatPerHundredGrams = NonSatFatPerHundredGrams;
+        this.nonSatFatPerHundredGrams = NonSatFatPerHundredGrams;
     }
     
     public double getSatFatPerHundredGrams()
@@ -186,7 +186,7 @@ public class FoodBean implements Serializable
                 + "\\nTime eaten = " + timeEaten 
                 + "\\nProtein = " + proteinPerHundredGrams 
                 + "\\nCarbohydrates = " + carbsPerHundredGrams 
-                + "\\nNon saturating fat = " + NonSatFatPerHundredGrams 
+                + "\\nNon saturating fat = " + nonSatFatPerHundredGrams 
                 + "\\nSaturating fat = " + satFatPerHundredGrams 
                 + "\\nKilo Calories = " + kiloCalPerHundredGrams 
                 + "\\nSugar = " + sugarPerHundredGrams 
@@ -208,11 +208,11 @@ public class FoodBean implements Serializable
             ps.setTime(3, timeEaten);
             ps.setDouble(4, proteinPerHundredGrams);
             ps.setDouble(5, carbsPerHundredGrams);
-            ps.setDouble(6, NonSatFatPerHundredGrams);
+            ps.setDouble(6, nonSatFatPerHundredGrams);
             ps.setDouble(7, satFatPerHundredGrams);
             ps.setDouble(8, sugarPerHundredGrams);
             ps.setDouble(9, saltPerHundredGrams);
-            ps.setDouble(10, NonSatFatPerHundredGrams);
+            ps.setDouble(10, nonSatFatPerHundredGrams);
             ps.setInt(11, memberId);
             ps.executeUpdate();
         }
