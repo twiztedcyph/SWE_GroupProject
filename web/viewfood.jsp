@@ -47,15 +47,13 @@
         ArrayList<beans.FoodBean> foodList = (ArrayList<beans.FoodBean>) session.getAttribute("foodlist");
         if(foodList == null)
         {
-            System.out.println("Before request");
             request.getRequestDispatcher("FoodServlet").forward(request, response);
-            System.out.println("After request");
         }
         String message = (String) session.getAttribute("msg");
         if (message != null)
         {
 %>
-            <script>showMsg('<%= message%>');</script>
+            <script>showMsg('<%= message %>');</script>
 <%
             session.removeAttribute("msg");
             
