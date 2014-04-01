@@ -195,7 +195,7 @@ public class FoodBean implements Serializable
     
     public void persist() throws SQLException
     {
-         misc.DbConnect dbConnect = new misc.DbConnect();
+        misc.DbConnect dbConnect = new misc.DbConnect();
 
         try (Connection myCon = dbConnect.getCon())
         {

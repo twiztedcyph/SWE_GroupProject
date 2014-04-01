@@ -43,8 +43,11 @@ public class GroupServlet extends HttpServlet
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter())
         {
+            HttpSession session = request.getSession();
+            beans.MemberBean memberBean = (beans.MemberBean) session.getAttribute("userdetails");
             String viewGroup = request.getParameter("viewgroupname");
             String joinGroup = request.getParameter("joingroupname");
+            String makeGroup = request.getParameter("creategroup");
             if(viewGroup != null)
             {
                 System.out.println(viewGroup);
@@ -54,15 +57,21 @@ public class GroupServlet extends HttpServlet
             {
                 System.out.println(joinGroup);
                 System.out.println("JOIN CORRECT!!");
-            } else
+            } else if(makeGroup != null)
             {
-                HttpSession session = request.getSession();
-                beans.MemberBean memberBean = (beans.MemberBean) session.getAttribute("userdetails");
+                String groupName = request.getParameter("groupname");
+                String groupDesc = request.getParameter("groupdescription");
+                beans.GroupDetailsBean gdb = new beans.GroupDetailsBean(groupName, groupDesc, memberBean.getId());
+                
+                
+            }else
+            {
+                
                 beans.GroupDetailsBean gdb = new beans.GroupDetailsBean();
                 ArrayList<beans.GroupDetailsBean> groupMemberList = gdb.getMemberGroups(memberBean.getId());
-                ArrayList<beans.GroupDetailsBean> groupNonMemberList = gdb.getNonMemberGroups(memberBean.getId());
+                ArrayList<beans.GroupDetailsBean> fullGroupList = gdb.getAllGroups();
                 request.setAttribute("groupmemberlist", groupMemberList);
-                request.setAttribute("groupnonmemberlist", groupNonMemberList);
+                request.setAttribute("fullgrouplist", fullGroupList);
                 request.getRequestDispatcher("groups.jsp").forward(request, response);
             }
         }catch(SQLException e)

@@ -154,9 +154,6 @@ public class ExerciseBean implements Serializable
 
         PreparedStatement ps = myCon.prepareStatement("Select * from exercise where submitter = ?");
         ps.setInt(1, memberId);
-
-        
-
         System.out.println("Member ID = "+memberId);
         ResultSet rs = ps.executeQuery();
         
