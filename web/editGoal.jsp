@@ -138,10 +138,12 @@
                                         </select></td><td><input type="radio" name="selector" value="type" checked="" /></td>
                         </tr>
                         <tr>
-                            <td>Aim:</td> <td><%= (int)goalToEdit.getAim() %></td><td><input type="text" name="newAim" pattern=".{1,2}[0-9]+" value="<%= goalToEdit.getAim() %>"/></td><td><input type="radio" name="selector" value="aim" checked="" /></td>
+                            <td>Aim:</td> <td><%= (int)goalToEdit.getAim() %></td><td><input type="text" name="newAim" pattern=".[0-9.]{4}+" value="<%= goalToEdit.getAim() %>"/></td><td><input type="radio" name="selector" value="aim" checked="" /></td>
                         </tr>
       
                         <tr>
+                            <input type="hidden" value="<%= goalToEdit.getGoalStartDate() %>" name="currentStartDate" />
+                            <input type="hidden" value="<%= goalToEdit.getGoalEndDate() %>" name="currentEndDate" />
                             <input type="hidden" value="EditGoal" name="formType" />
                             <input type="hidden" value="<%= goalToEdit.getID() %>" name="goalID" /><td></td><td></td>
                         </tr>

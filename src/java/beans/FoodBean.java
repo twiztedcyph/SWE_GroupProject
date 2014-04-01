@@ -50,25 +50,20 @@ public class FoodBean implements Serializable
         this.sugarPerHundredGrams = sugarPerHundredGrams;
         this.saltPerHundredGrams = saltPerHundredGrams;
     }
-
-    
     
     private FoodBean(ResultSet rs) throws SQLException
     {
-        while (rs.next())
-        {
-            this.memberId = rs.getInt("member_id");
-            this.foodName = rs.getString("foodname");
-            this.dateEaten = rs.getDate("dateeaten");
-            this.timeEaten = rs.getTime("timeeaten");
-            this.proteinPerHundredGrams = rs.getDouble("protein");
-            this.carbsPerHundredGrams = rs.getDouble("carbohydrate");
-            this.NonSatFatPerHundredGrams = rs.getDouble("unsatfat");
-            this.satFatPerHundredGrams = rs.getDouble("satfat");
-            this.kiloCalPerHundredGrams = rs.getDouble("sugar");
-            this.sugarPerHundredGrams = rs.getDouble("salt");
-            this.saltPerHundredGrams = rs.getDouble("kcalories");
-        }
+        this.memberId = rs.getInt("member_id");
+        this.foodName = rs.getString("foodname");
+        this.dateEaten = rs.getDate("dateeaten");
+        this.timeEaten = rs.getTime("timeeaten");
+        this.proteinPerHundredGrams = rs.getDouble("protein");
+        this.carbsPerHundredGrams = rs.getDouble("carbohydrate");
+        this.NonSatFatPerHundredGrams = rs.getDouble("unsatfat");
+        this.satFatPerHundredGrams = rs.getDouble("satfat");
+        this.kiloCalPerHundredGrams = rs.getDouble("sugar");
+        this.sugarPerHundredGrams = rs.getDouble("salt");
+        this.saltPerHundredGrams = rs.getDouble("kcalories");
     }
     
     //<editor-fold defaultstate="collapsed" desc="Get / set methods">
@@ -186,17 +181,16 @@ public class FoodBean implements Serializable
     @Override
     public String toString()
     {
-        return "FoodBean{" + "foodName=" + foodName 
-                + ", dateEaten=" + dateEaten 
-                + ", timeEaten=" + timeEaten 
-                + ", proteinPerHundredGrams=" + proteinPerHundredGrams 
-                + ", carbsPerHundredGrams=" + carbsPerHundredGrams 
-                + ", NonSatFatPerHundredGrams=" + NonSatFatPerHundredGrams 
-                + ", satFatPerHundredGrams=" + satFatPerHundredGrams 
-                + ", kiloCalPerHundredGrams=" + kiloCalPerHundredGrams 
-                + ", sugarPerHundredGrams=" + sugarPerHundredGrams 
-                + ", saltPerHundredGrams=" + saltPerHundredGrams
-                + '}';
+        return "Food name = " + foodName 
+                + "\\nDate eaten = " + dateEaten 
+                + "\\nTime eaten = " + timeEaten 
+                + "\\nProtein = " + proteinPerHundredGrams 
+                + "\\nCarbohydrates = " + carbsPerHundredGrams 
+                + "\\nNon saturating fat = " + NonSatFatPerHundredGrams 
+                + "\\nSaturating fat = " + satFatPerHundredGrams 
+                + "\\nKilo Calories = " + kiloCalPerHundredGrams 
+                + "\\nSugar = " + sugarPerHundredGrams 
+                + "\\nSalt = " + saltPerHundredGrams;
     }
     
     public void persist() throws SQLException
@@ -229,19 +223,19 @@ public class FoodBean implements Serializable
         ArrayList<FoodBean> foodList = new ArrayList<>();
         misc.DbConnect dbConnect = new misc.DbConnect();
 
-        Connection myCon = dbConnect.getCon();
-
-        PreparedStatement ps = myCon.prepareStatement("Select * from food where member_id = ?");
-        ps.setInt(1, memberId);
-        
-        ResultSet rs = ps.executeQuery();
-        
-        while(rs.next())
+        try (Connection myCon = dbConnect.getCon())
         {
-            foodList.add(new FoodBean(rs));
+            PreparedStatement ps = myCon.prepareStatement("Select * from food where member_id = ?");
+            ps.setInt(1, memberId);
+            
+            ResultSet rs = ps.executeQuery();
+            int i = 0;
+            
+            while(rs.next())
+            {
+                foodList.add(new FoodBean(rs));
+            }
         }
-        
-        myCon.close();
         return foodList;
     }
 }

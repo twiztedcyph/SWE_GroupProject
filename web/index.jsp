@@ -75,7 +75,7 @@
             </div>
             <ul id = "navmenu">
                 <li><a href="index.jsp">HOME</a></li>
-                <li><a href="benefits.jsp">BENEFITS</a></li>		
+                <li><a href="benefits.jsp">BENEFITS</a></li>	
                 <li><a href="testimonials.jsp">TESTIMONIALS</a></li>
                 <li><a href="aboutUs.jsp">ABOUT US</a></li>
             </ul>
