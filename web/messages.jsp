@@ -283,32 +283,20 @@
             <br /><br />
             <div>
                 <h1>Send messages to other users!</h1>
-                <table>
                 <form name="sendMessage" action="MessageServlet" method="post" id="sendMessage">
-                    <tr>
                         <p>Are you sending this message to an individual or a group?</p>
-                        
-                    </tr>
-                    <tr>
-                        <td>
-                             <input type="radio" name="messageFor" value="false" checked />Individual
-                             <input type="radio" name="messageFor" value="true" />Group
-                        </td>
-                </tr>
-                <tr>
-                    <td>Recipient(s) Comma Separated
+                        <p><input type="radio" name="messageFor" value="false" checked />Individual
+                            <input type="radio" name="messageFor" value="true" />Group</p>
+   
+
+                        <p>Recipient(s) Comma Separated </p>
+                        <p><textarea rows="1" cols="100" name="recipients" form="sendMessage"></textarea></p>
+                        <p>Subject</p>
+                        <p><textarea rows="1" cols="100" name="subject" form="sendMessage"></textarea></p>
                         <input type="hidden" name="sender" value="<%= memberBean.getId()%>" />
                         <input type="hidden" value="send" name="formType" />
-                    </td>
-                        <td><input type="submit" value="Send Message"/></td>
-                </tr> 
-                 <tr>
-                     <td>Subject<input type="text" name="subject" value="Subject...."</td>   
-                 </tr>
-              
-                </table> 
-                <textarea rows="1" cols="100" name="recipients" form="sendMessage"></textarea> 
-                <textarea rows="25" cols="100" name="messageDetail" form="sendMessage"></textarea>
+                        <p><textarea rows="10" cols="100" name="messageDetail" form="sendMessage"></textarea></p>
+                        <p><input type="submit" value="Send Message"/></p>
                  </form> 
                 
             
@@ -336,7 +324,7 @@
                     <tr id="goalInProgress">
                         <td><%= tempMessage.getSendDate() %> <%= tempMessage.getSendTime() %></td>
                         <td><%= tempMessage.getSubject() %>
-                            <td><%= tempMessage.getSenderID() %></td>
+                            <td><%= tempMessage.getSenderName() %></td>
                             <td>
                             <form action="MessageServlet" method="post">
                                 <input type="hidden" value="<%=tempMessage.getMessageID()%>" name="messageID" />
@@ -380,9 +368,10 @@
                     tempMessage = readMessages.get(i);
                     %>
                     <tr id="goalFailed">
-                        <td><%= tempMessage.getSendDate() %> <%= tempMessage.getSendTime() %></td>
-                        <td><%= tempMessage.getSenderID() %></td>
+                        <td><%= tempMessage.getSendDate() %> <%= tempMessage.getSendTime() %></td> 
                         <td><%= tempMessage.getSubject() %></td>
+                        <td><%= tempMessage.getSenderName() %></td>
+                       
                         <td>
                             <form action="MessageServlet" method="post">
                                 <input type="hidden" value="<%=tempMessage.getMessageID()%>" name="messageID" />
