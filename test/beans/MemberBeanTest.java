@@ -183,11 +183,9 @@ public class MemberBeanTest
     {
         System.out.println("getEmailAddress");
         MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
-        String expResult = "";
+        String expResult = "testemail@test.test";
         String result = instance.getEmailAddress();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -197,11 +195,10 @@ public class MemberBeanTest
     public void testSetEmailAddress()
     {
         System.out.println("setEmailAddress");
-        String emailAddress = "";
+        String emailAddress = "newEmail@newtest.test";
         MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
         instance.setEmailAddress(emailAddress);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(emailAddress, instance.getEmailAddress());
     }
 
     /**
@@ -212,11 +209,9 @@ public class MemberBeanTest
     {
         System.out.println("getAccessType");
         MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
-        String expResult = "";
+        String expResult = "testaccess";
         String result = instance.getAccessType();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -229,8 +224,6 @@ public class MemberBeanTest
         String accessType = "";
         MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
         instance.setAccessType(accessType);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -241,11 +234,9 @@ public class MemberBeanTest
     {
         System.out.println("getDateOfBirth");
         MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
-        Date expResult = null;
+        Date expResult = Date.valueOf("2014-01-01");
         Date result = instance.getDateOfBirth();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -255,69 +246,68 @@ public class MemberBeanTest
     public void testSetDateOfBirth()
     {
         System.out.println("setDateOfBirth");
-        Date dateOfBirth = null;
+        Date dateOfBirth = Date.valueOf("1998-04-08");
         MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
         instance.setDateOfBirth(dateOfBirth);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(dateOfBirth, instance.getDateOfBirth());
     }
-
-    /**
-     * Test of changePassword method, of class MemberBean.
-     */
-    @Test
-    public void testChangePassword() throws Exception
-    {
-        System.out.println("changePassword");
-        String newPassword = "";
-        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
-        instance.changePassword(newPassword);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of changeEmail method, of class MemberBean.
-     */
-    @Test
-    public void testChangeEmail() throws Exception
-    {
-        System.out.println("changeEmail");
-        String newEmail = "";
-        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
-        instance.changeEmail(newEmail);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getGoalList method, of class MemberBean.
-     */
-    @Test
-    public void testGetGoalList() throws Exception
-    {
-        System.out.println("getGoalList");
-        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
-        ArrayList<GoalBean> expResult = null;
-        ArrayList<GoalBean> result = instance.getGoalList();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getGoalsInProgress method, of class MemberBean.
-     */
-    @Test
-    public void testGetGoalsInProgress() throws Exception
-    {
-        System.out.println("getGoalsInProgress");
-        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
-        ArrayList<GoalBean> expResult = null;
-        ArrayList<GoalBean> result = instance.getGoalsInProgress();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
+//
+//    /**
+//     * Test of changePassword method, of class MemberBean.
+//     */
+//    @Test
+//    public void testChangePassword() throws Exception
+//    {
+//        System.out.println("changePassword");
+//        String newPassword = "";
+//        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
+//        instance.changePassword(newPassword);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
+//
+//    /**
+//     * Test of changeEmail method, of class MemberBean.
+//     */
+//    @Test
+//    public void testChangeEmail() throws Exception
+//    {
+//        System.out.println("changeEmail");
+//        String newEmail = "";
+//        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
+//        instance.changeEmail(newEmail);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
+//
+//    /**
+//     * Test of getGoalList method, of class MemberBean.
+//     */
+//    @Test
+//    public void testGetGoalList() throws Exception
+//    {
+//        System.out.println("getGoalList");
+//        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
+//        ArrayList<GoalBean> expResult = null;
+//        ArrayList<GoalBean> result = instance.getGoalList();
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
+//
+//    /**
+//     * Test of getGoalsInProgress method, of class MemberBean.
+//     */
+//    @Test
+//    public void testGetGoalsInProgress() throws Exception
+//    {
+//        System.out.println("getGoalsInProgress");
+//        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
+//        ArrayList<GoalBean> expResult = null;
+//        ArrayList<GoalBean> result = instance.getGoalsInProgress();
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
+//    
 }
