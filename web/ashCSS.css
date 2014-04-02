@@ -375,15 +375,34 @@ ul#gallery li img:hover
 {
     margin-left: auto;
     margin-right: auto;
-    
+    text-align: center;
 }
 
 #adminTableOne td
 {
     width: 20%;
-    text-align: left;
+    text-align: center;
     padding: 5px;
     border-spacing: 1px;
+}
+
+#adminTableOne tr td input
+{
+    width: 80%;
+    text-align: left;
+}
+
+#adminTableOne tr td p
+{
+    width: 100%;
+    text-align: center;
+}
+
+#adminTableOne tr td #submit1
+{
+    
+    width: 20%;
+    text-align: center;
 }
 
 #adminTableOne tr
@@ -429,6 +448,13 @@ ul#gallery li img:hover
 {
     text-align: left;
     width: 100%;
+}
+
+#adminRegTable tr td select
+{
+    text-align: left;
+    width: 103%;
+    border: solid black 2px;
 }
 
 #adminRegTable tr td #submit1

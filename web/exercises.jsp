@@ -332,13 +332,13 @@
                             <td>Duration(minutes)</td><td></td><td><input type="text" name="duration" required="" /></td>
                         </tr>
                         <tr>
-                            <td></td><td></td><td><input type="submit" name="exercise_submit" value="Submit"/></td>
+                            <td></td><td></td><td><input id="submit1" type="submit" name="exercise_submit" value="Submit"/></td>
                         </tr>
 
                     </table>
                 </form>
                 <form method="post" action="/SWE_GroupProject/ExerciseServlet">
-                    <input id="submit1" type="submit" name="view_exercise_history" value="Veiw Exercise History" />
+                    <input type="submit" name="view_exercise_history" value="View Exercise History" />
                 </form>
                 <br />
                 <br />

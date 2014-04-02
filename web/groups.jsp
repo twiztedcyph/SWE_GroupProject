@@ -227,7 +227,6 @@
             <br /><br />
             <div>
                 <h1>Create or Manage Groups!</h1>
-                <br />
                 <%
                     if (!groupMemberList.isEmpty()) {
                 %>
@@ -256,23 +255,21 @@
                 <%
                 } else {
                 %>
-                You are not a member of any groups.
-                <br />
-                You can join or create a group below.
+                <h2>You are not a member of any groups.</h2>
+                <h3>You can join or create a group below.</h3>
                 <%
                     }
                 %>
                 <form method="post" action="/SWE_GroupProject/GroupServlet" id="newgroupform">
                     <input type="hidden" name="creategroup" value="creategroup" />
-                    <br />Group name:
-                    <br /><input type="text" name="groupname" required />
-                    <br />Description:
-                    <br>
-                        <textarea rows="4" cols="50" name="groupdescription" form="newgroupform" required="">Enter text here...</textarea>
-                        <br /><input type="submit" value="Create a group" />
+                    <p>Group Name</p><input type="text" name="groupname" required />
+                    
+                    <p>Group Description</p>
+                    <textarea rows="4" cols="50" name="groupdescription" form="newgroupform" required="">Enter text here...</textarea>
+                    <br></br>
+                    <input type="submit" value="Create a Group" />
                 </form>
             </div>
-            <br />
         </div>
         <div id = "footer">
             <br />
@@ -308,6 +305,6 @@
             }
             //Logged in as admin
             //newMessages = messageBean.getAllNewMessages(userBean.getUsername());
-%>
+        %>
     </body>
 </html>

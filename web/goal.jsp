@@ -205,70 +205,80 @@
         <div id ="maindiv">
             <br />
             <br />
-            <h1>Create or Edit Goals!</h1>
-            <form method="post" name="GoalServlet" action="CreateGoalServlet" >
-                <table id="adminTableOne">
-                    <tr>
-                        <td>
+            <div id ="testimonialsDiv">
+                <h1>Create or Edit Goals!</h1>
+                <form method="post" name="GoalServlet" action="CreateGoalServlet" >
+                    <table id="adminTableOne">
+                        <tr>
                             Will you be creating this goal for yourself or one of your groups?
-                        </td>
-                    </tr>
-                    <tr><td><p></p></td></tr>
-                    <tr>
-                        <td>
-                            <input type="radio" name="goalFor" value="false" checked />Myself
-                            <input type="radio" name="goalFor" value="true" />One of my groups
-                        </td>
-                    </tr>
-                    <tr><td><p></p></td></tr>
-                    <tr>
-                        <td>  
-                            Start Date:
-                            <input type="date" name="startDate" />
-                        </td>
-                    </tr>
-                    <tr><td><p></p></td></tr>
-                    <tr>
-                        <td>
-                            End Date:   
-                            <input type="date" name="endDate" />
-                        </td>
-                    </tr>
-                    <tr><td><p></p></td></tr>
-                    <tr>
-                        <td>
-                            About Your target:
-                        </td>
-                    </tr>
-                    <tr><td><p></p></td></tr>
-                    <tr>
-                        <td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <p>Myself</p><input type="radio" name="goalFor" value="false" checked />    
+                            </td>
+                            <td>
+                                <p>A Group</p><input type="radio" name="goalFor" value="true" />
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>  
+                                Start Date:
+                            </td>
+                            <td>
+                                <input type="date" name="startDate" />
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                End Date:   
+                            </td>
+                            <td>
+                                <input type="date" name="endDate" />
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+
+                    <table id="adminTableOne">
+                        <tr>
+                            <h2>Your Target</h2>
+                        </tr>
+                    </table>
+
+                    <table id="adminTableOne">
+                        <tr>
                             I want to
                             <select name="category">
-                                <option value ="lose">Lose</option>
-                                <option value ="gain">Gain</option>
+                                <option value ="lose">lose</option>
+                                <option value ="gain">gain</option>
                             </select>
-                            <input type="text" name="aim" pattern=".{1,2}[0-9]+"  required/>
-                            KG of
+                            <input id="weight" type="text" name="aim" pattern=".{1,2}[0-9]+"  required/>
+                            <select name="weight">
+                                <option value="kilograms">kilograms (kg)</option>
+                                <option value="pounds">pounds (lb)</option>
+                                <option value="pounds">stone (st)</option>
+                            </select>
+                            of
                             <select name="type">
-                                <option value ="weight">Weight</option>
-                                <option value="bodyFatPercentage">Body Fat</option>
-                                <option value="BMI">Body Mass Index</option>
-                                <option value="muscleMass">Muscle Mass</option>
+                                <option value="bodyFatPercentage">body fat</option>
+                                <option value="muscleMass">muscle mass</option>
                             </select>
-                        </td>
-                    </tr>
-                    <tr><td><p></p></td></tr>
-                    <tr>
-                        <td>
+                            !
+                        </tr>
+                        <tr>
                             <input type="hidden" value="create" name="formType" />
-                            <input type="submit" action="Submit" />
-                        </td>
-                    </tr>
-                </table>
-            </form>
-            <br /><br />
-            <h1>Your Current Goals</h1>
+                            <input id="submit1" type="submit" action="Submit Goal" />
+                        </tr>
+
+                    </table>
+                </form>
+            </div>
+            <h2>Your Current Goals</h2>
             <% if (inProgressGoals.size() != 0) {
             %><table id="adminTableOne">
                 <tr><td>Goal Start Date</td><td>Goal End Date</td><td>Category</td><td>Type</td><td>Aim</td><td>Progress</td></tr>
@@ -309,7 +319,7 @@
             <% }
                 if (completeGoals.size() != 0) {
             %>
-            <h1>Your Completed Goals</h1>
+            <h2>Your Completed Goals</h2>
             <table id="adminTableOne">
                 <tr><td>Goal Start Date</td><td>Goal End Date</td><td>Category</td><td>Type</td><td>Aim</td><td>Progress</td></tr>
                 <%
@@ -339,7 +349,7 @@
             <% }
                 if (failedGoals.size() != 0) {
             %>
-            <h1>Goals You Failed</h1>
+            <h2>Goals You Failed</h2>
             <table id="adminTableOne">
                 <tr><td>Goal Start Date</td><td>Goal End Date</td><td>Category</td><td>Type</td><td>Aim</td><td>Progress</td></tr>
                 <%
@@ -365,7 +375,7 @@
                 <% }
                 %></table> 
                 <%} else { %> 
-            <h1> You don't have any goals right now, why not create one above?</h1>
+            <h3> You don't have any goals right now, why not create one above?</h3>
             <% } %>
             <br /><br />
 
