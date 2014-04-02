@@ -74,7 +74,7 @@ public class GroupDetailsBean implements Serializable
     }
 //</editor-fold>
     
-    public ArrayList<GroupDetailsBean> getMemberGroups(int memberId) throws SQLException
+    public static ArrayList<GroupDetailsBean> getMemberGroups(int memberId) throws SQLException
     {
         ArrayList<GroupDetailsBean> result = new ArrayList<>();
         misc.DbConnect dbConnect = new misc.DbConnect();
@@ -97,7 +97,7 @@ public class GroupDetailsBean implements Serializable
         return result;
     }
     
-    public ArrayList<GroupDetailsBean> getAllGroups() throws SQLException
+    public static ArrayList<GroupDetailsBean> getAllGroups() throws SQLException
     {
         ArrayList<GroupDetailsBean> result = new ArrayList<>();
         misc.DbConnect dbConnect = new misc.DbConnect();
@@ -149,5 +149,10 @@ public class GroupDetailsBean implements Serializable
             psOne.setInt(2, this.groupOwner);
             psOne.executeUpdate();
         }
+    }
+
+    public int getGroupId()
+    {
+        return groupId;
     }
 }
