@@ -45,6 +45,19 @@ public class MemberBeanTest
     public void tearDown()
     {
     }
+    
+    /**
+     * Test of setID method, of class MemberBean.
+     */
+    @Test
+    public void testSetID()
+    {
+        System.out.println("setID");
+        int givenID = 12;
+        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
+        instance.setID(givenID);
+        assertEquals(givenID, instance.getId());
+    }
 
     /**
      * Test of getId method, of class MemberBean.
@@ -53,7 +66,7 @@ public class MemberBeanTest
     public void testGetId()
     {
         System.out.println("getId");
-        MemberBean instance = new MemberBean();
+        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
         int expResult = 0;
         int result = instance.getId();
         assertEquals(expResult, result);
@@ -66,13 +79,10 @@ public class MemberBeanTest
     public void testGetUserName()
     {
         System.out.println("getUserName");
-        MemberBean instance = new MemberBean();
-        String expResult = "";
+        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
+        String expResult = "testuser";
         String result = instance.getUserName();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+        assertEquals(expResult, result);    }
 
     /**
      * Test of setUserName method, of class MemberBean.
@@ -81,11 +91,10 @@ public class MemberBeanTest
     public void testSetUserName()
     {
         System.out.println("setUserName");
-        String userName = "";
-        MemberBean instance = new MemberBean();
+        String userName = "Amanda99";
+        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
         instance.setUserName(userName);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(userName, instance.getUserName());
     }
 
     /**
@@ -95,12 +104,10 @@ public class MemberBeanTest
     public void testGetPassword()
     {
         System.out.println("getPassword");
-        MemberBean instance = new MemberBean();
-        String expResult = "";
+        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
+        String expResult = "testpassword";
         String result = instance.getPassword();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -110,11 +117,10 @@ public class MemberBeanTest
     public void testSetPassword()
     {
         System.out.println("setPassword");
-        String password = "";
-        MemberBean instance = new MemberBean();
+        String password = "newpassword";
+        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
         instance.setPassword(password);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(password, instance.getPassword());
     }
 
     /**
@@ -124,12 +130,10 @@ public class MemberBeanTest
     public void testGetFirstName()
     {
         System.out.println("getFirstName");
-        MemberBean instance = new MemberBean();
-        String expResult = "";
+        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
+        String expResult = "testfirst";
         String result = instance.getFirstName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -139,11 +143,10 @@ public class MemberBeanTest
     public void testSetFirstName()
     {
         System.out.println("setFirstName");
-        String firstName = "";
-        MemberBean instance = new MemberBean();
+        String firstName = "newfirstname";
+        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
         instance.setFirstName(firstName);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(firstName, instance.getFirstName());
     }
 
     /**
@@ -153,12 +156,10 @@ public class MemberBeanTest
     public void testGetLastName()
     {
         System.out.println("getLastName");
-        MemberBean instance = new MemberBean();
-        String expResult = "";
+        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
+        String expResult = "testlast";
         String result = instance.getLastName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -168,11 +169,10 @@ public class MemberBeanTest
     public void testSetLastName()
     {
         System.out.println("setLastName");
-        String lastName = "";
-        MemberBean instance = new MemberBean();
+        String lastName = "newlastname";
+        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
         instance.setLastName(lastName);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(lastName, instance.getLastName());
     }
 
     /**
@@ -182,7 +182,7 @@ public class MemberBeanTest
     public void testGetEmailAddress()
     {
         System.out.println("getEmailAddress");
-        MemberBean instance = new MemberBean();
+        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
         String expResult = "";
         String result = instance.getEmailAddress();
         assertEquals(expResult, result);
@@ -198,7 +198,7 @@ public class MemberBeanTest
     {
         System.out.println("setEmailAddress");
         String emailAddress = "";
-        MemberBean instance = new MemberBean();
+        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
         instance.setEmailAddress(emailAddress);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -211,7 +211,7 @@ public class MemberBeanTest
     public void testGetAccessType()
     {
         System.out.println("getAccessType");
-        MemberBean instance = new MemberBean();
+        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
         String expResult = "";
         String result = instance.getAccessType();
         assertEquals(expResult, result);
@@ -227,7 +227,7 @@ public class MemberBeanTest
     {
         System.out.println("setAccessType");
         String accessType = "";
-        MemberBean instance = new MemberBean();
+        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
         instance.setAccessType(accessType);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -240,7 +240,7 @@ public class MemberBeanTest
     public void testGetDateOfBirth()
     {
         System.out.println("getDateOfBirth");
-        MemberBean instance = new MemberBean();
+        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
         Date expResult = null;
         Date result = instance.getDateOfBirth();
         assertEquals(expResult, result);
@@ -256,7 +256,7 @@ public class MemberBeanTest
     {
         System.out.println("setDateOfBirth");
         Date dateOfBirth = null;
-        MemberBean instance = new MemberBean();
+        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
         instance.setDateOfBirth(dateOfBirth);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -270,7 +270,7 @@ public class MemberBeanTest
     {
         System.out.println("changePassword");
         String newPassword = "";
-        MemberBean instance = new MemberBean();
+        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
         instance.changePassword(newPassword);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -284,7 +284,7 @@ public class MemberBeanTest
     {
         System.out.println("changeEmail");
         String newEmail = "";
-        MemberBean instance = new MemberBean();
+        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
         instance.changeEmail(newEmail);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -297,7 +297,7 @@ public class MemberBeanTest
     public void testGetGoalList() throws Exception
     {
         System.out.println("getGoalList");
-        MemberBean instance = new MemberBean();
+        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
         ArrayList<GoalBean> expResult = null;
         ArrayList<GoalBean> result = instance.getGoalList();
         assertEquals(expResult, result);
@@ -312,7 +312,7 @@ public class MemberBeanTest
     public void testGetGoalsInProgress() throws Exception
     {
         System.out.println("getGoalsInProgress");
-        MemberBean instance = new MemberBean();
+        MemberBean instance = new MemberBean("testuser", "testpassword", "testfirst", "testlast", "testemail@test.test", "testaccess", Date.valueOf("2014-01-01"));
         ArrayList<GoalBean> expResult = null;
         ArrayList<GoalBean> result = instance.getGoalsInProgress();
         assertEquals(expResult, result);

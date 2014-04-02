@@ -120,11 +120,9 @@ public class LifeStyleBeanTest
         String[] hobbies = {"Reading", "Cooking"};
         int id = 5;
         LifeStyleBean instance = new LifeStyleBean(occupation, hobbies, id);
-        int expResult = 0;
+        int expResult = 5;
         int result = instance.getMemberId();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -140,43 +138,5 @@ public class LifeStyleBeanTest
         int id = 5;
         LifeStyleBean instance = new LifeStyleBean(occupation, hobbies, id);
         instance.setMemberId(memberId);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-
-    /**
-     * Test of getLifeStyle method, of class LifeStyleBean.
-     */
-    @Test
-    public void testGetLifeStyle() throws Exception
-    {
-        System.out.println("getLifeStyle");
-        int memberId = 0;
-        String occupation = "Doctor";
-        String[] hobbies = {"Reading", "Cooking"};
-        int id = 5;
-        LifeStyleBean instance = new LifeStyleBean(occupation, hobbies, id);
-        LifeStyleBean expResult = null;
-        LifeStyleBean result = instance.getLifeStyle(memberId);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of persist method, of class LifeStyleBean.
-     */
-    @Test
-    public void testPersist() throws Exception
-    {
-        System.out.println("persist");
-        String occupation = "Doctor";
-        String[] hobbies = {"Reading", "Cooking"};
-        int id = 5;
-        LifeStyleBean instance = new LifeStyleBean(occupation, hobbies, id);
-        instance.persist();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
 }
