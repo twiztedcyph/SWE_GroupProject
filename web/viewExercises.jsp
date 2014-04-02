@@ -4,6 +4,7 @@
     Author     : Ash
 --%>
 
+<%@page import="JoinedBeans.MessageDetailRecipients"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -27,67 +28,78 @@
     <body>
         <div id ="backImageLeft" ></div>
         <div id ="backImageRight"></div>
-<%
-    beans.MemberBean memberBean = (beans.MemberBean) session.getAttribute("userdetails");
-    if (memberBean == null)
-    {
-        //not logged in..
-        String message = (String) session.getAttribute("msg");
-        if (message != null)
-        {
-%>
-            <script>showMsg('<%= message%>');</script>
-<%
-            session.removeAttribute("msg");
-        }
-        session.setAttribute("msg", "You must be logged in to view that page.");
-        response.sendRedirect("index.jsp");
-    }else if(memberBean.getAccessType().equals("user"))
-    {
-        ArrayList<beans.ExerciseBean> exerciseList = (ArrayList<beans.ExerciseBean>) session.getAttribute("exerciselist");
-        if(exerciseList == null)
-        {
-            System.out.println("Before request");
-            request.getRequestDispatcher("ExerciseServlet").forward(request, response);
-            System.out.println("After request");
-        }
-        String message = (String) session.getAttribute("msg");
-        if (message != null)
-        {
-%>
-            <script>showMsg('<%= message%>');</script>
-<%
-            session.removeAttribute("msg");
-            
-        }
-        // Logged in
-%>
+        <%
+            beans.MemberBean memberBean = (beans.MemberBean) session.getAttribute("userdetails");
+            if (memberBean == null) {
+                //not logged in..
+                String message = (String) session.getAttribute("msg");
+                if (message != null) {
+        %>
+        <script>showMsg('<%= message%>');</script>
+        <%
+                session.removeAttribute("msg");
+            }
+            session.setAttribute("msg", "You must be logged in to view that page.");
+            response.sendRedirect("index.jsp");
+        } else if (memberBean.getAccessType().equals("user")) {
+            ArrayList<beans.ExerciseBean> exerciseList = (ArrayList<beans.ExerciseBean>) session.getAttribute("exerciselist");
+            if (exerciseList == null) {
+                System.out.println("Before request");
+                request.getRequestDispatcher("ExerciseServlet").forward(request, response);
+                System.out.println("After request");
+            }
+            String message = (String) session.getAttribute("msg");
+            if (message != null) {
+        %>
+        <script>showMsg('<%= message%>');</script>
+        <%
+                session.removeAttribute("msg");
+
+            }
+            // Logged in
+        %>
+        <jsp:useBean id="unRead" type="ArrayList<MessageDetailRecipients>" scope="session" />
         <div id ="header">
-            <a href="index.jsp" id="homelink"><img src="Images/logo.jpg" alt="home" /></a>
+            <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
-                Welcome back User <%= memberBean.getUserName()%>.
+                Welcome back <%= memberBean.getUserName()%>!
                 <form method="get" action="/SWE_GroupProject/LogInServlet">
                     <p>
                         <input type="hidden" name="logout" value="logout" />
                         <input type="submit" name="" value="Logout" />
                     </p>
                 </form>
+                <h2 id="messagesH2"><a href="MessageServlet"><%=unRead.size()%> New Messages</a></h2>
             </div>
-            <ul id = "navmenu">
-                <li><a href="index.jsp">Home</a></li>
-                <li><a href="profile.jsp">My Profile</a></li>		
-                <li><a href="goal.jsp">Goals</a></li>
-                <li><a href="messages.jsp">Groups<span style="color: red; background: #000;"></span></a></li>
-            </ul>
+            <nav>
+                <ul>
+                    <li id="nav ul li2"><a href="index.jsp">HOME</a></li>
+                    <li><a href="profile.jsp"><%= memberBean.getFirstName().toUpperCase()%></a>
+                        <ul>
+                            <li><a href="profile.jsp">PROFILE</a></li>
+                            <li><a href="goal.jsp">GOALS</a></li>
+                            <li><a href="groups.jsp">GROUPS</a></li>
+                        </ul>
+                    </li>		
+                    <li><a href="food.jsp">LIFESTYLE</a>
+                        <ul>
+                            <li><a href="food.jsp">FOODS</a></li>
+                            <li><a href="exercises.jsp">EXERCISES</a></li>
+
+                        </ul>
+                    </li>
+                    <li><a href="messages.jsp">MESSAGES</a></li>
+                </ul>
+            </nav>
             <div id="search">
                 <form action="/SystemsCoursework/SearchServe" method="post">
                     <p>
-                    Google
-                    <input type="radio" name="searchType" checked="checked" value="google" />
-                    This site
-                    <input type="radio" name="searchType"  value="thisSite" />
+                        Google
+                        <input type="radio" name="searchType" checked="checked" value="google" />
+                        This site
+                        <input type="radio" name="searchType"  value="thisSite" />
                     </p>
-                    <input type="text" placeholder="Search..." name="theSearch"  size="30" />
+                    <input type="text"placeholder="Search..." name="theSearch"  size="30" />
                     <input type="submit" value="Submit" />
                 </form>
             </div>
@@ -107,27 +119,26 @@
                         <th>Time </th>
                         <th>Duration</th>
                     </tr>
-<%
-            for(beans.ExerciseBean exercise : exerciseList)
-            {
-%>  
+                    <%
+                        for (beans.ExerciseBean exercise : exerciseList) {
+                    %>  
 
                     <tr>
-                        <td> <%= exercise.getExerciseType() %> </td>
-                        <td> <%= exercise.getExerciseDate() %> </td>
-                        <td> <%= exercise.getExerciseTime().toString().replace(":00", "") %> </td>
-                        <td> <%= exercise.getExerciseDuration() %></td>
+                        <td> <%= exercise.getExerciseType()%> </td>
+                        <td> <%= exercise.getExerciseDate()%> </td>
+                        <td> <%= exercise.getExerciseTime().toString().replace(":00", "")%> </td>
+                        <td> <%= exercise.getExerciseDuration()%></td>
                     </tr>
-<%
-            }
-%>
+                    <%
+                        }
+                    %>
                 </table>
             </form>
             <br />
             <form> 
                 <input type=button 
-                value="Back to exercise entry"
-                onClick="self.location='exercises.jsp'">
+                       value="Back to exercise entry"
+                       onClick="self.location = 'exercises.jsp'">
             </form>
             <br />
             <br />    
@@ -138,15 +149,17 @@
             <table id = "footerTable">
                 <tr>
                     <td><a href="index.jsp">HOME</a></td>
-                    <td><a href="accountAdmin.jsp">USER CONTROL</a></td>	
-                    <td><a href="festivalControl.jsp">FESTIVAL CONTROL</a></td>
+                    <td><a href="benefits.jsp">BENEFITS</a></td>
+                    <td><a href="testimonials.jsp">TESTIMONIALS</a></td>	
+                    <td><a href="aboutUs.jsp">ABOUT US</a></td>
                     <td><a href="messages.jsp">MESSAGES</a></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>	
-                    <td></td>
-                    <td></td>
+                    <td><a href="profile.jsp">PROFILE</a></td>		
+                    <td><a href="goal.jsp">GOALS</a></td>
+                    <td><a href="food.jsp">FOODS</a></td>
+                    <td><a href="exercises.jsp">EXERCISES</a></td>
+                    <td><a href="groups.jsp">GROUPS</a></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -160,8 +173,8 @@
             <p>Designed and created by Ian, Ash, Liam and Warren</p>
 
         </div>
-<%
-    }
-%>
+        <%
+            }
+        %>
     </body>
 </html>
