@@ -166,7 +166,8 @@
                         <tr>
                             <td>Email:</td> <td><%= memberBean.getEmailAddress() %></td><td><input type="email" name="new_email" value="" /></td><td><input type="radio" name="selector" value="email" /></td>
                         </tr>
-                        <tr>Password: <input type="text" name="currentPass" /></tr><input type="submit" value="submit" />
+                        
+                        <tr><td>Password:</td><td> <input type="text" name="currentPass" /></td><td><input type="submit" value="submit" /></td></tr>
 
                     </table>
                 </form>
@@ -188,7 +189,7 @@
                     <label>Your BMI :</label><input type="text" name="bmi" pattern ="[0-9]+" required Title="Only Numbers" /><br />
                     <label>Your body fat percentage :</label><input type="text" name="bodyfat" pattern ="[0-9]+" required Title="Only Numbers"/><br />
                     <label>Your Resting heart rate :</label><input type="text" name="rHeart" pattern ="[0-9]+" required Title="Only Numbers" /><br />
-                    <label>Your peak heart rate :</label><input type="text" name="bHeart" pattern ="[0-9]+" required Title="Only Numbers" /><br />
+                    <label>Your peak heart rate :</label><input type="text" name="pHeart" pattern ="[0-9]+" required Title="Only Numbers" /><br />
                     
                     <br /><br />    
                     <input type="submit" value="Submit" />

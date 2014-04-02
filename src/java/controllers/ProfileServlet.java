@@ -94,7 +94,8 @@ public class ProfileServlet extends HttpServlet
                 {
                     e.printStackTrace();
                 }
-            }else
+            }
+            else
             {
                 session.setAttribute("lifestlye", lifeStyleBean);
                 session.setAttribute("healthprofile", healthBean);
