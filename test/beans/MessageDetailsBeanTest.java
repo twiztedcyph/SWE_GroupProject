@@ -45,22 +45,7 @@ public class MessageDetailsBeanTest
     public void tearDown()
     {
     }
-
-    /**
-     * Test of persist method, of class MessageDetailsBean.
-     */
-    @Test
-    public void testPersist() throws Exception
-    {
-        System.out.println("persist");
-        MessageDetailsBean instance = new MessageDetailsBean();
-        int expResult = 0;
-        int result = instance.persist();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
+    
     /**
      * Test of getText method, of class MessageDetailsBean.
      */
@@ -68,12 +53,10 @@ public class MessageDetailsBeanTest
     public void testGetText()
     {
         System.out.println("getText");
-        MessageDetailsBean instance = new MessageDetailsBean();
-        String expResult = "";
+        MessageDetailsBean instance = new MessageDetailsBean(7, "Hello, itsa me mario", "hai");
+        String expResult = "Hello, itsa me mario";
         String result = instance.getText();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -83,11 +66,10 @@ public class MessageDetailsBeanTest
     public void testSetText()
     {
         System.out.println("setText");
-        String text = "";
-        MessageDetailsBean instance = new MessageDetailsBean();
+        String text = "New text ftw";
+        MessageDetailsBean instance = new MessageDetailsBean(7, "Hello, itsa me mario", "hai");
         instance.setText(text);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(text, instance.getText());
     }
 
     /**
@@ -97,28 +79,13 @@ public class MessageDetailsBeanTest
     public void testGetSendDate()
     {
         System.out.println("getSendDate");
-        MessageDetailsBean instance = new MessageDetailsBean();
-        Date expResult = null;
+        MessageDetailsBean instance = new MessageDetailsBean(7, "Hello, itsa me mario", "hai");
+        Date expResult = Date.valueOf("2014-01-01");
+        instance.setSendDate(expResult);
         Date result = instance.getSendDate();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-
-    /**
-     * Test of setSendDate method, of class MessageDetailsBean.
-     */
-    @Test
-    public void testSetSendDate()
-    {
-        System.out.println("setSendDate");
-        Date sendDate = null;
-        MessageDetailsBean instance = new MessageDetailsBean();
-        instance.setSendDate(sendDate);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
+    
     /**
      * Test of getSendTime method, of class MessageDetailsBean.
      */
@@ -126,28 +93,13 @@ public class MessageDetailsBeanTest
     public void testGetSendTime()
     {
         System.out.println("getSendTime");
-        MessageDetailsBean instance = new MessageDetailsBean();
-        Time expResult = null;
+        MessageDetailsBean instance = new MessageDetailsBean(7, "Hello, itsa me mario", "hai");
+        Time expResult = Time.valueOf("12:00:00");
+        instance.setSendTime(expResult);
         Time result = instance.getSendTime();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-
-    /**
-     * Test of setSendTime method, of class MessageDetailsBean.
-     */
-    @Test
-    public void testSetSendTime()
-    {
-        System.out.println("setSendTime");
-        Time sendTime = null;
-        MessageDetailsBean instance = new MessageDetailsBean();
-        instance.setSendTime(sendTime);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
+    
     /**
      * Test of getSenderID method, of class MessageDetailsBean.
      */
@@ -155,12 +107,10 @@ public class MessageDetailsBeanTest
     public void testGetSenderID()
     {
         System.out.println("getSenderID");
-        MessageDetailsBean instance = new MessageDetailsBean();
-        int expResult = 0;
+        MessageDetailsBean instance = new MessageDetailsBean(7, "Hello, itsa me mario", "hai");
+        int expResult = 7;
         int result = instance.getSenderID();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -171,10 +121,9 @@ public class MessageDetailsBeanTest
     {
         System.out.println("setSenderID");
         int senderID = 0;
-        MessageDetailsBean instance = new MessageDetailsBean();
+        MessageDetailsBean instance = new MessageDetailsBean(7, "Hello, itsa me mario", "hai");
         instance.setSenderID(senderID);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(senderID, instance.getSenderID());
     }
 
     /**
@@ -184,12 +133,10 @@ public class MessageDetailsBeanTest
     public void testGetId()
     {
         System.out.println("getId");
-        MessageDetailsBean instance = new MessageDetailsBean();
+        MessageDetailsBean instance = new MessageDetailsBean(7, "Hello, itsa me mario", "hai");
         int expResult = 0;
         int result = instance.getId();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -199,11 +146,10 @@ public class MessageDetailsBeanTest
     public void testSetId()
     {
         System.out.println("setId");
-        int id = 0;
-        MessageDetailsBean instance = new MessageDetailsBean();
+        int id = 5;
+        MessageDetailsBean instance = new MessageDetailsBean(7, "Hello, itsa me mario", "hai");
         instance.setId(id);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(id, instance.getId());
     }
     
 }
