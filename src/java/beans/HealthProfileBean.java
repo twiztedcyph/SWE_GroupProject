@@ -51,6 +51,32 @@ public class HealthProfileBean implements Serializable
     DbConnect databaseConnection = new DbConnect();
             Connection con = databaseConnection.getCon();
        
+            PreparedStatement ps = con.prepareStatement("insert into healthy_profile "
+                                   + " (user_height, user_weight, user_bmi, user_body_fat,"
+                                    + "peak_heartrate, resting_heartrate, health_rating,member_id) "
+                                                + "values(?,?,?,?,?,?,?,?)");
+                               
+               
+            
+            ps.setDouble(1, userHeight);
+            ps.setDouble(2, userWeight);
+            ps.setDouble(3, userBMI);
+            ps.setDouble(4, userBodyFatPercent);
+            ps.setInt(5, peakHeartRate);
+            ps.setInt(6, restingHeartRate);
+            ps.setDouble(7, calculateHealthRating());
+            ps.setInt(8, member_id);
+            
+            ps.executeUpdate();
+            
+            con.close();
+            
+    }
+     public void update() throws SQLException
+    {
+    DbConnect databaseConnection = new DbConnect();
+            Connection con = databaseConnection.getCon();
+       
             PreparedStatement ps = con.prepareStatement("UPDATE  goal "
                                    + " set user_height = ?, user_weight = ? , user_bmi = ?, user_body_fat = ?,"
                                     + "peak_heartrate = ?, rest_heartrate = ?, health_rating = ? where member_id = ?");

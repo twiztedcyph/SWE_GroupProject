@@ -54,7 +54,7 @@ public class HealthProfileServlet extends HttpServlet {
             beans.HealthProfileBean healthBean = new beans.HealthProfileBean(userHeight,
                     userWeight, userBMI, userBF, restHeartRate, peakHeartRate, member_id);
 
-            healthBean.persist();
+            healthBean.update();
             session.removeAttribute("healthprofile");
             session.setAttribute("healthprofile", healthBean);
             session.setAttribute("msg", "Your details were added.");

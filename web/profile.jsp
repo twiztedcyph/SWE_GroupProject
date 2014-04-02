@@ -87,13 +87,26 @@
                 </div>
                 
             </div>
-            <ul id = "navmenu">
-                <li><a href="index.jsp">HOME</a></li>
-                <li><a href="profile.jsp">MY PROFILE</a></li>		
-                <li><a href="goal.jsp">GOALS</a></li>
-                <li><a href="groups.jsp">GROUPS</a></li>
-            </ul>
-             <div id="search">
+            <nav>
+                <ul>
+                    <li id="nav ul li2"><a href="index.jsp">HOME</a></li>
+                    <li><a href="profile.jsp"><%= memberBean.getFirstName().toUpperCase()%></a>
+                        <ul>
+                            <li><a href="profile.jsp">PROFILE</a></li>
+                            <li><a href="goal.jsp">GOALS</a></li>
+                            <li><a href="groups.jsp">GROUPS</a></li>
+                        </ul>
+                    </li>		
+                    <li><a href="food.jsp">LIFESTYLE</a>
+                        <ul>
+                            <li><a href="food.jsp">FOODS</a></li>
+                            <li><a href="exercises.jsp">EXERCISES</a></li>
+
+                        </ul>
+                    </li>
+                    <li><a href="messages.jsp">MESSAGES</a></li>
+                </ul>
+            </nav>
                 <form action="/SystemsCoursework/SearchServe" method="get">
                     <p>
                     Google
@@ -111,7 +124,14 @@
         <div id ="maindiv">
             <br /><br />
                                                           
+                <% 
                 
+                if(healthBean.getUserHeight() != 0)
+                    
+                {
+                    
+                  
+               %>
                 <form method="post" action="/SWE_GroupProject/ProfileServlet">
                     <table id ="adminTableOne">
                         
@@ -141,7 +161,7 @@
                         </tr>
                         <tr>
                             <td>Password:</td> <td> ********** </td><td><input type="text" name="new_pass" pattern =".{5,20}[A-Za-z-0-9]+" 
-                                                    required title="At least 5 charecters. Uppercase, Lowercase and Numbers Only!" /></td><td><input type="radio" name="selector" value="pass" checked="" /></td>
+                                                    title="At least 5 charecters. Uppercase, Lowercase and Numbers Only!" /></td><td><input type="radio" name="selector" value="pass" checked="" /></td>
                         </tr>
                         <tr>
                             <td>Email:</td> <td><%= memberBean.getEmailAddress() %></td><td><input type="email" name="new_email" value="" /></td><td><input type="radio" name="selector" value="email" /></td>
@@ -150,7 +170,40 @@
 
                     </table>
                 </form>
+                            <%
+                            
+                }else
+                {
+                            
+                            
+                            %>
+                            
+                         
+                      
+                    <form id ="regForm" method="post" action="/SWE_GroupProject/HealthProfileServlet" >
+                       <table id ="adminTableOne"> 
+                    <h2> <%= memberBean.getFirstName() %> we need your details</h2>
+                    <label>Your weight :</label><input type="text" name="weight" pattern ="[0-9]+" required title="Numbers Only!"/><br />
+                    <label>Your Height :</label><input type="text" name="height" pattern ="[0-9]+" required Title="Only Numbers" /><br />
+                    <label>Your BMI :</label><input type="text" name="bmi" pattern ="[0-9]+" required Title="Only Numbers" /><br />
+                    <label>Your body fat percentage :</label><input type="text" name="bodyfat" pattern ="[0-9]+" required Title="Only Numbers"/><br />
+                    <label>Your Resting heart rate :</label><input type="text" name="rHeart" pattern ="[0-9]+" required Title="Only Numbers" /><br />
+                    <label>Your peak heart rate :</label><input type="text" name="bHeart" pattern ="[0-9]+" required Title="Only Numbers" /><br />
+                    
+                    <br /><br />    
+                    <input type="submit" value="Submit" />
+                    <input type="reset" value="Clear" id="reset_button"/>     
 
+                </form>
+                            
+                            <%
+                    
+                }
+                    
+                    %>
+                            
+                            
+                            
                 <div style="clear:both;"></div>  
                 <br />
 
