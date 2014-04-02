@@ -40,9 +40,11 @@ public class ProfileServlet extends HttpServlet
             HttpSession session = request.getSession();
             beans.MemberBean memberBean = (beans.MemberBean) session.getAttribute("userdetails");
             beans.LifeStyleBean lifeStyleBean = new beans.LifeStyleBean();
+            beans.HealthProfileBean healthBean = new beans.HealthProfileBean();
             try
             {
                 lifeStyleBean = lifeStyleBean.getLifeStyle(memberBean.getId());
+                healthBean = beans.HealthProfileBean.retrieveOne(memberBean.getId());
             } catch (SQLException e)
             {
                 e.printStackTrace();
@@ -95,6 +97,7 @@ public class ProfileServlet extends HttpServlet
             }else
             {
                 session.setAttribute("lifestlye", lifeStyleBean);
+                session.setAttribute("healthprofile", healthBean);
             }
             response.sendRedirect("profile.jsp");
         }

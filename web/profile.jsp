@@ -12,27 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="ashCSS.css" />
         <title>Profile page</title>
-        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-      google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2004',  1000,      400],
-          ['2005',  1170,      460],
-          ['2006',  660,       1120],
-          ['2007',  1030,      540]
-        ]);
-
-        var options = {
-          title: 'Company Performance'
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
-    </script>
+     
         <script type="text/javascript">
             function redirect()
             {
@@ -85,11 +65,12 @@
             session.removeAttribute("msg");
         }
         
-        if(session.getAttribute("lifestlye") == null)
+        if(session.getAttribute("lifestlye") == null ||session.getAttribute("healthprofile") == null )
         {
             request.getRequestDispatcher("ProfileServlet").forward(request, response);
         }
         beans.LifeStyleBean lifeStyleBean = (beans.LifeStyleBean) session.getAttribute("lifestlye");
+        beans.HealthProfileBean healthBean = (beans.HealthProfileBean) session.getAttribute("healthprofile");
 %>
     
     <div id ="header">
@@ -130,7 +111,7 @@
         <div id ="maindiv">
             <br /><br />
                                                           
-                <%= lifeStyleBean.getUserOccupation() %>
+                
                 <form method="post" action="/SWE_GroupProject/ProfileServlet">
                     <table id ="adminTableOne">
                         
@@ -147,15 +128,27 @@
                             <td>Date of birth:</td> <td><%= memberBean.getDateOfBirth() %></td><td></td>
                         </tr>
                         <tr>
-                            <td>Password:</td> <td><%= memberBean.getPassword() %></td><td><input type="text" name="new_pass" pattern =".{5,20}[A-Za-z-0-9]+" 
+                            <td>Height:</td> <td><%= healthBean.getUserHeight() %></td><td><input type="text" name="new_height" value="" /></td><td><input type="radio" name="selector" value="height" /></td>
+                        </tr>
+                        <tr>
+                            <td>Weight:</td> <td><%= healthBean.getUserWeight() %></td><td><input type="text" name="new_weight" value="" /></td><td><input type="radio" name="selector" value="weight" /></td>
+                        </tr>
+                        <tr>
+                            <td>BMI:</td> <td><%= healthBean.getUserBMI() %></td><td><input type="bmi" name="new_bmi" value="" /></td><td><input type="radio" name="selector" value="bmi" /></td>
+                        </tr>
+                        <tr>
+                            <td>Body Fat:</td> <td><%= healthBean.getUserBodyFatPercent() %></td><td><input type="text" name="new_bodyfat" value="" /></td><td><input type="radio" name="selector" value="bodyfat" /></td>
+                        </tr>
+                        <tr>
+                            <td>Password:</td> <td> ********** </td><td><input type="text" name="new_pass" pattern =".{5,20}[A-Za-z-0-9]+" 
                                                     required title="At least 5 charecters. Uppercase, Lowercase and Numbers Only!" /></td><td><input type="radio" name="selector" value="pass" checked="" /></td>
                         </tr>
                         <tr>
                             <td>Email:</td> <td><%= memberBean.getEmailAddress() %></td><td><input type="email" name="new_email" value="" /></td><td><input type="radio" name="selector" value="email" /></td>
                         </tr>
-                        
+                        <tr>Password: <input type="text" name="currentPass" /></tr><input type="submit" value="submit" />
+
                     </table>
-                        <br />Password: <input type="text" name="currentPass" /><br /><input type="submit" value="submit" />
                 </form>
 
                 <div style="clear:both;"></div>  

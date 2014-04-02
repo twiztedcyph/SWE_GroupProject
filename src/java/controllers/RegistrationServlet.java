@@ -107,7 +107,10 @@ public class RegistrationServlet extends HttpServlet {
                         String encAT = encDec.encrypt(accessType, sks);
                         
                         memberBean = new beans.MemberBean(username, strongPass, encFName, encSName, encEmail, encAT, dateOfBirth);
-                        memberBean.persist();
+                        int returnedNum = memberBean.persist();
+                        beans.HealthProfileBean healthBean = new beans.HealthProfileBean(0,0,0,0,0,0,returnedNum);
+                        healthBean.persist();
+                        session.setAttribute("healthprofile", healthBean);
                         
              
                         if(accessType.equals("user"))

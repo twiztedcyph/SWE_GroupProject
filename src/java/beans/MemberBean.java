@@ -53,14 +53,14 @@ public class MemberBean implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public void persist() throws SQLException {
+    public int persist() throws SQLException {
         misc.DbConnect dbConnect = new misc.DbConnect();
 
         Connection myCon = dbConnect.getCon();
 
         PreparedStatement ps = myCon.prepareStatement("INSERT INTO member "
                 + "(user_name, password, first_name, last_name, email_address, "
-                + "date_of_birth, access_type) values(?, ?, ?, ?, ?, ?, ?)");
+                + "date_of_birth, access_type) values(?, ?, ?, ?, ?, ?, ?) returning id");
 
         ps.setString(1, userName);
         ps.setString(2, password);
@@ -70,8 +70,11 @@ public class MemberBean implements Serializable {
         ps.setDate(6, dateOfBirth);
         ps.setString(7, accessType);
 
-        ps.executeUpdate();
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        
         myCon.close();
+        return rs.getInt("id");
     }
 
     public static MemberBean retrieveOne(String username) throws SQLException
