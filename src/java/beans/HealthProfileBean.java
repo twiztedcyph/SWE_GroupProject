@@ -77,9 +77,9 @@ public class HealthProfileBean implements Serializable
     DbConnect databaseConnection = new DbConnect();
             Connection con = databaseConnection.getCon();
        
-            PreparedStatement ps = con.prepareStatement("UPDATE  goal "
+            PreparedStatement ps = con.prepareStatement("UPDATE  healthy_profile "
                                    + " set user_height = ?, user_weight = ? , user_bmi = ?, user_body_fat = ?,"
-                                    + "peak_heartrate = ?, rest_heartrate = ?, health_rating = ? where member_id = ?");
+                                    + "peak_heartrate = ?, resting_heartrate = ?, health_rating = ? where member_id = ?");
                                     
             
             ps.setDouble(1, userHeight);
@@ -191,4 +191,5 @@ public class HealthProfileBean implements Serializable
     {
         return 1000;
     }
+    
 }
