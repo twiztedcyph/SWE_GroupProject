@@ -81,6 +81,14 @@ public class CreateGoalServlet extends HttpServlet
                             + "date is not before today or after the end date");
                     response.sendRedirect("goal.jsp");
                 }
+                else if(aim < 0)
+                {
+                    System.out.println("************INVALID AIM*************");
+                    session.removeAttribute("msg");
+                    session.setAttribute("msg", "No negative aim's please");
+                    response.sendRedirect("goal.jsp");
+                   
+                }
                 else {
                     //Then used to construct a goal object
                     beans.GoalBean  goal = new beans.GoalBean(submitterID, isGroupGoal, startDate, endDate, aim, category, type); 

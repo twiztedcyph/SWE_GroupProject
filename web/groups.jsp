@@ -1,4 +1,5 @@
 
+<%@page import="beans.GroupDetailsBean"%>
 <%@page import="JoinedBeans.MessageDetailRecipients"%>
 <%@page import="java.util.ArrayList"%>
 <!--<%@page contentType="text/html" pageEncoding="UTF-8"%>-->
@@ -178,6 +179,7 @@
             }
         %>
         <jsp:useBean id="unRead" type="ArrayList<MessageDetailRecipients>" scope="session" />
+        <jsp:useBean id="fullGroupList" type="ArrayList<GroupDetailsBean>" scope="request" />
         <div id ="header">
             <a href="index.jsp" id="homelink"><img src="Images/logo.jpg"></img></a>
             <div id ="loginBox">
@@ -248,18 +250,50 @@
                             </form>
                         </td>
                     </tr>
-                    <%
-                        }
-                    %>
+                 <% } %>
                 </table>
-                <%
-                } else {
+                <br />
+                <br />
+                <%} else {
                 %>
                 <h2>You are not a member of any groups.</h2>
                 <h3>You can join or create a group below.</h3>
                 <%
                     }
                 %>
+                
+                <%if(!fullGroupList.isEmpty())
+                { %>
+                <h3>Here are some more groups available to join!</h3>
+                <table id="messageDisplay">
+                    <tr>
+                        <td>Group Name</td>
+                        <td>Group Description</td>
+                        <td></td>
+                    </tr>
+                <% for(int i= 0; i < fullGroupList.size(); i++)
+                {
+                    GroupDetailsBean tempGroup = fullGroupList.get(i);
+                    
+                    %> 
+                    <tr>
+                        <td><%= tempGroup.getGroupName() %></td>
+                        <td><%= tempGroup.getGroupDescription() %></td>
+                        <td>
+                            <form action="GroupServlet" method="post">
+                            <input type="hidden" value="<%=tempGroup.getGroupId() %>" name="groupID" />
+                            <input type="hidden" value="joingroupname" name="joingroupname" />
+                            <input type="submit" value="Join" />
+                        </form>  
+                        </td>
+                    </tr>
+                    
+               <% } %>
+                </table>
+                <% } else { %>
+                <h3>There are no groups available to join, why not start one!</h3>       
+                 <%   } %>
+                
                 <form method="post" action="/SWE_GroupProject/GroupServlet" id="newgroupform">
                     <input type="hidden" name="creategroup" value="creategroup" />
                     <p>Group Name</p><input type="text" name="groupname" required />
