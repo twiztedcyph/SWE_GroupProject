@@ -6,10 +6,13 @@
 
 package controllers;
 
+import beans.GroupDetailsBean;
+import beans.MembersListBean;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,6 +51,7 @@ public class GroupServlet extends HttpServlet
             String viewGroup = request.getParameter("viewgroupname");
             String joinGroup = request.getParameter("joingroupname");
             String makeGroup = request.getParameter("creategroup");
+    
             if(viewGroup != null)
             {
                 System.out.println(viewGroup);
@@ -57,6 +61,43 @@ public class GroupServlet extends HttpServlet
             {
                 System.out.println(joinGroup);
                 System.out.println("JOIN CORRECT!!");
+                int groupID = Integer.parseInt(request.getParameter("groupID"));
+                int memberID = memberBean.getId();
+                
+                System.out.println("Group ID"+groupID);
+                System.out.println("Member ID"+memberID);
+                
+                MembersListBean membersList = new MembersListBean(memberID, groupID);
+                membersList.persist();
+                
+                session.removeAttribute("groupmemberlist");
+                
+                ArrayList<beans.GroupDetailsBean> groupMemberList = GroupDetailsBean.getMemberGroups(memberBean.getId());
+                ArrayList<beans.GroupDetailsBean> fullGroupList = GroupDetailsBean.getAllGroups();
+                
+                ArrayList<GroupDetailsBean> groupsToRemove = new ArrayList<>();
+                for(GroupDetailsBean myGroupTemp : groupMemberList)
+                {
+                    for(GroupDetailsBean fullListTemp : fullGroupList)
+                    {
+                        if(myGroupTemp.getGroupId() == fullListTemp.getGroupId())
+                        {
+                            groupsToRemove.add(fullListTemp);
+                        }
+                    }
+                }
+                
+                for(int i= 0; i < groupsToRemove.size(); i++)
+                {
+                    fullGroupList.remove(i);
+                }
+               
+                session.setAttribute("groupmemberlist", groupMemberList);
+                request.setAttribute("fullGroupList", fullGroupList);
+                request.getRequestDispatcher("groups.jsp").forward(request, response);
+                return;
+                
+
             } else if(makeGroup != null)
             {
                 
@@ -72,12 +113,33 @@ public class GroupServlet extends HttpServlet
                 beans.GroupDetailsBean gdb = new beans.GroupDetailsBean();
                 ArrayList<beans.GroupDetailsBean> groupMemberList = gdb.getMemberGroups(memberBean.getId());
                 ArrayList<beans.GroupDetailsBean> fullGroupList = gdb.getAllGroups();
+                
+                ArrayList<GroupDetailsBean> groupsToRemove = new ArrayList<>();
+                for(GroupDetailsBean myGroupTemp : groupMemberList)
+                {
+                    for(GroupDetailsBean fullListTemp : fullGroupList)
+                    {
+                        if(myGroupTemp.getGroupId() == fullListTemp.getGroupId())
+                        {
+                            groupsToRemove.add(fullListTemp);
+                        }
+                    }
+                }
+                
+                for(int i= 0; i < groupsToRemove.size(); i++)
+                {
+                    fullGroupList.remove(i);
+                }
+               
                 session.setAttribute("groupmemberlist", groupMemberList);
+                request.setAttribute("fullGroupList", fullGroupList);
+                request.getRequestDispatcher("groups.jsp").forward(request, response);
+                return;
                 
                 
             }
             response.sendRedirect("groups.jsp");
-        }catch(SQLException e)
+        }catch(Exception e)
         {
             e.printStackTrace();
         }
